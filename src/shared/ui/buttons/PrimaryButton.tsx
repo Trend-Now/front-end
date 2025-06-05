@@ -2,7 +2,7 @@ import { cn } from '@/shared/lib/';
 import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
 
-const buttonVariants = cva('flex justify-center items-center', {
+const buttonVariants = cva('flex justify-center items-center border', {
   variants: {
     variant: {
       primary: 'text-white bg-brand-500 hover:bg-hover-primary active:bg-active-primary',

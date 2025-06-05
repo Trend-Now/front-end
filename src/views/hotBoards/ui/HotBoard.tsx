@@ -4,6 +4,7 @@ import { DateDivider, Pencil24, PrimaryButton, SecondaryButton } from '@/shared/
 import React from 'react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import DateTabs from './DateTabs';
 
 interface HotBoardProps {
   /**@param {string} keyword 인기 검색어 키워드 */
@@ -48,23 +49,15 @@ export default function HotBoard({ keyword }: HotBoardProps) {
         </div>
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-x-2">
-            <PrimaryButton variant="primary" size="s">
-              오늘
-            </PrimaryButton>
-            <SecondaryButton variant="primary" size="s">
-              2025년 4월 8일
-            </SecondaryButton>
-            <SecondaryButton variant="primary" size="s">
-              2025년 4월 1일
-            </SecondaryButton>
+            <DateTabs dates={[new Date(), new Date('2025-06-04'), new Date('2025-06-02')]} />
           </span>
           <PrimaryButton
-            variant="black"
+            variant="primary"
             size="m"
-            className="pl-4"
+            className="pl-4 pr-6"
             onClick={() => router.push(path + '/write')}
           >
-            <span className="flex items-center gap-x-1">
+            <span className="flex items-center gap-x-1.5">
               <Pencil24 />
               글쓰기
             </span>
