@@ -1,5 +1,5 @@
 import HotBoardSearchList from './HotBoardSearchList';
-import HotBoardSearchListRow from './HotBoardSearchListRow';
+import HotPostsSearchList from './HotPostsSearchList';
 import SearchTypeTabs from './SearchTypeTabs';
 
-export { HotBoardSearchList, HotBoardSearchListRow, SearchTypeTabs };
+export { HotBoardSearchList, HotPostsSearchList, SearchTypeTabs };
