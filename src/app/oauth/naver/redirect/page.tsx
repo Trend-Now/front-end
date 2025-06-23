@@ -1,6 +1,7 @@
 'use client';
 
-import { getNaverAccessToken } from '@/features/login';
+import { LoginResponse } from '@/entities';
+import { axiosNaverAccessToken } from '@/shared/api';
 import { UnauthorizedError } from '@/shared/error/error';
 import { useUserStore } from '@/shared/store';
 import { redirect, useSearchParams } from 'next/navigation';
@@ -23,7 +24,7 @@ function Redirect() {
 
   useEffect(() => {
     if (code && state) {
-      getNaverAccessToken(code, state).then((res) => {
+      axiosNaverAccessToken<LoginResponse>(code, state).then((res) => {
         const token = res.jwt;
 
         if (token) {

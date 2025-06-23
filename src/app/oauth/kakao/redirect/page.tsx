@@ -1,6 +1,7 @@
 'use client';
 
-import { getKakaoAccessToken } from '@/features/login';
+import { LoginResponse } from '@/entities';
+import { axiosKakaoAccessToken } from '@/shared/api';
 import { UnauthorizedError } from '@/shared/error/error';
 import { useUserStore } from '@/shared/store';
 import { redirect, useSearchParams } from 'next/navigation';
@@ -21,7 +22,7 @@ function Redirect() {
 
   useEffect(() => {
     if (code) {
-      getKakaoAccessToken(code).then((res) => {
+      axiosKakaoAccessToken<LoginResponse>(code).then((res) => {
         const token = res.jwt;
 
         if (token) {

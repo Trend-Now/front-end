@@ -1,6 +1,7 @@
 'use client';
 
-import { getGoogleAccessToken } from '@/features/login';
+import { LoginResponse } from '@/entities';
+import { axiosGoogleAccessToken } from '@/shared/api';
 import { UnauthorizedError } from '@/shared/error/error';
 import { useUserStore } from '@/shared/store';
 import { redirect, useSearchParams } from 'next/navigation';
@@ -20,9 +21,15 @@ function Redirect() {
   const { login } = useUserStore();
 
   useEffect(() => {
+    console.log('useEffect');
+
     if (code) {
-      getGoogleAccessToken(code).then((res) => {
+      console.log('code: ', code);
+
+      axiosGoogleAccessToken<LoginResponse>(code).then((res) => {
         const token = res.jwt;
+
+        console.log('token:', token);
 
         if (token) {
           login(res.jwt, res.memberId);
