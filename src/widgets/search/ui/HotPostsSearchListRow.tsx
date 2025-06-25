@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation';
 // import Link from 'next/link';
 import { RealtimePost } from '@/shared/types';
 import dayjs from 'dayjs';
@@ -17,7 +17,7 @@ interface HotPostsSearchListRowProps {
  */
 
 export default function HotPostsSearchListRow({ post }: HotPostsSearchListRowProps) {
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   return (
     <div className="flex items-center gap-x-2 px-2 py-[1.125rem]">

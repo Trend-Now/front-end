@@ -12,7 +12,7 @@ export default function HotBoards() {
   const keyword = useSearchParams().get('keyword') as string;
   const { jwt } = useUserStore();
   const { data: boards } = useQuery({
-    queryKey: ['SearchRealtimeBoards', keyword],
+    queryKey: ['SearchRealtimeBoards', keyword, jwt],
     queryFn: () => axiosSearchRealtimeBoards<SearchRealtimeBoardsResponse>(jwt!, keyword),
     select: (data) => data.searchResult,
     enabled: !!jwt,

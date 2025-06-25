@@ -1,10 +1,10 @@
 'use client';
 
-import { DateDivider, Pencil24, PrimaryButton, SecondaryButton } from '@/shared/ui';
+import { DateDivider, Pencil24, PrimaryButton } from '@/shared/ui';
 import React from 'react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import DateTabs from './DateTabs';
+// import DateTabs from './DateTabs';
 
 interface HotBoardProps {
   /**@param {string} keyword 인기 검색어 키워드 */
@@ -49,7 +49,7 @@ export default function HotBoard({ keyword }: HotBoardProps) {
         </div>
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-x-2">
-            <DateTabs dates={[new Date(), new Date('2025-06-04'), new Date('2025-06-02')]} />
+            {/* <DateTabs dates={[new Date(), new Date('2025-06-04'), new Date('2025-06-02')]} /> */}
           </span>
           <PrimaryButton
             variant="primary"

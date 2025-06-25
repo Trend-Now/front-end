@@ -11,7 +11,7 @@ const SearchFixedBoardHeader = () => {
   const { jwt } = useUserStore();
   const keyword = useSearchParams().get('keyword') as string;
   const { data: posts } = useQuery({
-    queryKey: ['searchFixedBoardPosts', keyword],
+    queryKey: ['searchFixedBoardPosts', keyword, jwt],
     queryFn: () => axiosSearchFixedBoardPosts<SearchFixedBoardsResponse>(jwt!, keyword),
     select: (data) => data.searchResult,
     enabled: !!jwt,

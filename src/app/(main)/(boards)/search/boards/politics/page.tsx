@@ -13,7 +13,7 @@ export default function Page() {
   const { jwt } = useUserStore();
   const keyword = useSearchParams().get('keyword') as string;
   const { data: posts } = useQuery({
-    queryKey: ['searchFixedBoardPosts', keyword, page],
+    queryKey: ['searchFixedBoardPosts', keyword, page, jwt],
     queryFn: () => axiosSearchFixedBoardPosts<SearchFixedBoardsResponse>(jwt!, keyword, page),
     select: (data) => data.searchResult.정치게시판,
     enabled: !!jwt,

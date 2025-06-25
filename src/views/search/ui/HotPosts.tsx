@@ -15,7 +15,7 @@ export default function HotPosts() {
 
   const { jwt } = useUserStore();
   const { data: posts } = useQuery({
-    queryKey: ['SearchRealtimePosts', keyword, page],
+    queryKey: ['SearchRealtimePosts', keyword, page, jwt],
     queryFn: () => axiosSearchRealtimePosts<SearchRealtimePostsResponse>(jwt!, keyword, page),
     select: (data) => data.searchResult,
     enabled: !!jwt,
