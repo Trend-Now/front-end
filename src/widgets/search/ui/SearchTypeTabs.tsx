@@ -1,36 +1,54 @@
 'use client';
 
 import { PrimaryButton, SecondaryButton } from '@/shared/ui';
-import React from 'react';
-import { searchTypes } from '../const';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-export default function SearchTypeTabs() {
-  const router = useRouter();
-  const searchType = usePathname().split('/');
-  const keyword = useSearchParams().get('keyword');
+interface SearchTypeItem {
+  label: string;
+  pathname: string;
+  totalCount?: number;
+}
 
-  const currentTab = searchType[searchType.length - 1];
+interface SearchTypeTabsProps {
+  basePath: string;
+  types: SearchTypeItem[];
+  tabIndex: number;
+}
+
+export default function SearchTypeTabs({ basePath, types, tabIndex }: SearchTypeTabsProps) {
+  const router = useRouter();
+  const keyword = useSearchParams().get('keyword');
+  const pathSegments = usePathname().split('/');
+  const currentTab = pathSegments[tabIndex];
 
   return (
     <div className="flex gap-x-2">
-      {searchTypes.map((item, idx) =>
-        item.pathname === currentTab ? (
-          <PrimaryButton key={idx} variant="black" size="s" className="text-nowrap rounded-full">
+      {types.map((item) => {
+        const isActive = item.pathname === currentTab;
+
+        return isActive ? (
+          <PrimaryButton
+            key={item.pathname}
+            variant="black"
+            size="s"
+            className="text-nowrap rounded-full"
+          >
             {item.label}
+            {item.totalCount !== undefined && ` ${item.totalCount}건`}
           </PrimaryButton>
         ) : (
           <SecondaryButton
-            key={idx}
+            key={item.pathname}
             variant="gray"
             size="s"
             className="text-nowrap rounded-full"
-            onClick={() => router.push(`/search/${item.pathname}?keyword=${keyword}`)}
+            onClick={() => router.push(`${basePath}/${item.pathname}?keyword=${keyword}`)}
           >
             {item.label}
+            {item.totalCount !== undefined && ` ${item.totalCount}건`}
           </SecondaryButton>
-        )
-      )}
+        );
+      })}
     </div>
   );
 }

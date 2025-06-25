@@ -1,11 +1,8 @@
-'use client';
 import { PostInfo } from '@/shared/types';
-import React from 'react';
 import Image from 'next/image';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/shared/lib';
 import { BadgeButton } from '@/shared/ui';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 
@@ -26,23 +23,35 @@ interface BoardRowProps {
   type: 'noti' | 'issue' | 'normal';
   /** @param {number} postNumber - 전체 게시글 기준 번호 */
   postNumber: number;
+  /** @param {string} basePath - 링크 prefix 명시 */
+  basePath: string;
+  /** @param {boolean} showNumber -  번호 표시 여부 (기본값 true) */
+  showNumber?: boolean;
 }
 
 /**
  * @see https://www.figma.com/design/2ks26SvLcpmEHmzSETR8ky/Trend-Now_Design-File?node-id=283-6314&t=o6ABJQovotn5Ocaz-4
  */
-export default function BoardRow({ post, type, postNumber }: BoardRowProps) {
-  const pathname = usePathname();
+export default function BoardRow({
+  post,
+  type,
+  postNumber,
+  basePath,
+  showNumber = true,
+}: BoardRowProps) {
   return (
     <div className={cn(rowVariants({ type }))}>
-      <span className="w-12 text-center text-sm font-regular text-gray-500">{postNumber}</span>
+      {/* 번호 */}
+      {showNumber && (
+        <span className="w-12 text-center text-sm font-regular text-gray-500">{postNumber}</span>
+      )}
       <span className="flex flex-1 items-center gap-x-2">
         {type === 'noti' ? (
           <BadgeButton variant="yellow">공지</BadgeButton>
         ) : type === 'issue' ? (
           <BadgeButton variant="blue">이슈</BadgeButton>
         ) : null}
-        <Link href={`${pathname}/post/${post.postId}`}>
+        <Link href={`${basePath}/post/${post.postId}`}>
           <span className="flex cursor-pointer gap-x-1.5">
             <span className="text-md font-semiBold text-gray-800 hover:underline">
               {post.title}

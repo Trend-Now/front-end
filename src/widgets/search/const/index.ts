@@ -1,3 +1,3 @@
-import { searchTypes } from './searchConstants';
+import { SEARCH_TYPES, FIXED_SEARCH_TYPES } from './searchConstants';
 
-export { searchTypes };
+export { SEARCH_TYPES, FIXED_SEARCH_TYPES };

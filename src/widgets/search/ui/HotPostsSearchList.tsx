@@ -1,7 +1,8 @@
 import React from 'react';
 import HotPostsSearchListRow from './HotPostsSearchListRow';
+import { RealtimePost } from '@/shared/types';
 
-export default function HotPostsSearchList() {
+export default function HotPostsSearchList({ posts }: { posts: RealtimePost[] }) {
   return (
     <div className="flex flex-col gap-y-2">
       <div className="flex gap-x-2 border-b border-gray-200 px-2 pb-3 *:text-sm *:font-regular *:text-gray-500">
@@ -11,18 +12,8 @@ export default function HotPostsSearchList() {
         <span className="w-12 text-center">추천</span>
         <span className="w-12 text-center">일자</span>
       </div>
-      {new Array(10).fill(0).map((_, idx) => (
-        <HotPostsSearchListRow
-          key={idx}
-          postId={125}
-          hotKeyword="윤석열 파면"
-          title="이승기, 前소속사 정산금 소송 이겼다"
-          nickname={'Trendnow'}
-          views={125}
-          likes={2324}
-          created={new Date()}
-          comments={123}
-        />
+      {posts.map((post) => (
+        <HotPostsSearchListRow key={post.boardId} post={post} />
       ))}
     </div>
   );

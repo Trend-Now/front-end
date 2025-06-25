@@ -107,8 +107,10 @@ export const axiosPosts = async <T>(boardId: number, page?: number, size?: numbe
   return data;
 };
 
-export const axiosPost = async <T>(boardId: number, postId: number): Promise<T> =>
-  (await axiosInstance.get(`/api/v1/boards/${boardId}/posts/${postId}`)).data;
+export const axiosPost = async <T>(boardId: number, postId: number): Promise<T> => {
+  const { data } = await axiosInstance.get(`/api/v1/boards/${boardId}/posts/${postId}`);
+  return data;
+};
 
 export const axiosUploadImages = async <T>(accessToken: string, images: FormData): Promise<T> =>
   (
@@ -158,4 +160,62 @@ export const axiosLike = async <T>(
       headers: { Authorization: `Bearer ${accessToken}` },
     })
   ).data;
+//#endregion
+
+//#region 검색
+// 실시간 게시판 목록 검색
+export const axiosSearchRealtimeBoards = async <T>(
+  accessToken: string,
+  keyword: string
+): Promise<T> => {
+  const { data } = await axiosInstance.get(`/api/v1/search/realtimeBoards`, {
+    params: { keyword },
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  return data;
+};
+
+// 실시간 게시판의 게시글 검색
+export const axiosSearchRealtimePosts = async <T>(
+  accessToken: string,
+  keyword: string,
+  page: number = 1,
+  size: number = 10
+): Promise<T> => {
+  const { data } = await axiosInstance.get(`/api/v1/search/realtimePosts`, {
+    params: { keyword, page, size },
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  return data;
+};
+
+// 고정 게시판의 게시글 검색
+export const axiosSearchFixedBoardPosts = async <T>(
+  accessToken: string,
+  keyword: string,
+  page: number = 1,
+  size: number = 10
+): Promise<T> => {
+  const { data } = await axiosInstance.get(`/api/v1/search/fixedPosts`, {
+    params: { keyword, page, size },
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  return data;
+};
+
+// 검색어 자동완성
+export const axiosGetAutocomplete = async <T>(accessToken: string, keyword: string): Promise<T> => {
+  const { data } = await axiosInstance.get('/api/v1/search/auto-complete', {
+    params: { keyword },
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return data;
+};
+
 //#endregion

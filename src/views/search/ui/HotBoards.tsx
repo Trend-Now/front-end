@@ -1,21 +1,32 @@
-import { Pagination } from '@/shared/ui';
+'use client';
+
+import { axiosSearchRealtimeBoards } from '@/shared/api';
+import { useUserStore } from '@/shared/store';
+import { SearchRealtimeBoardsResponse } from '@/shared/types';
 import { HotBoardSearchList } from '@/widgets/search';
+import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
-interface HotBoardsProps {
-  /**@param {string} keyword 검색 키워드 */
-  keyword?: string;
-}
+export default function HotBoards() {
+  const keyword = useSearchParams().get('keyword') as string;
+  const { jwt } = useUserStore();
+  const { data: boards } = useQuery({
+    queryKey: ['SearchRealtimeBoards', keyword],
+    queryFn: () => axiosSearchRealtimeBoards<SearchRealtimeBoardsResponse>(jwt!, keyword),
+    select: (data) => data.searchResult,
+    enabled: !!jwt,
+  });
 
-export default function HotBoards({ keyword }: HotBoardsProps) {
+  if (!boards) return;
+
   return (
     <div className="flex flex-col gap-y-5">
       <div className="flex gap-x-2">
         <span className="text-2xl font-bold text-gray-800">실시간 인기 게시판</span>
-        <span className="text-2xl font-bold text-brand-500">12건</span>
+        <span className="text-2xl font-bold text-brand-500">{boards.length}건</span>
       </div>
-      <HotBoardSearchList />
-      <Pagination currentPage={1} maxPage={2} count={5} />
+      <HotBoardSearchList boards={boards} />
     </div>
   );
 }
