@@ -20,7 +20,7 @@ const SearchFixedBoardHeader = () => {
   if (!posts) return null;
 
   const searchTabsWithCount = FIXED_SEARCH_TYPES.map((type) => {
-    const label = type.label as FixedBoardName; // 🔑 핵심
+    const label = type.label as FixedBoardName;
     return {
       ...type,
       totalCount: posts[label].totalCount,
