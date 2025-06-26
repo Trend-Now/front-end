@@ -1,6 +1,6 @@
 import React from 'react';
 import MedalRow from './MedalRow';
-import HotBoardListRow from './CurrentHotRow';
+import HotBoardListRow from './HotBoardListRow';
 
 export default function HotBoardList() {
   return (

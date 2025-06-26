@@ -1,0 +1,6 @@
+import { PrevHotBoards } from '@/views/search';
+import React from 'react';
+
+export default function Page() {
+  return <PrevHotBoards />;
+}
