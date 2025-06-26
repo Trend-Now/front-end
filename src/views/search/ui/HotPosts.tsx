@@ -6,12 +6,10 @@ import { SearchRealtimePostsResponse } from '@/shared/types';
 import { Pagination } from '@/shared/ui';
 import { HotPostsSearchList } from '@/widgets/search';
 import { useQuery } from '@tanstack/react-query';
-import { useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export default function HotPosts() {
+export default function HotPosts({ keyword }: { keyword: string }) {
   const [page, setPage] = useState(1);
-  const keyword = useSearchParams().get('keyword') as string;
 
   const { jwt } = useUserStore();
   const { data: posts } = useQuery({

@@ -5,11 +5,9 @@ import { useUserStore } from '@/shared/store';
 import { SearchRealtimeBoardsResponse } from '@/shared/types';
 import { HotBoardSearchList } from '@/widgets/search';
 import { useQuery } from '@tanstack/react-query';
-import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
-export default function HotBoards() {
-  const keyword = useSearchParams().get('keyword') as string;
+export default function HotBoards({ keyword }: { keyword: string }) {
   const { jwt } = useUserStore();
   const { data: boards } = useQuery({
     queryKey: ['SearchRealtimeBoards', keyword, jwt],
