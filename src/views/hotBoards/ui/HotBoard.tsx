@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  CountdownTimer,
-  DateDivider,
-  Pagination,
-  PrimaryButton,
-  SecondaryButton,
-} from '@/shared/ui';
+import { CountdownTimer, DateDivider, Pagination } from '@/shared/ui';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
@@ -72,18 +66,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="flex items-center gap-x-2">
-            <PrimaryButton variant="primary" size="s">
-              오늘
-            </PrimaryButton>
-            <SecondaryButton variant="primary" size="s">
-              2025년 4월 8일
-            </SecondaryButton>
-            <SecondaryButton variant="primary" size="s">
-              2025년 4월 1일
-            </SecondaryButton>
-          </span>
+        <div className="flex items-center justify-end">
           <BoardWriteButton href={`/hotboard/${boardId}/write`} />
         </div>
         <BoardList posts={posts.postsListDto} basePath={`/hotboard/${boardId}`} />
