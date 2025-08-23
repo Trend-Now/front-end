@@ -5,6 +5,7 @@ import React, { memo, useEffect, useState } from 'react';
 import { Bar, Down, Up } from './icons';
 import { axiosRealtimeTop10, SSE } from '@/shared/api';
 import { Top10, RankChangeType, RealtimeTop10Response, SignalKeyword } from '@/shared/types';
+import Link from 'next/link';
 
 export default function TrendBar() {
   const [top10, setTop10] = useState<Top10[]>();
@@ -58,6 +59,7 @@ export default function TrendBar() {
               keyword={item.keyword}
               rankChangeType={item.rankChangeType}
               previousRank={item.previousRank}
+              boardId={item.boardId}
             />
           ))}
       </div>
@@ -65,43 +67,51 @@ export default function TrendBar() {
   );
 }
 
-const Top10Row = memo(function Row({ rank, keyword, rankChangeType, previousRank }: Top10) {
+const Top10Row = memo(function Row({
+  rank,
+  keyword,
+  rankChangeType,
+  previousRank,
+  boardId,
+}: Top10) {
   return (
-    <div className="flex cursor-pointer justify-between rounded-xl py-2 pr-3 hover:bg-white/[16%] hover:pl-3">
-      <div className="flex gap-x-3">
-        <span className="flex h-7 w-7 items-center justify-center text-xl font-semiBold text-white">
-          {rank}
-        </span>
-        <span className="flex items-center justify-center text-lg font-semiBold text-white">
-          {keyword}
-        </span>
-      </div>
-      {previousRank ? (
-        rankChangeType === RankChangeType.UP ? (
-          <div className="flex items-center gap-x-0.5">
-            <Up />
-            <span className="text-base font-medium text-white">
-              {Math.abs(previousRank - rank)}
-            </span>
-          </div>
-        ) : rankChangeType === RankChangeType.DOWN ? (
-          <div className="flex items-center gap-x-0.5">
-            <Down />
-            <span className="text-base font-medium text-[#1056AC]">
-              {Math.abs(previousRank - rank)}
-            </span>
-          </div>
+    <Link href={`/hotboard/${boardId}`}>
+      <div className="flex cursor-pointer justify-between rounded-xl py-2 pr-3 hover:bg-white/[16%] hover:pl-3">
+        <div className="flex gap-x-3">
+          <span className="flex h-7 w-7 items-center justify-center text-xl font-semiBold text-white">
+            {rank}
+          </span>
+          <span className="flex items-center justify-center text-lg font-semiBold text-white">
+            {keyword}
+          </span>
+        </div>
+        {previousRank ? (
+          rankChangeType === RankChangeType.UP ? (
+            <div className="flex items-center gap-x-0.5">
+              <Up />
+              <span className="text-base font-medium text-white">
+                {Math.abs(previousRank - rank)}
+              </span>
+            </div>
+          ) : rankChangeType === RankChangeType.DOWN ? (
+            <div className="flex items-center gap-x-0.5">
+              <Down />
+              <span className="text-base font-medium text-[#1056AC]">
+                {Math.abs(previousRank - rank)}
+              </span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-x-0.5">
+              <Bar />
+            </div>
+          )
         ) : (
           <div className="flex items-center gap-x-0.5">
-            <Bar />
+            <span className="text-base font-medium text-white">NEW</span>
           </div>
-        )
-      ) : (
-        <div className="flex items-center gap-x-0.5">
-          <span className="text-base font-medium text-white">NEW</span>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </Link>
   );
 });
 

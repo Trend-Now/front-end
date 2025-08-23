@@ -6,6 +6,7 @@ export interface Top10 {
   keyword: string;
   rankChangeType: RankChangeType;
   previousRank?: number;
+  boardId: number;
 }
 
 export interface SignalKeyword {
