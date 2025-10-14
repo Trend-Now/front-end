@@ -193,14 +193,12 @@ export const axiosCheckWriteCooldown = async <T>(boardId: number): Promise<T> =>
 export const axiosGetComments = async <T>(
   boardId: number,
   postId: number,
-  accessToken: string | null,
   page?: number,
   size?: number
 ): Promise<T> =>
   (
     await privateInstance.get(`/api/v1/boards/${boardId}/posts/${postId}/comments`, {
       params: { page: page, size: size },
-      headers: { jwt: `Bearer ${accessToken}` },
     })
   ).data;
 

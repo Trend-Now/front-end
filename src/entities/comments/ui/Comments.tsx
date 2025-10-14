@@ -3,7 +3,6 @@
 import React, { Fragment } from 'react';
 import Comment from './Comment';
 import { useQuery } from '@tanstack/react-query';
-import { useUserStore } from '@/shared/store';
 import { axiosGetComments } from '@/shared/api';
 import { CommentResponse } from '@/shared/types';
 import WriteComment from './WriteComment';
@@ -17,11 +16,9 @@ interface CommentsProps {
 }
 
 export default function Comments({ postId, boardId }: CommentsProps) {
-  const { accessToken } = useUserStore();
-
-  const { data, refetch } = useQuery({
-    queryKey: ['comments', boardId, postId, accessToken],
-    queryFn: () => axiosGetComments<CommentResponse>(boardId, postId, accessToken, 1, 50),
+  const { data } = useQuery({
+    queryKey: ['comments', boardId, postId],
+    queryFn: () => axiosGetComments<CommentResponse>(boardId, postId, 1, 50),
     enabled: !!boardId && !!postId,
     select: (data) => data.findAllCommentsDtos,
   });
@@ -51,14 +48,13 @@ export default function Comments({ postId, boardId }: CommentsProps) {
                     boardId={boardId}
                     postId={postId}
                     commentId={item.commentId}
-                    refetch={refetch}
                   />
                   <hr className="my-5 border-gray-200" />
                 </Fragment>
               ))}
             </div>
           )}
-          <WriteComment boardId={boardId} postId={postId} refetch={refetch} />
+          <WriteComment boardId={boardId} postId={postId} />
         </div>
       </div>
     </div>
