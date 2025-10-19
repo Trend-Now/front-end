@@ -13,6 +13,7 @@ const MyScraps = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['myscraps', page],
     queryFn: () => axiosMyScraps<MyPostsResponse>(page, 20),
+    staleTime: 0,
   });
 
   if (isLoading) {
