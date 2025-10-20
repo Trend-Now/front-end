@@ -16,21 +16,18 @@ const MyPageTabs = () => {
     queryKey: ['myposts', 1],
     queryFn: () => axiosMyPosts<MyPostsResponse>(1, 20),
     select: (data) => data.totalCount,
-    staleTime: 0,
   });
 
   const { data: commentsData } = useQuery({
     queryKey: ['mycomments', 1],
     queryFn: () => axiosMyComments<MyCommentsResponse>(1, 20),
     select: (data) => data.totalCount,
-    staleTime: 0,
   });
 
   const { data: scrapsData } = useQuery({
     queryKey: ['myscraps', 1],
     queryFn: () => axiosMyScraps<MyPostsResponse>(1, 20),
     select: (data) => data.totalCount,
-    staleTime: 0,
   });
 
   const counts = {

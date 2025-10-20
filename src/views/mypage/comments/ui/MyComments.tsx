@@ -13,7 +13,6 @@ const MyComments = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['mycomments', page],
     queryFn: () => axiosMyComments<MyCommentsResponse>(page, 20),
-    staleTime: 0,
   });
 
   if (isLoading) {

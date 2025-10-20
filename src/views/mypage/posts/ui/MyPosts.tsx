@@ -13,7 +13,6 @@ const MyPosts = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['myposts', page],
     queryFn: () => axiosMyPosts<MyPostsResponse>(page, 20),
-    staleTime: 0,
   });
 
   if (isLoading) {

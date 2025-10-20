@@ -3,7 +3,7 @@ import { PrimaryButton } from '@/shared/ui';
 import { CommentIcon } from '../icons';
 import { axiosWriteComment } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { RequireLoginModal } from '@/features/login';
 import { useUserStore } from '@/shared/store';
 
@@ -17,6 +17,7 @@ interface WriteCommentProps {
 }
 
 export default function WriteComment({ boardId, postId, refetch }: WriteCommentProps) {
+  const queryClient = useQueryClient();
   const { isAuthenticated } = useUserStore();
 
   const [commentText, setCommentText] = useState('');
@@ -31,6 +32,7 @@ export default function WriteComment({ boardId, postId, refetch }: WriteCommentP
     onSuccess: () => {
       refetch();
       setCommentText('');
+      queryClient.invalidateQueries({ queryKey: ['mycomments'] });
     },
     onError: () => {
       throw new InternalServerError('댓글 등록에 실패했습니다. 잠시 후 다시 시도해주세요.');
