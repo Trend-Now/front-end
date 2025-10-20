@@ -4,7 +4,7 @@ import { RequireLoginModal } from '@/features/login';
 import { axiosScrapPost } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
 import { PostScrapResponse } from '@/shared/types';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 
@@ -18,6 +18,8 @@ interface BookmarkButtonProps {
 }
 
 export default function ScrapToggleButton({ postId, boardId, scraped }: BookmarkButtonProps) {
+  const queryClient = useQueryClient();
+
   const [isScraped, setIsScraped] = useState<boolean>(scraped);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
@@ -33,6 +35,7 @@ export default function ScrapToggleButton({ postId, boardId, scraped }: Bookmark
       } else {
         setIsScraped(false);
       }
+      queryClient.invalidateQueries({ queryKey: ['myscraps'] });
     },
     onError: (e) => {
       if (!(e instanceof AxiosError))

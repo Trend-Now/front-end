@@ -4,7 +4,7 @@ import Reply from './Reply';
 import { CommentKebabButton } from '@/features/post';
 import { ReplyList } from '@/shared/types';
 import dayjs from 'dayjs';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axiosEditComment } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
 
@@ -40,6 +40,8 @@ export default function Comment({
   replies,
   refetch,
 }: CommentProps) {
+  const queryClient = useQueryClient();
+
   const [editMode, setEditMode] = useState<boolean>(false);
   const [commentText, setCommentText] = useState(content);
 
@@ -48,6 +50,7 @@ export default function Comment({
     onSuccess: () => {
       refetch();
       setEditMode(false);
+      queryClient.invalidateQueries({ queryKey: ['mycomments'] });
     },
     onError: () => {
       throw new InternalServerError('댓글 등록에 실패했습니다. 잠시 후 다시 시도해주세요.');
