@@ -26,8 +26,8 @@ export default function WriteComment({ boardId, postId }: WriteCommentProps) {
     mutationFn: () => axiosWriteComment<boolean>(boardId, postId, commentText),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', boardId, postId] });
-      setCommentText('');
       queryClient.invalidateQueries({ queryKey: ['mycomments'] });
+      setCommentText('');
     },
     onError: () => {
       setIsLoginModalOpen(true);

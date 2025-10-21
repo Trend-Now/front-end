@@ -46,8 +46,8 @@ export default function Comment({
     mutationFn: () => axiosEditComment<boolean>(boardId, postId, commentId, commentText),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', boardId, postId] });
-      setEditMode(false);
       queryClient.invalidateQueries({ queryKey: ['mycomments'] });
+      setEditMode(false);
     },
     onError: () => {
       throw new InternalServerError('댓글 등록에 실패했습니다. 잠시 후 다시 시도해주세요.');
