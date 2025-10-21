@@ -27,6 +27,7 @@ export default function WriteComment({ boardId, postId }: WriteCommentProps) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', boardId, postId] });
       setCommentText('');
+      queryClient.invalidateQueries({ queryKey: ['mycomments'] });
     },
     onError: () => {
       setIsLoginModalOpen(true);

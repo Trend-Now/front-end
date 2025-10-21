@@ -4,7 +4,7 @@ import { axiosPost, axiosUpdatePost } from '@/shared/api';
 import { PostDetailResponse, RichTextEditorHandle } from '@/shared/types';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import processDelta from '../lib/processDelta';
 
 interface postEditeProps {
@@ -17,6 +17,7 @@ interface postEditeProps {
 }
 
 const PostEdit = ({ boardId, postId, basePath }: postEditeProps) => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const editorRef = useRef<RichTextEditorHandle>(null); // 에디터 내용(DOM)이나 메서드에 접근하기 위한 ref
   const titleRef = useRef<HTMLInputElement>(null); // 제목 저장하는 ref
@@ -59,6 +60,7 @@ const PostEdit = ({ boardId, postId, basePath }: postEditeProps) => {
       imageIds,
       deleteImageIdList
     );
+    queryClient.invalidateQueries({ queryKey: ['myposts'] });
     router.push(`${basePath}/${boardId}/post/${postId}`);
   };
 
