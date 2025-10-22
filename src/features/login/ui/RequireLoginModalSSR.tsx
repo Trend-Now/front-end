@@ -6,22 +6,31 @@ import GoogleLoginButton from './GoogleLoginButton';
 import KakaoLoginButton from './KakaoLoginButton';
 import NaverLoginButton from './NaverLoginButton';
 import Image from 'next/image';
-import { useLoginModalStore } from '@/shared/store';
+import { useEffect, useState } from 'react';
 
-export default function RequireLoginModal() {
+interface LoginModalProps {
+  /**@param {boolean} open 모달 여닫음 여부 */
+  open?: boolean;
+}
+
+export default function RequireLoginModalSSR({ open }: LoginModalProps) {
   const pathname = usePathname();
 
-  const { loginModalOpen, setLoginModalOpen } = useLoginModalStore();
+  const [isOpen, setIsOpen] = useState<boolean>();
 
   const encodedUri = encodeURIComponent(
     `${process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URL}?redirectPath=${pathname}`
   );
 
   const handleClose = () => {
-    setLoginModalOpen(false);
+    setIsOpen(false);
   };
 
-  if (!loginModalOpen) return;
+  useEffect(() => {
+    setIsOpen(open);
+  }, [open]);
+
+  if (!isOpen) return;
 
   return (
     <Modal onClose={handleClose}>

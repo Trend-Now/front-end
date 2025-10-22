@@ -1,6 +1,6 @@
-import { RequireLoginModal } from '@/features/login';
 import { axiosLike } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
+import { useLoginModalStore } from '@/shared/store';
 import { PostLikeResponse } from '@/shared/types';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
@@ -16,8 +16,9 @@ interface LikeToggleButtonProps {
 }
 
 export default function LikeToggleButton({ postId, boardId, liked }: LikeToggleButtonProps) {
+  const { setLoginModalOpen } = useLoginModalStore();
+
   const [isLiked, setIsLiked] = useState<boolean>(liked);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     setIsLiked(liked);
@@ -38,8 +39,8 @@ export default function LikeToggleButton({ postId, boardId, liked }: LikeToggleB
           '게시글을 좋아요 하는 데 실패했습니다. 잠시 후 다시 시도해주세요.'
         );
 
-      if (e.response?.status === 401) {
-        setIsLoginModalOpen(true);
+      if (e.response?.status === 401 || e.response?.status === 500) {
+        setLoginModalOpen(true);
       } else {
         alert('예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
       }
@@ -47,16 +48,13 @@ export default function LikeToggleButton({ postId, boardId, liked }: LikeToggleB
   });
 
   return (
-    <>
-      <input
-        type="checkbox"
-        checked={isLiked}
-        onChange={() => {
-          mutate();
-        }}
-        className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-lg border border-gray-200 before:h-6 before:w-6 before:content-[url('/images/icons/icon_heart_24x24.svg')] checked:border-brand-500 checked:before:h-7 checked:before:w-7 checked:before:content-[url('/images/icons/icon_heart_active_28x28.svg')]"
-      />
-      <RequireLoginModal open={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
-    </>
+    <input
+      type="checkbox"
+      checked={isLiked}
+      onChange={() => {
+        mutate();
+      }}
+      className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-lg border border-gray-200 before:h-6 before:w-6 before:content-[url('/images/icons/icon_heart_24x24.svg')] checked:border-brand-500 checked:before:h-7 checked:before:w-7 checked:before:content-[url('/images/icons/icon_heart_active_28x28.svg')]"
+    />
   );
 }
