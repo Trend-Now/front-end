@@ -3,7 +3,9 @@ import { PrimaryButton } from '@/shared/ui';
 import { CommentIcon } from '../icons';
 import { axiosWriteComment } from '@/shared/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { RequireLoginModal } from '@/features/login';
+import { useLoginModalStore } from '@/shared/store';
+import { AxiosError } from 'axios';
+import { InternalServerError } from '@/shared/error/error';
 
 interface WriteCommentProps {
   /**@param {number} boardId 게시판 아이디 */
@@ -14,9 +16,9 @@ interface WriteCommentProps {
 
 export default function WriteComment({ boardId, postId }: WriteCommentProps) {
   const queryClient = useQueryClient();
+  const { setLoginModalOpen } = useLoginModalStore();
 
   const [commentText, setCommentText] = useState('');
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentText(e.target.value);
@@ -29,8 +31,17 @@ export default function WriteComment({ boardId, postId }: WriteCommentProps) {
       queryClient.invalidateQueries({ queryKey: ['mycomments'] });
       setCommentText('');
     },
-    onError: () => {
-      setIsLoginModalOpen(true);
+    onError: (e) => {
+      if (!(e instanceof AxiosError))
+        throw new InternalServerError(
+          '댓글을 작성하는 데 실패했습니다. 잠시 후 다시 시도해주세요.'
+        );
+
+      if (e.response?.status === 401 || e.response?.status === 500) {
+        setLoginModalOpen(true);
+      } else {
+        alert('예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      }
     },
   });
 
@@ -69,7 +80,6 @@ export default function WriteComment({ boardId, postId }: WriteCommentProps) {
           </div>
         </div>
       </div>
-      <RequireLoginModal open={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
     </>
   );
 }
