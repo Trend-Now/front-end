@@ -2,23 +2,18 @@ import React, { useState } from 'react';
 import { PrimaryButton } from '@/shared/ui';
 import { CommentIcon } from '../icons';
 import { axiosWriteComment } from '@/shared/api';
-import { InternalServerError } from '@/shared/error/error';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { RequireLoginModal } from '@/features/login';
-import { useUserStore } from '@/shared/store';
 
 interface WriteCommentProps {
   /**@param {number} boardId 게시판 아이디 */
   boardId: number;
   /**@param {number} postId 게시글 아이디 */
   postId: number;
-  /**@param {() => void} refetch 댓글 목록을 다시 불러오는 함수 */
-  refetch: () => void;
 }
 
-export default function WriteComment({ boardId, postId, refetch }: WriteCommentProps) {
+export default function WriteComment({ boardId, postId }: WriteCommentProps) {
   const queryClient = useQueryClient();
-  const { isAuthenticated } = useUserStore();
 
   const [commentText, setCommentText] = useState('');
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -30,21 +25,16 @@ export default function WriteComment({ boardId, postId, refetch }: WriteCommentP
   const { mutate } = useMutation({
     mutationFn: () => axiosWriteComment<boolean>(boardId, postId, commentText),
     onSuccess: () => {
-      refetch();
-      setCommentText('');
+      queryClient.invalidateQueries({ queryKey: ['comments', boardId, postId] });
       queryClient.invalidateQueries({ queryKey: ['mycomments'] });
+      setCommentText('');
     },
     onError: () => {
-      throw new InternalServerError('댓글 등록에 실패했습니다. 잠시 후 다시 시도해주세요.');
+      setIsLoginModalOpen(true);
     },
   });
 
   const handleSaveComment = () => {
-    if (!isAuthenticated) {
-      setIsLoginModalOpen(true);
-      return;
-    }
-
     if (!commentText.trim()) {
       alert('댓글을 입력해주세요.');
       return;

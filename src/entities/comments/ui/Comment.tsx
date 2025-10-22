@@ -25,8 +25,6 @@ interface CommentProps {
   content: string;
   /**@param {ReplyList[]} replies 답글 리스트  */
   replies?: ReplyList[];
-  /**@param {() => void} refetch 댓글 목록을 다시 불러오는 함수 */
-  refetch: () => void;
 }
 
 export default function Comment({
@@ -38,7 +36,6 @@ export default function Comment({
   date,
   content,
   replies,
-  refetch,
 }: CommentProps) {
   const queryClient = useQueryClient();
 
@@ -48,9 +45,9 @@ export default function Comment({
   const { mutate } = useMutation({
     mutationFn: () => axiosEditComment<boolean>(boardId, postId, commentId, commentText),
     onSuccess: () => {
-      refetch();
-      setEditMode(false);
+      queryClient.invalidateQueries({ queryKey: ['comments', boardId, postId] });
       queryClient.invalidateQueries({ queryKey: ['mycomments'] });
+      setEditMode(false);
     },
     onError: () => {
       throw new InternalServerError('댓글 등록에 실패했습니다. 잠시 후 다시 시도해주세요.');
@@ -113,7 +110,6 @@ export default function Comment({
               boardId={boardId}
               postId={postId}
               commentId={commentId}
-              refetch={refetch}
               onEditClick={() => setEditMode(true)}
             />
           )}
