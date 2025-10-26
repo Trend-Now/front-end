@@ -3,6 +3,7 @@ import './globals.css';
 import QueryProvider from '@/providers/query-provider';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
+import { RequireLoginModal } from '@/features/login';
 
 const pretendard = localFont({
   src: '../../static/fonts/PretendardVariable.woff2',
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body className="relative font-pretendard antialiased">
         <QueryProvider>{children}</QueryProvider>
         <div id="modal-root" />
+        <RequireLoginModal />
         <Analytics />
       </body>
     </html>

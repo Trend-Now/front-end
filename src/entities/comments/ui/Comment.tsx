@@ -4,7 +4,7 @@ import Reply from './Reply';
 import { CommentKebabButton } from '@/features/post';
 import { ReplyList } from '@/shared/types';
 import dayjs from 'dayjs';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axiosEditComment } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
 
@@ -25,8 +25,6 @@ interface CommentProps {
   content: string;
   /**@param {ReplyList[]} replies 답글 리스트  */
   replies?: ReplyList[];
-  /**@param {() => void} refetch 댓글 목록을 다시 불러오는 함수 */
-  refetch: () => void;
 }
 
 export default function Comment({
@@ -38,15 +36,17 @@ export default function Comment({
   date,
   content,
   replies,
-  refetch,
 }: CommentProps) {
+  const queryClient = useQueryClient();
+
   const [editMode, setEditMode] = useState<boolean>(false);
   const [commentText, setCommentText] = useState(content);
 
   const { mutate } = useMutation({
     mutationFn: () => axiosEditComment<boolean>(boardId, postId, commentId, commentText),
     onSuccess: () => {
-      refetch();
+      queryClient.invalidateQueries({ queryKey: ['comments', boardId, postId] });
+      queryClient.invalidateQueries({ queryKey: ['mycomments'] });
       setEditMode(false);
     },
     onError: () => {
@@ -110,7 +110,6 @@ export default function Comment({
               boardId={boardId}
               postId={postId}
               commentId={commentId}
-              refetch={refetch}
               onEditClick={() => setEditMode(true)}
             />
           )}

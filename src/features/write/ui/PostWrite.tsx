@@ -3,6 +3,7 @@ import processDelta from '../lib/processDelta';
 import Write from './Write';
 import { axiosUploadPost } from '@/shared/api';
 import { PostDetailResponse, RichTextEditorHandle } from '@/shared/types';
+import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 
@@ -14,6 +15,7 @@ interface PostWriteProps {
 }
 
 const PostWrite = ({ boardId, basePath }: PostWriteProps) => {
+  const queryClient = useQueryClient();
   const router = useRouter();
   const editorRef = useRef<RichTextEditorHandle>(null); // 에디터 내용(DOM)이나 메서드에 접근하기 위한 ref
   const titleRef = useRef<HTMLInputElement>(null); // 제목 저장하는 ref
@@ -43,6 +45,7 @@ const PostWrite = ({ boardId, basePath }: PostWriteProps) => {
       JSON.stringify(newDelta),
       imageIds
     );
+    queryClient.invalidateQueries({ queryKey: ['myposts'] });
     const posdId = response.data.postInfoDto.postId;
     router.push(`${basePath}/${boardId}/post/${posdId}`);
   };
