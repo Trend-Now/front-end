@@ -1,14 +1,13 @@
 'use client';
 
 import { ScrapFilledIcon } from '@/features/mypage/icons';
-import { useState } from 'react';
 import { cn } from '@/shared/lib/';
 import { axiosScrapPost } from '@/shared/api';
 import { PostScrapResponse } from '@/shared/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { RequireLoginModal } from '@/features/login';
 import { AxiosError } from 'axios';
 import { InternalServerError } from '@/shared/error/error';
+import { useLoginModalStore } from '@/shared/store';
 
 interface ScrapToggleButtonProps {
   /**@param {number} buttonSize 사이즈 */
@@ -26,8 +25,8 @@ const sizeMap = {
 
 const ScrapCancelButton = ({ size, boardId, postId }: ScrapToggleButtonProps) => {
   const queryClient = useQueryClient();
+  const { setLoginModalOpen } = useLoginModalStore();
 
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { button, icon } = sizeMap[size];
 
   const { mutate } = useMutation({
@@ -39,8 +38,8 @@ const ScrapCancelButton = ({ size, boardId, postId }: ScrapToggleButtonProps) =>
           '북마크를 취소하는 데 실패했습니다. 잠시 후 다시 시도해주세요.'
         );
 
-      if (e.code === '401') {
-        setIsLoginModalOpen(true);
+      if (e.response?.status === 401) {
+        setLoginModalOpen(true);
       } else {
         alert('예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
       }
@@ -52,15 +51,12 @@ const ScrapCancelButton = ({ size, boardId, postId }: ScrapToggleButtonProps) =>
   };
 
   return (
-    <>
-      <button
-        onClick={handleScrap}
-        className={cn('flex items-center justify-center border border-brand-500', button)}
-      >
-        <ScrapFilledIcon size={icon} />
-      </button>
-      <RequireLoginModal open={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
-    </>
+    <button
+      onClick={handleScrap}
+      className={cn('flex items-center justify-center border border-brand-500', button)}
+    >
+      <ScrapFilledIcon size={icon} />
+    </button>
   );
 };
 

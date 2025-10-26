@@ -1,4 +1,4 @@
-import { RequireLoginModal } from '@/features/login';
+import { RequireLoginModalSSR } from '@/features/login';
 import { Home } from '@/views/home';
 import { Suspense } from 'react';
 
@@ -9,7 +9,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ l
       <Suspense>
         <Home />
       </Suspense>
-      <RequireLoginModal open={Boolean(login)} />
+      <RequireLoginModalSSR open={Boolean(login)} />
     </>
   );
 }
