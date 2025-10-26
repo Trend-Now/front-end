@@ -38,7 +38,7 @@ const ScrapCancelButton = ({ size, boardId, postId }: ScrapToggleButtonProps) =>
           '북마크를 취소하는 데 실패했습니다. 잠시 후 다시 시도해주세요.'
         );
 
-      if (e.response?.status === 401 || e.response?.status === 500) {
+      if (e.response?.status === 401) {
         setLoginModalOpen(true);
       } else {
         alert('예기치 못한 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
