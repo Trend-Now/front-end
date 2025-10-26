@@ -160,16 +160,16 @@ const Page = () => {
           <span className="w-full">MOBILE</span>
         </div>
         <div className="flex flex-row items-center gap-[16px] py-[8px]">
-          <Textarea placeholder="Description" type="basic" size="desktop" maxLength={200} />
-          <Textarea placeholder="Description" type="basic" size="mobile" maxLength={200} />
+          <Textarea placeholder="Description" variant="basic" size="desktop" maxLength={200} />
+          <Textarea placeholder="Description" variant="basic" size="mobile" maxLength={200} />
         </div>
         <div className="flex flex-row items-center gap-[16px] py-[8px]">
-          <Textarea placeholder="Description" type="disabled" size="desktop" maxLength={200} />
-          <Textarea placeholder="Description" type="disabled" size="mobile" maxLength={200} />
+          <Textarea placeholder="Description" variant="disabled" size="desktop" maxLength={200} />
+          <Textarea placeholder="Description" variant="disabled" size="mobile" maxLength={200} />
         </div>
         <div className="flex flex-row items-center gap-[16px] py-[8px]">
-          <Textarea placeholder="Description" type="error" size="desktop" maxLength={200} />
-          <Textarea placeholder="Description" type="error" size="mobile" maxLength={200} />
+          <Textarea placeholder="Description" variant="error" size="desktop" maxLength={200} />
+          <Textarea placeholder="Description" variant="error" size="mobile" maxLength={200} />
         </div>
         {/* Dropdown */}
         <div className="py-[8px] text-1xl font-medium">DROPDOWN</div>
