@@ -18,8 +18,7 @@ export default function Title({ value, onChange }: TitleProps) {
       onChange(newValue.slice(0, MAX_LENGTH));
       alert('제목은 최대 100자까지 입력할 수 있습니다.');
     } else {
-      // 100자 이하일 때
-      onChange(newValue); // 2. 정상적으로 값 업데이트
+      onChange(newValue);
     }
   };
 
