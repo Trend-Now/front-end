@@ -1,8 +1,6 @@
 import { logoutAction } from '@/features/logout';
 import axios, { AxiosRequestConfig } from 'axios';
 
-// const baseURL = process.env.NEXT_PUBLIC_REST_API_URL;
-
 const isServer = typeof window === 'undefined';
 
 const baseURL = isServer ? process.env.NEXT_PUBLIC_REST_API_URL : '';
