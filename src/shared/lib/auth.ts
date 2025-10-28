@@ -1,4 +1,3 @@
-import { cookieOptions } from '@/shared/config';
 import { ResponseCookies } from 'next/dist/compiled/@edge-runtime/cookies';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -6,11 +5,9 @@ import { NextRequest, NextResponse } from 'next/server';
 function deleteAuthCookies(response: NextResponse) {
   response.cookies.delete({
     name: 'access_token',
-    ...cookieOptions,
   });
   response.cookies.delete({
     name: 'refresh_token',
-    ...cookieOptions,
   });
 }
 
