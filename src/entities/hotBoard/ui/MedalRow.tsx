@@ -61,7 +61,12 @@ export default function MedalRow({ boardId, rank, keyword, count, views, timer }
             <span className="w-16 text-center text-md font-regular text-gray-500">{count}</span>
             <span className="w-16 text-center text-md font-regular text-gray-500">{views}</span>
             <span className="flex w-[6.5rem]">
-              <CountdownTimer initialSeconds={timer} iconSize={32} textSize="text-2xl" />
+              <CountdownTimer
+                boardId={boardId}
+                initialSeconds={timer}
+                iconSize={32}
+                textSize="text-2xl"
+              />
             </span>
           </span>
         </div>

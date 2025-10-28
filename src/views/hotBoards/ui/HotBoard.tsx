@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { axiosHotBoardInfo, axiosHotBoardList } from '@/shared/api';
 import { HotBoardInfoResponse, HotBoardResponse } from '@/shared/types';
 import { BoardSection, BoardWriteButton } from '@/features/board';
-import { AISummary } from '@/features/hotboard';
+import { AISummary, TimeUpModal } from '@/features/hotboard';
 
 interface HotBoardProps {
   /**@param {number} boardId 게시판 Id */
@@ -16,7 +16,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
   const { data: boardInfo } = useQuery({
     queryKey: ['hotBoardInfo', boardId],
     queryFn: () => axiosHotBoardInfo<HotBoardInfoResponse>(boardId),
-    refetchOnMount: true,
+    staleTime: 0, // 타이머를 위해 항상 새로운 데이터를 받아와야 하므로 0으로 설정
   });
 
   const { data: hotBoardList } = useQuery({
@@ -48,6 +48,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
               <span className="flex items-center gap-x-1">
                 <span className="h-10 w-10" />
                 <CountdownTimer
+                  boardId={boardId}
                   textSize="text-3xl"
                   iconSize={40}
                   initialSeconds={boardInfo.boardLiveTime}
@@ -62,6 +63,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
         </div>
         <BoardSection boardId={boardId} basePath={`/hotboard`} />
       </div>
+      <TimeUpModal />
     </div>
   );
 }

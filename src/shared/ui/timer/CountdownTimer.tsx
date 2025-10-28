@@ -21,17 +21,25 @@ interface CountdownTimerProps {
   /** 초기 시간 (초 단위) */
   initialSeconds: number;
 
+  /** 게시판 ID */
+  boardId: number;
+
   /** 아이콘 크기 (기본값: 28) */
   iconSize?: number;
 
   /** 텍스트 크기 클래스 (Tailwind 등에서 사용, 기본값: "text-lg") */
   textSize?: string;
+
+  /** 타이머 종료 시 호출되는 콜백 함수 */
+  onTimeUp?: () => void;
 }
 
 const CountdownTimer = ({
   initialSeconds,
+  boardId,
   iconSize = 28,
   textSize = 'text-lg',
+  onTimeUp,
 }: CountdownTimerProps) => {
   const queryClient = useQueryClient();
 
@@ -56,6 +64,8 @@ const CountdownTimer = ({
       setTimeLeft((prev) => {
         if (prev <= 1) {
           queryClient.invalidateQueries({ queryKey: ['hotBoardList'] });
+          queryClient.invalidateQueries({ queryKey: ['hotBoardInfo', boardId] });
+          onTimeUp?.();
           return 0;
         }
         return prev - 1;

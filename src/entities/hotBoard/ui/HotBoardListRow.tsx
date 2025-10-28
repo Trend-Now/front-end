@@ -38,7 +38,12 @@ export default function HotBoardListRow({
         <span className="flex items-center gap-x-2">
           <span className="w-16 text-sm font-regular text-gray-500">{count}</span>
           <span className="w-16 text-sm font-regular text-gray-500">{views}</span>
-          <CountdownTimer textSize="text-xl" iconSize={28} initialSeconds={timer} />
+          <CountdownTimer
+            boardId={boardId}
+            textSize="text-xl"
+            iconSize={28}
+            initialSeconds={timer}
+          />
         </span>
       </div>
     </Link>
