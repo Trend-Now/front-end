@@ -1,8 +1,9 @@
 'use client';
 
+import Title from './Title';
 import StaticEditor from './StaticEditor';
 import { RichTextEditorHandle } from '@/shared/types';
-import { InputFieldTitle, PrimaryButton } from '@/shared/ui';
+import { PrimaryButton } from '@/shared/ui';
 import dynamic from 'next/dynamic';
 import type { Delta } from 'quill';
 import type { RefObject } from 'react';
@@ -14,8 +15,9 @@ const RichTextEditor = dynamic(() => import('@/features/write/ui/RichTextEditor'
 });
 
 interface WriteProps {
-  /** 제목 입력 input 요소의 ref (추후 옵셔널 삭제)*/
-  titleRef: RefObject<HTMLInputElement | null>;
+  /** 제목 */
+  title: string;
+  onTitleChange: (newTitle: string) => void;
   /** 에디터 인스턴스(ref)를 통한 getContents, setContents 접근 (추후 옵셔널 삭제)*/
   editorRef: RefObject<RichTextEditorHandle | null>;
   /** 게시글 등록 또는 수정 버튼 클릭 시 호출되는 함수 (추후 옵셔널 삭제)*/
@@ -24,7 +26,13 @@ interface WriteProps {
   initialDelta?: Delta;
 }
 
-export default function Write({ titleRef, editorRef, initialDelta, onSubmit }: WriteProps) {
+export default function Write({
+  title,
+  onTitleChange,
+  editorRef,
+  initialDelta,
+  onSubmit,
+}: WriteProps) {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-y-4">
@@ -32,13 +40,7 @@ export default function Write({ titleRef, editorRef, initialDelta, onSubmit }: W
         <div className="flex flex-col gap-y-6 rounded-3xl bg-gray-100 p-6">
           <div className="flex flex-col gap-y-4">
             <div className="flex flex-col gap-y-3">
-              <InputFieldTitle
-                ref={titleRef}
-                type="basic"
-                size="desktop"
-                label="제목"
-                placeholder="제목을 입력해주세요."
-              />
+              <Title value={title} onChange={onTitleChange} />
               <div className="flex flex-col gap-y-0.5 rounded-xl bg-[#EFF2F6] px-4 py-2.5">
                 <span className="text-xs font-regular text-gray-500">
                   ※ 음란물, 차별, 비하, 혐오 및 초상권, 저작권 침해 게시물은 민, 형사상의 책임을 질
