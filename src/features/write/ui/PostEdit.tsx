@@ -3,7 +3,7 @@ import Write from './Write';
 import { axiosPost, axiosUpdatePost } from '@/shared/api';
 import { PostDetailResponse, RichTextEditorHandle } from '@/shared/types';
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import processDelta from '../lib/processDelta';
 
@@ -20,7 +20,7 @@ const PostEdit = ({ boardId, postId, basePath }: postEditeProps) => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const editorRef = useRef<RichTextEditorHandle>(null); // 에디터 내용(DOM)이나 메서드에 접근하기 위한 ref
-  const titleRef = useRef<HTMLInputElement>(null); // 제목 저장하는 ref
+  const [title, setTitle] = useState('');
   const originalImageIdsRef = useRef<number[]>([]); // 수정 전 에디터에 포함된 이미지 ID 목록 저장용
 
   const { data, isLoading } = useQuery({
@@ -32,11 +32,10 @@ const PostEdit = ({ boardId, postId, basePath }: postEditeProps) => {
   const images = data?.imageInfos;
 
   const handleSubmit = async () => {
-    const title = titleRef.current?.value.trim();
     const delta = editorRef.current?.getContents();
     const uploadsByTempId = editorRef.current?.getUploadsByTempId();
 
-    if (!title || !delta) {
+    if (!title.trim() || !delta) {
       alert('제목 또는 내용을 입력해주세요');
       return;
     }
@@ -77,8 +76,8 @@ const PostEdit = ({ boardId, postId, basePath }: postEditeProps) => {
   // post 데이터가 로드되면 제목 input과 이미지 ID 초기값 설정
   useEffect(() => {
     // 제목 초기값 설정
-    if (post && titleRef.current) {
-      titleRef.current.value = post.title;
+    if (post) {
+      setTitle(post.title);
     }
 
     // 이미지 ID 초기값 저장
@@ -91,7 +90,8 @@ const PostEdit = ({ boardId, postId, basePath }: postEditeProps) => {
 
   return (
     <Write
-      titleRef={titleRef}
+      title={title}
+      onTitleChange={(newTitle: string) => setTitle(newTitle)}
       editorRef={editorRef}
       onSubmit={handleSubmit}
       initialDelta={post?.content ? JSON.parse(post.content) : undefined}
