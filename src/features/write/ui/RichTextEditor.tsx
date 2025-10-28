@@ -15,7 +15,7 @@ interface RichTextEditorProps {
   onChange: (newContent: Delta) => void;
 }
 
-const MAX_LENGTH = 10;
+const MAX_LENGTH = 10000;
 
 const RichTextEditor = forwardRef<RichTextEditorHandle, RichTextEditorProps>(
   ({ value, onChange }, ref) => {
