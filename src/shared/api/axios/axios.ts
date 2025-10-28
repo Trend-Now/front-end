@@ -1,7 +1,11 @@
 import { logoutAction } from '@/features/logout';
 import axios, { AxiosRequestConfig } from 'axios';
 
-const baseURL = process.env.NEXT_PUBLIC_REST_API_URL;
+// const baseURL = process.env.NEXT_PUBLIC_REST_API_URL;
+
+const isServer = typeof window === 'undefined';
+
+const baseURL = isServer ? process.env.NEXT_PUBLIC_REST_API_URL : '';
 
 // 쿠키를 보내지 않는 일반적인 요청을 위한 인스턴스
 export const publicInstance = axios.create({
