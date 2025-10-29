@@ -15,22 +15,28 @@ const RichTextEditor = dynamic(() => import('@/features/write/ui/RichTextEditor'
 });
 
 interface WriteProps {
-  /** 제목 */
+  /** 게시글 제목 */
   title: string;
+  /** 제목이 변경될 때 호출되는 함수 */
   onTitleChange: (newTitle: string) => void;
+
+  /** Quill 에디터의 콘텐츠 (Delta 형식) */
+  content: Delta | null;
+  /** 에디터 콘텐츠가 변경될 때 호출되는 함수 */
+  onContentChange: (newContent: Delta) => void;
+
   /** 에디터 인스턴스(ref)를 통한 getContents, setContents 접근 (추후 옵셔널 삭제)*/
   editorRef: RefObject<RichTextEditorHandle | null>;
   /** 게시글 등록 또는 수정 버튼 클릭 시 호출되는 함수 (추후 옵셔널 삭제)*/
   onSubmit: () => void;
-  /** 글 수정 시 에디터에 미리 채워 넣을 초기 Delta 데이터 */
-  initialDelta?: Delta;
 }
 
 export default function Write({
   title,
   onTitleChange,
+  content,
+  onContentChange,
   editorRef,
-  initialDelta,
   onSubmit,
 }: WriteProps) {
   return (
@@ -51,7 +57,7 @@ export default function Write({
             <div className="flex flex-col gap-y-1">
               <span className="text-xs font-regular text-gray-800">내용</span>
               <div>
-                <RichTextEditor ref={editorRef} initialDelta={initialDelta} />
+                <RichTextEditor ref={editorRef} value={content} onChange={onContentChange} />
               </div>
             </div>
           </div>
