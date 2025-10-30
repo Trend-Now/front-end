@@ -51,7 +51,6 @@ export default function HotBoard({ boardId }: HotBoardProps) {
               <span className="flex items-center gap-x-1">
                 <span className="h-10 w-10" />
                 <CountdownTimer
-                  boardId={boardId}
                   textSize="text-3xl"
                   iconSize={40}
                   initialSeconds={boardInfo.boardLiveTime}
