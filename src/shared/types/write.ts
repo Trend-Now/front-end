@@ -1,5 +1,3 @@
-import { Delta } from 'quill';
-
 export type ImageUploadState = {
   url?: string;
   id?: number;
@@ -7,7 +5,6 @@ export type ImageUploadState = {
 };
 
 export type RichTextEditorHandle = {
-  getContents: () => Delta;
   getUploadsByTempId(): Record<string, ImageUploadState>;
 };
 
