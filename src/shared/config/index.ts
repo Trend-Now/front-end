@@ -1,1 +1,0 @@
-export { cookieOptions } from './cookie';

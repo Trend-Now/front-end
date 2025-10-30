@@ -5,7 +5,8 @@ import { axiosUploadPost } from '@/shared/api';
 import { PostDetailResponse, RichTextEditorHandle } from '@/shared/types';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
+import { Delta } from 'quill';
+import { useRef, useState } from 'react';
 
 interface PostWriteProps {
   /** 게시판 id */
@@ -18,14 +19,13 @@ const PostWrite = ({ boardId, basePath }: PostWriteProps) => {
   const queryClient = useQueryClient();
   const router = useRouter();
   const editorRef = useRef<RichTextEditorHandle>(null); // 에디터 내용(DOM)이나 메서드에 접근하기 위한 ref
-  const titleRef = useRef<HTMLInputElement>(null); // 제목 저장하는 ref
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState<Delta | null>(null);
 
   const handleSubmit = async () => {
-    const title = titleRef.current?.value.trim();
-    const delta = editorRef.current?.getContents();
     const uploadsByTempId = editorRef.current?.getUploadsByTempId();
 
-    if (!title || !delta) {
+    if (!title.trim() || !content) {
       alert('제목 또는 내용을 입력해주세요');
       return;
     }
@@ -38,7 +38,7 @@ const PostWrite = ({ boardId, basePath }: PostWriteProps) => {
       return;
     }
 
-    const { newDelta, imageIds } = processDelta(delta!, uploadsByTempId!);
+    const { newDelta, imageIds } = processDelta(content!, uploadsByTempId!);
     const response = await axiosUploadPost<PostDetailResponse>(
       boardId,
       title,
@@ -49,7 +49,16 @@ const PostWrite = ({ boardId, basePath }: PostWriteProps) => {
     const posdId = response.data.postInfoDto.postId;
     router.push(`${basePath}/${boardId}/post/${posdId}`);
   };
-  return <Write titleRef={titleRef} editorRef={editorRef} onSubmit={handleSubmit} />;
+  return (
+    <Write
+      title={title}
+      onTitleChange={(newTitle: string) => setTitle(newTitle)}
+      content={content}
+      onContentChange={(newContent: Delta) => setContent(newContent)}
+      editorRef={editorRef}
+      onSubmit={handleSubmit}
+    />
+  );
 };
 
 export default PostWrite;

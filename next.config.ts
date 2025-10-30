@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  reactStrictMode: false,
   /* config options here */
   webpack: (config) => {
     config.module.rules.push({
@@ -28,6 +29,11 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  async rewrites() {
+    return [
+      { source: '/api/:path*', destination: `${process.env.NEXT_PUBLIC_REST_API_URL}/api/:path*` },
+    ];
   },
 };
 

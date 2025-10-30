@@ -9,12 +9,16 @@ import '../lib/customImageBlot';
 import { useMutation } from '@tanstack/react-query';
 
 interface RichTextEditorProps {
-  /** 글 수정 시 에디터에 미리 채워 넣을 초기 Delta 데이터 */
-  initialDelta?: Delta;
+  /** Quill 에디터의 콘텐츠 (Delta 형식) */
+  value: Delta | null;
+  /** 에디터 콘텐츠가 변경될 때 호출되는 함수 */
+  onChange: (newContent: Delta) => void;
 }
 
+const MAX_LENGTH = 10000;
+
 const RichTextEditor = forwardRef<RichTextEditorHandle, RichTextEditorProps>(
-  ({ initialDelta }, ref) => {
+  ({ value, onChange }, ref) => {
     const editorRef = useRef<HTMLDivElement>(null); // 에디터 컨테이너
     const quillRef = useRef<Quill | null>(null); // Quill 인스턴스
 
@@ -125,6 +129,30 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, RichTextEditorProps>(
 
       quillRef.current = quill;
 
+      quill.on('text-change', (_, __, source) => {
+        if (source === 'user') {
+          // 현재 글자 수
+          const currentLength = quill.getLength();
+
+          // Quill은 항상 문서 끝에 보이지 않는 줄바꿈(\n)을 포함
+          const maxLengthWithNewline = MAX_LENGTH + 1;
+
+          // 글자 수가 제한을 초과했는지 확인
+          if (currentLength > maxLengthWithNewline) {
+            // 초과된 글자 수 계산
+            const excessLength = currentLength - maxLengthWithNewline;
+
+            // 에디터의 끝에서부터 초과된 만큼 텍스트 삭제
+            quill.deleteText(MAX_LENGTH, excessLength);
+
+            alert(`최대 ${MAX_LENGTH}자까지만 작성할 수 있습니다.`);
+          }
+
+          const newContent = quill.getContents();
+          onChange(newContent);
+        }
+      });
+
       return () => {
         quillRef.current = null; // Cleanup to avoid memory leaks
       };
@@ -132,16 +160,20 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, RichTextEditorProps>(
 
     // 부모 컴포넌트가 getContents 함수를 사용할 수 있도록 연결한다
     useImperativeHandle(ref, () => ({
-      getContents: () => quillRef.current?.getContents() ?? new Delta(),
       getUploadsByTempId: () => uploadsByTempIdRef.current,
     }));
 
-    // 초기 Delta 데이터가 있을 경우 에디터에 주입
     useEffect(() => {
-      if (initialDelta && quillRef.current) {
-        quillRef.current.setContents(initialDelta, 'api');
+      if (quillRef.current && value) {
+        // 현재 내용과 새로운 value가 다를 때만 에디터 업데이트
+        const isDifferent =
+          JSON.stringify(quillRef.current.getContents()) !== JSON.stringify(value);
+
+        if (isDifferent) {
+          quillRef.current.setContents(value, 'api');
+        }
       }
-    }, [initialDelta]);
+    }, [value]);
 
     return <div ref={editorRef} />;
   }
