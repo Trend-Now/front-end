@@ -4,7 +4,13 @@ import React from 'react';
 import timeup from './lottie/timeup.json';
 import Link from 'next/link';
 
-export default function TimeUpModal() {
+interface TimeUpModalProps {
+  open?: boolean;
+}
+
+export default function TimeUpModal({ open = false }: TimeUpModalProps) {
+  if (!open) return null;
+
   return (
     <Modal>
       <div className="flex flex-col items-center gap-y-6 rounded-3xl bg-white p-6">

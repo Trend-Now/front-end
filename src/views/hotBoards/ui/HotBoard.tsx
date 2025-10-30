@@ -6,6 +6,7 @@ import { axiosHotBoardInfo, axiosHotBoardList } from '@/shared/api';
 import { HotBoardInfoResponse, HotBoardResponse } from '@/shared/types';
 import { BoardSection, BoardWriteButton } from '@/features/board';
 import { AISummary, TimeUpModal } from '@/features/hotboard';
+import { useState } from 'react';
 
 interface HotBoardProps {
   /**@param {number} boardId 게시판 Id */
@@ -13,6 +14,8 @@ interface HotBoardProps {
 }
 
 export default function HotBoard({ boardId }: HotBoardProps) {
+  const [openTimeUpModal, setOpenTimeUpModal] = useState<boolean>(false);
+
   const { data: boardInfo } = useQuery({
     queryKey: ['hotBoardInfo', boardId],
     queryFn: () => axiosHotBoardInfo<HotBoardInfoResponse>(boardId),
@@ -52,6 +55,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
                   textSize="text-3xl"
                   iconSize={40}
                   initialSeconds={boardInfo.boardLiveTime}
+                  onTimeUp={() => setOpenTimeUpModal(true)}
                 />
               </span>
             </span>
@@ -63,7 +67,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
         </div>
         <BoardSection boardId={boardId} basePath={`/hotboard`} />
       </div>
-      <TimeUpModal />
+      <TimeUpModal open={openTimeUpModal} />
     </div>
   );
 }
