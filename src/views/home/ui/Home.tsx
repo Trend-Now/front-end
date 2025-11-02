@@ -4,11 +4,17 @@ import { AdvCarousel, SortChip, SortChipItem } from '@/widgets/hotBoards';
 // import Image from 'next/image';
 
 export default function Home() {
-  const ads = ['/images/ads/ad1.png', '/images/ads/ad2.png'];
+  const ads = [
+    { img: '/images/ads/ad1.png', link: 'https://www.introduction.trendnow.me/' },
+    {
+      img: '/images/ads/ad2.png',
+      link: 'https://chromewebstore.google.com/detail/jldghaigppememfjflbfibnmlpbdplch?utm_source=item-share-cb',
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-y-12 border-r border-gray-200 bg-white pr-8">
-      <AdvCarousel images={ads} />
+      <AdvCarousel ads={ads} />
       <div className="flex flex-col gap-y-6">
         <div className="flex flex-col gap-y-6">
           <DateDivider date={new Date()} background="black" />
