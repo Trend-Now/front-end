@@ -6,12 +6,13 @@ import Image from 'next/image';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import Link from 'next/link';
 
 interface AdvCarouselProps {
-  images: string[];
+  ads: { img: string; link: string }[];
 }
 
-export default function AdvCarousel({ images }: AdvCarouselProps) {
+export default function AdvCarousel({ ads: images }: AdvCarouselProps) {
   return (
     <Swiper
       className="h-40 w-full rounded-[1.25rem]"
@@ -25,15 +26,17 @@ export default function AdvCarousel({ images }: AdvCarouselProps) {
     >
       {images.map((item, idx) => (
         <SwiperSlide key={idx}>
-          <Image
-            src={item}
-            alt="배너 이미지"
-            fill
-            sizes="100%"
-            priority
-            unoptimized
-            className="object-cover"
-          />
+          <Link href={item.link} target="_blank">
+            <Image
+              src={item.img}
+              alt="배너 이미지"
+              fill
+              sizes="100%"
+              priority
+              unoptimized
+              className="object-cover"
+            />
+          </Link>
         </SwiperSlide>
       ))}
     </Swiper>
