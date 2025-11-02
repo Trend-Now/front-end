@@ -20,7 +20,7 @@ export default function HotBoardList() {
   const { data } = useQuery({
     queryKey: queryKey,
     queryFn: () => axiosHotBoardList<HotBoardResponse>(page),
-    refetchOnMount: true,
+    staleTime: 0, // 타이머를 위해 페이지가 바뀔 때마다 최신 데이터를 받아와야 하므로 0으로 설정
   });
 
   useEffect(() => {

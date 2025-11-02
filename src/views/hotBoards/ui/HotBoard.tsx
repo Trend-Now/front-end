@@ -1,11 +1,12 @@
 'use client';
 
 import { CountdownTimer, DateDivider } from '@/shared/ui';
-import { useQuery } from '@tanstack/react-query';
-import { axiosHotBoardInfo, axiosHotBoardList } from '@/shared/api';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { axiosHotBoardInfo, axiosHotBoardList, SSE } from '@/shared/api';
 import { HotBoardInfoResponse, HotBoardResponse } from '@/shared/types';
 import { BoardSection, BoardWriteButton } from '@/features/board';
-import { AISummary } from '@/features/hotboard';
+import { AISummary, TimeUpModal } from '@/features/hotboard';
+import { useEffect, useState } from 'react';
 
 interface HotBoardProps {
   /**@param {number} boardId 게시판 Id */
@@ -13,10 +14,14 @@ interface HotBoardProps {
 }
 
 export default function HotBoard({ boardId }: HotBoardProps) {
+  const queryClient = useQueryClient();
+
+  const [openTimeUpModal, setOpenTimeUpModal] = useState<boolean>(false);
+
   const { data: boardInfo } = useQuery({
     queryKey: ['hotBoardInfo', boardId],
     queryFn: () => axiosHotBoardInfo<HotBoardInfoResponse>(boardId),
-    refetchOnMount: true,
+    staleTime: 0, // 타이머를 위해 항상 새로운 데이터를 받아와야 하므로 0으로 설정
   });
 
   const { data: hotBoardList } = useQuery({
@@ -24,6 +29,17 @@ export default function HotBoard({ boardId }: HotBoardProps) {
     queryFn: () => axiosHotBoardList<HotBoardResponse>(),
     select: (data) => data.boardInfoDtos.findIndex((item) => item.boardId === boardId),
   });
+
+  useEffect(() => {
+    const sseInstance = SSE.getInstance();
+
+    const { eventSource } = sseInstance.getEventSource();
+
+    eventSource.addEventListener('realtimeBoardTimeUp', (res) => {
+      if (res.data.boardId === boardId)
+        queryClient.invalidateQueries({ queryKey: ['hotBoardInfo', boardId] });
+    });
+  }, []);
 
   if (!boardInfo) return null;
 
@@ -51,6 +67,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
                   textSize="text-3xl"
                   iconSize={40}
                   initialSeconds={boardInfo.boardLiveTime}
+                  onTimeUp={() => setOpenTimeUpModal(true)}
                 />
               </span>
             </span>
@@ -62,6 +79,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
         </div>
         <BoardSection boardId={boardId} basePath={`/hotboard`} />
       </div>
+      <TimeUpModal open={openTimeUpModal} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { SecondaryButton } from '@/shared/ui';
-import ArrowLeft from '../icon/ArrowLeft';
+import ArrowLeft from '../../../widgets/not-found/icon/ArrowLeft';
 import { useRouter } from 'next/navigation';
 
 const BackButton = () => {

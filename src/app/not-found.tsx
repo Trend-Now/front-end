@@ -1,5 +1,5 @@
-import { SecondaryButton } from '@/shared/ui';
-import { BackButton, NotFoundSection } from '@/widgets/not-found';
+import { BackButton, SecondaryButton } from '@/shared/ui';
+import { NotFoundSection } from '@/widgets/not-found';
 import Link from 'next/link';
 
 export default function NotFound() {

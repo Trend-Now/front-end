@@ -19,6 +19,7 @@ const BoardSection = ({ boardId, basePath }: BoardSectionProps) => {
     queryKey: ['posts', boardId, page],
     queryFn: () => axiosPosts<PostListResponse>(boardId, page, BOARD_PAGE_SIZE),
     placeholderData: keepPreviousData,
+    staleTime: 0,
   });
 
   // CSR에서 필요 (전부다 SSR로 전환시 삭제)

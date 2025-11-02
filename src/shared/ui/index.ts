@@ -1,4 +1,5 @@
 /** Buttons */
+import BackButton from './buttons/BackButton';
 import BadgeButton from './buttons/BadgeButton';
 import { DropdownChip, DropdownChipItem } from './buttons/DropdownChip';
 import Pagination from './pagination/Pagination';
@@ -56,6 +57,7 @@ import Modal from './modal/Modal';
 import PostDeleteModal from './modal/PostDeleteModal';
 
 export {
+  BackButton,
   BadgeButton,
   DropdownChip,
   DropdownChipItem,

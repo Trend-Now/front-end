@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 
 interface ModalProps {
   children: ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function Modal({ children, onClose }: ModalProps) {
@@ -30,7 +30,7 @@ export default function Modal({ children, onClose }: ModalProps) {
   // ESC 키로 모달 닫기
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') onClose?.();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -45,7 +45,7 @@ export default function Modal({ children, onClose }: ModalProps) {
       className="fixed inset-0 z-20 flex items-center justify-center bg-black/[28%]"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
-          onClose();
+          onClose?.();
         }
       }}
     >
