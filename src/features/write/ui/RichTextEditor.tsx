@@ -116,7 +116,7 @@ const RichTextEditor = forwardRef<RichTextEditorHandle, RichTextEditorProps>(
               ['bold', 'italic', 'underline', 'strike'],
               [{ align: [] }],
               [{ list: 'ordered' }, { list: 'bullet' }],
-              ['link', 'image'],
+              ['image'],
             ],
             handlers: {
               image: () => {
