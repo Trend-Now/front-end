@@ -30,10 +30,9 @@ export default function User() {
     setIsModalOpen(false);
   };
 
-  const { data: user, isError } = useQuery<UserProfile>({
+  const { data: user, isError } = useQuery<UserProfile | null>({
     queryKey: ['userInfo'],
     queryFn: () => axiosUserProfile(),
-    retry: 0,
   });
 
   // 로그인 안되어있을때
