@@ -11,8 +11,7 @@ interface BoardNameProps {
 
 export default async function BoardName({ boardId, className, icon, isHotBoard }: BoardNameProps) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_REST_API_URL}/api/v1/boards/${boardId}/name`,
-    { cache: 'force-cache' }
+    `${process.env.NEXT_PUBLIC_REST_API_URL}/api/v1/boards/${boardId}/name`
   );
 
   if (!response.ok) {
