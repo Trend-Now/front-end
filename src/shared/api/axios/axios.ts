@@ -84,7 +84,7 @@ export const axiosHotBoardInfo = async <T>(boardId: number): Promise<T> =>
 //#endregion
 
 //#region 회원 정보
-export const axiosUserProfile = async <T>(cookie?: string): Promise<T> => {
+export const axiosUserProfile = async <T>(cookie?: string): Promise<T | null> => {
   // 요청에 사용할 설정 객체
   const config: AxiosRequestConfig = {};
 
@@ -95,8 +95,21 @@ export const axiosUserProfile = async <T>(cookie?: string): Promise<T> => {
     };
   }
 
-  const response = await privateInstance.get('/api/v1/member/me', config);
-  return response.data;
+  try {
+    const response = await privateInstance.get('/api/v1/member/me', config);
+    return response.data; // 로그인 성공 시: 유저 데이터
+  } catch (error) {
+    // 401 (비로그인) 또는 404 (유저 없음)인지 확인
+    if (
+      axios.isAxiosError(error) &&
+      (error.response?.status === 401 || error.response?.status === 404)
+    ) {
+      return null; // 비로그인 시: null
+    }
+
+    // 그 외 500 등 '진짜 서버 에러'는 그대로 던져서 ErrorBoundary 등으로 처리
+    throw error;
+  }
 };
 
 export const axiosEditUsername = async <T>(nickname: string): Promise<T> =>
