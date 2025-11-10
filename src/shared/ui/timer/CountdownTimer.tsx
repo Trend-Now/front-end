@@ -93,9 +93,9 @@ const CountdownTimer = ({
   const { variant, icon } = getTimerStyle(timeLeft, iconSize);
 
   return (
-    <div className={cn('flex flex-row-reverse items-center gap-1', boxSize)}>
-      <div className={cn(timerVariants({ variant }), textSize)}>{formatTime(timeLeft)}</div>
+    <div className={cn('flex items-center justify-end gap-1', boxSize)}>
       {icon}
+      <div className={cn(timerVariants({ variant }), textSize)}>{formatTime(timeLeft)}</div>
     </div>
   );
 };
