@@ -89,7 +89,8 @@ const CountdownTimer = ({
   const { variant, icon } = getTimerStyle(timeLeft, iconSize);
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="group relative flex items-center gap-1">
+      <span className='absolute -top-12 hidden h-10 w-48 rounded-lg bg-gray-900 p-4 after:absolute after:bottom-0 after:left-1/2 after:mb-[-8px] after:ml-[-8px] after:h-0 after:w-0 after:border-8 after:border-b-0 after:border-transparent after:border-t-gray-900 after:content-[""] group-hover:block'></span>
       {icon}
       <div className={cn(timerVariants({ variant }), textSize)}>{formatTime(timeLeft)}</div>
     </div>
