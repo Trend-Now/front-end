@@ -21,8 +21,6 @@ export const privateInstance = axios.create({
 privateInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
-    // 응답 에러 처리
-    const originalRequest = error.config; // 실패한 요청 정보 저장
     // AT 토큰 만료 시
     if (typeof window !== 'undefined' && error.response?.status === 401) {
       await logoutAction();
