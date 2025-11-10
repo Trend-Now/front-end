@@ -27,6 +27,9 @@ interface CountdownTimerProps {
   /** 텍스트 크기 클래스 (Tailwind 등에서 사용, 기본값: "text-lg") */
   textSize?: string;
 
+  /** 타이머 컨테이너 크기 */
+  boxSize?: 'w-fit' | 'w-[120px]' | 'w-[88px]';
+
   /** 타이머 종료 시 호출되는 콜백 함수 */
   onTimeUp?: () => void;
 }
@@ -35,6 +38,7 @@ const CountdownTimer = ({
   initialSeconds,
   iconSize = 28,
   textSize = 'text-lg',
+  boxSize = 'w-fit',
   onTimeUp,
 }: CountdownTimerProps) => {
   const queryClient = useQueryClient();
@@ -89,7 +93,7 @@ const CountdownTimer = ({
   const { variant, icon } = getTimerStyle(timeLeft, iconSize);
 
   return (
-    <div className="flex items-center gap-1">
+    <div className={cn('flex items-center justify-end gap-1', boxSize)}>
       {icon}
       <div className={cn(timerVariants({ variant }), textSize)}>{formatTime(timeLeft)}</div>
     </div>
