@@ -24,39 +24,8 @@ privateInstance.interceptors.response.use(
     // 응답 에러 처리
     const originalRequest = error.config; // 실패한 요청 정보 저장
     // AT 토큰 만료 시
-    if (
-      typeof window !== 'undefined' &&
-      error.response?.status === 401 &&
-      !originalRequest._retry
-    ) {
-      originalRequest._retry = true; // 재시도 방지
-
-      try {
-        await axios.post(
-          `${process.env.NEXT_PUBLIC_REST_API_URL}/api/v1/member/access-token`,
-          null,
-          {
-            withCredentials: true,
-          }
-        );
-        return privateInstance(originalRequest); // 원래 요청 다시 시도
-      } catch (error) {
-        console.error('AT 토큰 재발급 실패:', error);
-        // 임시 쿠키 제거
-        await logoutAction();
-
-        // 로그아웃 API
-        // try {
-        //   await axios.post(`${process.env.NEXT_PUBLIC_REST_API_URL}/api/v1/member/logout`, null, {
-        //     withCredentials: true,
-        //   });
-        // } catch (error) {
-        //   console.error('로그아웃 API 호출 실패', error);
-        //   return Promise.reject(error);
-        // }
-
-        return Promise.reject(error);
-      }
+    if (typeof window !== 'undefined' && error.response?.status === 401) {
+      await logoutAction();
     }
 
     return Promise.reject(error);
