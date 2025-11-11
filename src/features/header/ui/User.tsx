@@ -86,15 +86,8 @@ export default function User() {
             const confirmSignout = confirm('정말 로그아웃 하실 건가요?');
 
             if (confirmSignout) {
-              // 임시 쿠키 제거
               await logoutAction();
-              // 진행 중 요청 취소
-              await queryClient.cancelQueries();
-              // 화면에 없는(비활성) 캐시 전부 삭제
-              queryClient.removeQueries({ type: 'inactive' });
-              // 화면에 보이는(활성) 쿼리는 "초기화 + 즉시 재패치"
-              await queryClient.resetQueries({ type: 'active' });
-              // 서버 렌더까지 새로고침
+              queryClient.clear();
               router.refresh();
             }
           }}
