@@ -95,7 +95,6 @@ const CountdownTimer = ({
   return (
     <span className="relative flex justify-center">
       <div className={cn('peer flex items-center justify-end gap-1', boxSize)}>
-        <span className='absolute -top-12 hidden h-10 w-48 rounded-lg bg-gray-900 p-4 after:absolute after:bottom-0 after:left-1/2 after:mb-[-8px] after:ml-[-8px] after:h-0 after:w-0 after:border-8 after:border-b-0 after:border-transparent after:border-t-gray-900 after:content-[""] group-hover:block'></span>
         {icon}
         <div className={cn(timerVariants({ variant }), textSize)}>{formatTime(timeLeft)}</div>
       </div>
