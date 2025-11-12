@@ -7,6 +7,7 @@ import { PrimaryButton } from '@/shared/ui';
 import dynamic from 'next/dynamic';
 import type { Delta } from 'quill';
 import type { RefObject } from 'react';
+import { useRouter } from 'next/navigation';
 
 // Quill이 SSR 중 로딩되지 않도록 방지
 const RichTextEditor = dynamic(() => import('@/features/write/ui/RichTextEditor'), {
@@ -39,6 +40,7 @@ export default function Write({
   editorRef,
   onSubmit,
 }: WriteProps) {
+  const router = useRouter();
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-y-4">
@@ -65,7 +67,7 @@ export default function Write({
       </div>
       {/* 버튼 */}
       <div className="flex justify-end gap-2">
-        <PrimaryButton variant="gray" size="l">
+        <PrimaryButton variant="gray" size="l" onClick={() => router.back()}>
           취소
         </PrimaryButton>
         <PrimaryButton variant="black" size="l" onClick={onSubmit}>
