@@ -2,6 +2,7 @@ import User from '@/features/header/ui/User';
 import { axiosUserProfile } from '@/shared/api';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
+import MobileUser from './MobileUser';
 
 export default async function UserServerComponent() {
   const queryClient = new QueryClient();
@@ -14,6 +15,7 @@ export default async function UserServerComponent() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <User />
+      <MobileUser />
     </HydrationBoundary>
   );
 }

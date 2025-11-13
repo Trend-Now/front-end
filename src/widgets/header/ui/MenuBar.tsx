@@ -15,8 +15,8 @@ const MenuBar = () => {
   ];
 
   return (
-    <div className="flex justify-center bg-white pb-10 pt-4">
-      <ul className="flex h-[4.5rem] items-center gap-x-2 rounded-full bg-gray-100 px-5 py-3">
+    <div className="scrollbar-hidden flex justify-start overflow-x-scroll md:justify-center md:pb-10 md:pt-4">
+      <ul className="flex items-center gap-x-2 rounded-full px-4 py-5 md:bg-gray-100 md:px-5 md:py-3">
         <li>
           <label className="group flex cursor-pointer items-center">
             <input
@@ -26,8 +26,8 @@ const MenuBar = () => {
               className="hidden appearance-none"
               onChange={() => router.push('/')}
             />
-            <span className="flex items-center justify-center text-nowrap rounded-full px-5 py-2 text-base font-semiBold text-gray-500 hover:bg-gray-200/50 hover:transition-colors group-has-[:checked]:bg-gray-200 group-has-[:checked]:text-gray-900">
-              <House24 className="fill-gray-500 group-has-[:checked]:fill-gray-800" />
+            <span className="flex items-center justify-center text-nowrap rounded-full bg-gray-100 px-5 py-1.5 text-base font-semiBold text-gray-500 hover:bg-gray-200/50 hover:transition-colors group-has-[:checked]:bg-gray-200 group-has-[:checked]:text-gray-900 md:bg-transparent md:py-2">
+              <House24 className="h-5 fill-gray-500 group-has-[:checked]:fill-gray-800 md:h-6" />
             </span>
           </label>
         </li>
@@ -41,7 +41,7 @@ const MenuBar = () => {
                 className="hidden appearance-none"
                 onChange={() => router.push(item.path)}
               />
-              <span className="flex items-center justify-center text-nowrap rounded-full px-5 py-2 text-base font-semiBold text-gray-500 hover:bg-gray-200/50 hover:transition-colors group-has-[:checked]:bg-gray-200 group-has-[:checked]:text-gray-900">
+              <span className="flex items-center justify-center text-nowrap rounded-full bg-gray-100 px-5 py-1.5 text-xs font-medium text-gray-500 hover:bg-gray-200/50 hover:transition-colors group-has-[:checked]:bg-gray-200 group-has-[:checked]:text-gray-900 md:bg-transparent md:py-2 md:text-base md:font-semiBold">
                 {item.name}
               </span>
             </label>

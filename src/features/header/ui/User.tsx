@@ -38,7 +38,7 @@ export default function User() {
   // 로그인 안되어있을때
   if (!user || isError) {
     return (
-      <>
+      <span className="hidden md:block">
         <PrimaryButton
           variant="gray"
           size="l"
@@ -48,11 +48,11 @@ export default function User() {
           로그인
         </PrimaryButton>
         <LoginModal onClose={handleModalClose} open={isModalOpen} />
-      </>
+      </span>
     );
   }
   return (
-    <div className="flex gap-2">
+    <div className="hidden gap-2 md:flex">
       <Link
         href={'/mypage'}
         className="flex h-10 select-none items-center gap-x-2.5 text-nowrap rounded-full bg-gray-100 py-2.5 pl-2.5 pr-3.5 text-base font-medium"

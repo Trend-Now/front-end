@@ -10,8 +10,8 @@ export default function Layout({
     <div>
       <MenuBar />
       <div className="flex w-full justify-center gap-x-12 px-8">
-        <div className="max-w-[52.5rem] flex-1">{children}</div>
-        <div className="flex max-w-[22.5rem] flex-1">
+        <div className="w-full md:max-w-[52.5rem]">{children}</div>
+        <div className="hidden max-w-[22.5rem] md:flex">
           <TrendBar />
         </div>
       </div>

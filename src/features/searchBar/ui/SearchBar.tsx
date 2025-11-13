@@ -82,7 +82,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div ref={wrapperRef} className="relative w-full max-w-[28.75rem]">
+    <div ref={wrapperRef} className="relative hidden w-full max-w-[28.75rem] md:block">
       <div className="flex items-center justify-between gap-2 rounded-full border border-gray-200 bg-gray-100 px-5 py-3 has-[:focus]:border-gray-400">
         <input
           type="search"
@@ -92,6 +92,7 @@ const SearchBar = () => {
           onFocus={() => setIsOpen(true)}
           onChange={(e) => setKeyword(e.target.value)}
           onKeyDown={onKeyDown}
+          size={5}
         />
         <button onClick={onSubmit}>
           <Search24 className={keyword.length > 0 ? 'fill-gray-900' : 'fill-gray-400'} />
