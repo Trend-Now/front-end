@@ -11,7 +11,7 @@ export default function Layout({
     <div className="flex min-h-screen flex-col">
       <AppBar />
       <main className="mt-[60px] flex-1 md:mt-20">{children}</main>
-      <div className="pt-[6.25rem]">
+      <div className="pt-10 md:pt-[6.25rem]">
         <Footer />
       </div>
     </div>
