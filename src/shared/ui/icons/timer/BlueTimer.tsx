@@ -1,8 +1,9 @@
 interface BlueTimerProps {
   size?: number;
+  className?: string;
 }
 
-const BlueTimer = ({ size = 28 }: BlueTimerProps) => {
+const BlueTimer = ({ size = 28, className }: BlueTimerProps) => {
   return (
     <svg
       width={size}
@@ -10,6 +11,7 @@ const BlueTimer = ({ size = 28 }: BlueTimerProps) => {
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         d="M15.1201 16.2565C15.1201 16.9737 14.5387 17.5552 13.8214 17.5552C13.1042 17.5552 12.5227 16.9737 12.5227 16.2565C12.5227 15.5392 13.1042 14.9578 13.8214 14.9578C14.5387 14.9578 15.1201 15.5392 15.1201 16.2565Z"
