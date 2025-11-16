@@ -1,5 +1,5 @@
 import { MenuBar } from '@/widgets/header';
-import { TrendBar } from '@/widgets/sideBar';
+import { TrendBar, TrendBarMobile } from '@/widgets/sideBar';
 
 export default function Layout({
   children,
@@ -14,6 +14,7 @@ export default function Layout({
         <div className="hidden max-w-[22.5rem] md:flex">
           <TrendBar />
         </div>
+        <TrendBarMobile />
       </div>
     </div>
   );
