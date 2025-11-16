@@ -21,42 +21,9 @@ export const privateInstance = axios.create({
 privateInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
-    // 응답 에러 처리
-    const originalRequest = error.config; // 실패한 요청 정보 저장
     // AT 토큰 만료 시
-    if (
-      typeof window !== 'undefined' &&
-      error.response?.status === 401 &&
-      !originalRequest._retry
-    ) {
-      originalRequest._retry = true; // 재시도 방지
-
-      try {
-        await axios.post(
-          `${process.env.NEXT_PUBLIC_REST_API_URL}/api/v1/member/access-token`,
-          null,
-          {
-            withCredentials: true,
-          }
-        );
-        return privateInstance(originalRequest); // 원래 요청 다시 시도
-      } catch (error) {
-        console.error('AT 토큰 재발급 실패:', error);
-        // 임시 쿠키 제거
-        await logoutAction();
-
-        // 로그아웃 API
-        // try {
-        //   await axios.post(`${process.env.NEXT_PUBLIC_REST_API_URL}/api/v1/member/logout`, null, {
-        //     withCredentials: true,
-        //   });
-        // } catch (error) {
-        //   console.error('로그아웃 API 호출 실패', error);
-        //   return Promise.reject(error);
-        // }
-
-        return Promise.reject(error);
-      }
+    if (typeof window !== 'undefined' && error.response?.status === 401) {
+      await logoutAction();
     }
 
     return Promise.reject(error);
@@ -84,7 +51,7 @@ export const axiosHotBoardInfo = async <T>(boardId: number): Promise<T> =>
 //#endregion
 
 //#region 회원 정보
-export const axiosUserProfile = async <T>(cookie?: string): Promise<T> => {
+export const axiosUserProfile = async <T>(cookie?: string): Promise<T | null> => {
   // 요청에 사용할 설정 객체
   const config: AxiosRequestConfig = {};
 
@@ -95,8 +62,21 @@ export const axiosUserProfile = async <T>(cookie?: string): Promise<T> => {
     };
   }
 
-  const response = await privateInstance.get('/api/v1/member/me', config);
-  return response.data;
+  try {
+    const response = await privateInstance.get('/api/v1/member/me', config);
+    return response.data; // 로그인 성공 시: 유저 데이터
+  } catch (error) {
+    // 401 (비로그인) 또는 404 (유저 없음)인지 확인
+    if (
+      axios.isAxiosError(error) &&
+      (error.response?.status === 401 || error.response?.status === 404)
+    ) {
+      return null; // 비로그인 시: null
+    }
+
+    // 그 외 500 등 '진짜 서버 에러'는 그대로 던져서 ErrorBoundary 등으로 처리
+    throw error;
+  }
 };
 
 export const axiosEditUsername = async <T>(nickname: string): Promise<T> =>

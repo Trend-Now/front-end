@@ -36,9 +36,14 @@ export default function HotBoardListRow({
           <span className="text-lg font-semiBold text-gray-800">{keyword}</span>
         </span>
         <span className="flex items-center gap-x-2">
-          <span className="w-16 text-sm font-regular text-gray-500">{count}</span>
-          <span className="w-16 text-sm font-regular text-gray-500">{views}</span>
-          <CountdownTimer textSize="text-xl" iconSize={28} initialSeconds={timer} />
+          <span className="w-16 text-center text-sm font-regular text-gray-500">{count}</span>
+          <span className="w-16 text-center text-sm font-regular text-gray-500">{views}</span>
+          <CountdownTimer
+            textSize="text-xl"
+            iconSize={24}
+            initialSeconds={timer}
+            boxSize="w-[120px]"
+          />
         </span>
       </div>
     </Link>
