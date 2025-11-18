@@ -27,23 +27,21 @@ export default function TrendBar() {
   }, []);
 
   return (
-    <div className="sticky top-[104px] flex h-fit w-full flex-col rounded-3xl bg-brand-500">
-      <div className="flex flex-col gap-y-6 p-5">
-        <span className="flex w-fit flex-col gap-y-2">
-          <span className="text-base font-semiBold text-brand-100">
-            가장 뜨거운 실시간 인기 검색어
-          </span>
-          <span className="flex w-fit items-center gap-x-1.5">
-            <Image
-              src="/images/crown.gif"
-              alt="trend"
-              width={58}
-              height={58}
-              unoptimized
-              className="aspect-square object-cover"
-            />
-            <span className="font-himpun text-[2.75rem]/[120%] text-white">TOP 10</span>
-          </span>
+    <div className="flex h-fit w-full flex-col rounded-[20px] bg-brand-500 md:sticky md:top-[104px] md:rounded-3xl">
+      <div className="flex flex-col gap-y-2 p-5">
+        <span className="text-base font-semiBold text-brand-100">
+          가장 뜨거운 실시간 인기 검색어
+        </span>
+        <span className="flex w-fit items-center gap-x-1.5">
+          <Image
+            src="/images/crown.gif"
+            alt="trend"
+            width={58}
+            height={58}
+            unoptimized
+            className="aspect-square object-cover"
+          />
+          <span className="font-himpun text-[2.75rem]/[120%] text-white">TOP 10</span>
         </span>
       </div>
       <div className="flex flex-col gap-y-3">
