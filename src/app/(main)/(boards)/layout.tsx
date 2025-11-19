@@ -14,7 +14,7 @@ export default function Layout({
         <div className="hidden max-w-[22.5rem] md:flex">
           <TrendBar />
         </div>
-        <div className="fixed inset-0 z-50 md:hidden">
+        <div className="fixed z-10 md:hidden">
           <TrendBarMobile />
         </div>
       </div>

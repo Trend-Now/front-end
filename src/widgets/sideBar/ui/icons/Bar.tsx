@@ -1,8 +1,13 @@
 import React from 'react';
 
-export default function Bar() {
+interface BarProps {
+  /**@param {React.SVGAttributes<SVGSVGElement>} className className */
+  className?: React.SVGAttributes<SVGSVGElement>['className'];
+}
+
+export default function Bar({ className }: BarProps) {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
