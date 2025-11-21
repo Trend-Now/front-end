@@ -28,13 +28,13 @@ const MyPostRow = ({ boardId, postId, title, views, likes, created, comments }: 
     : `/hotboard/${boardId}/post/${postId}`;
 
   return (
-    <div className="flex w-full justify-between border-b border-gray-200 px-2 py-[1.125rem] text-center">
+    <div className="flex w-full flex-col gap-y-1.5 border-b border-gray-200 p-3 text-center md:flex-row md:justify-between md:px-2 md:py-[1.125rem]">
       <div className="flex items-center gap-4">
         <div className="flex gap-2">
-          <div className="w-12 text-sm text-gray-500">{postId}</div>
+          <div className="hidden w-12 text-sm text-gray-500 md:block">{postId}</div>
           <div className="flex items-center gap-1.5">
             <Link href={boardPath}>
-              <div className="cursor-pointer text-md font-semibold text-gray-800 hover:underline">
+              <div className="cursor-pointer text-sm font-semibold text-gray-800 hover:underline md:text-md">
                 {title}
               </div>
             </Link>
@@ -42,10 +42,14 @@ const MyPostRow = ({ boardId, postId, title, views, likes, created, comments }: 
           </div>
         </div>
       </div>
-      <div className="flex items-center gap-2 text-sm font-regular text-gray-500">
-        <div className="w-12">{views.toLocaleString()}</div>
-        <div className="w-12">{likes.toLocaleString()}</div>
-        <div className="w-12">{dayjs(created).format('MM.DD')}</div>
+      <div className="flex items-center gap-2 text-2xs text-gray-500 md:text-sm">
+        <div className="after:ml-2 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:w-12 md:after:hidden">
+          {views.toLocaleString()}
+        </div>
+        <div className="after:ml-2 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:w-12 md:after:hidden">
+          {likes.toLocaleString()}
+        </div>
+        <div className="md:w-12">{dayjs(created).format('MM.DD')}</div>
       </div>
     </div>
   );

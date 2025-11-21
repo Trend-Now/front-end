@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <footer className="flex h-fit max-w-[1248px] rounded-t-[20px] bg-gray-900 px-6 py-8 md:rounded-t-[2rem] md:px-10 md:pb-16 md:pt-8">
+    <footer className="flex h-fit max-w-[1248px] rounded-t-[20px] bg-gray-900 px-6 py-8 md:mx-auto md:rounded-t-[2rem] md:px-10 md:pb-16 md:pt-8">
       <div className="flex w-full flex-col gap-y-6 md:flex-row md:justify-between">
         <span className="flex flex-col items-start gap-y-3">
           <Trendnow color="white" className="h-6 md:h-8" />
