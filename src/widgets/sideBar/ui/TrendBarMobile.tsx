@@ -10,10 +10,15 @@ export default function TrendBarMobile() {
 
   return (
     <>
-      <input type="checkbox" readOnly checked={showTrendBar} className="peer hidden" />
-      <span className="pointer-events-none fixed bottom-20 right-4 w-[282px] translate-x-3 opacity-0 transition-all duration-200 ease-out peer-checked:pointer-events-auto peer-checked:-translate-x-3 peer-checked:opacity-100">
+      <div
+        className={`fixed bottom-20 right-4 w-[282px] transition-all duration-200 ease-out md:hidden ${
+          showTrendBar
+            ? 'pointer-events-auto translate-x-0 opacity-100' // 열린 상태
+            : 'pointer-events-none translate-x-3 opacity-0' // 닫힌 상태
+        }`}
+      >
         <TrendBar />
-      </span>
+      </div>
       <TrendBarMobileButton onClick={(open) => setShowTrendBar(open)} isOpen={showTrendBar} />
     </>
   );
