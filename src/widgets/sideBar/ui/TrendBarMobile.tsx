@@ -31,24 +31,22 @@ interface TrendBarMobileButtonProps {
 
 function TrendBarMobileButton({ onClick, isOpen }: TrendBarMobileButtonProps) {
   return (
-    <label className="fixed bottom-6 right-5">
-      <input type="checkbox" onChange={(e) => onClick(e.target.checked)} className="hidden" />
+    <button
+      onClick={() => onClick(!isOpen)}
+      className={`fixed bottom-6 right-5 flex aspect-square h-12 w-12 cursor-pointer items-center justify-center rounded-full md:hidden ${isOpen ? 'bg-gray-800' : 'bg-brand-500'}`}
+    >
       {isOpen ? (
-        <span className="flex aspect-square h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-gray-800 md:hidden">
-          <Close />
-        </span>
+        <Close />
       ) : (
-        <span className="flex aspect-square h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-brand-500 md:hidden">
-          <Image
-            src="/images/crown.gif"
-            alt="trend"
-            width={32}
-            height={32}
-            unoptimized
-            className="aspect-square object-cover"
-          />
-        </span>
+        <Image
+          src="/images/crown.gif"
+          alt="trend"
+          width={32}
+          height={32}
+          unoptimized
+          className="aspect-square object-cover"
+        />
       )}
-    </label>
+    </button>
   );
 }
