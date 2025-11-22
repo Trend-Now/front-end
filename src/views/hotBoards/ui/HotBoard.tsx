@@ -65,7 +65,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
                 <span className="h-10 w-10" />
                 <CountdownTimer
                   textSize="text-3xl"
-                  iconSize={40}
+                  iconSize="w-10 h-10"
                   initialSeconds={boardInfo.boardLiveTime}
                   onTimeUp={() => setOpenTimeUpModal(true)}
                 />

@@ -3,9 +3,7 @@ import React from 'react';
 const House24 = ({ className }: React.SVGAttributes<SVGSVGElement>) => {
   return (
     <svg
-      width="25"
-      height="25"
-      viewBox="0 0 25 25"
+      viewBox="0 0 24 24"
       fill="none"
       className={className || 'fill-gray-500'}
       xmlns="http://www.w3.org/2000/svg"

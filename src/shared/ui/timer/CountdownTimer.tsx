@@ -22,7 +22,7 @@ interface CountdownTimerProps {
   initialSeconds: number;
 
   /** 아이콘 크기 (기본값: 28) */
-  iconSize?: number;
+  iconSize?: string;
 
   /** 텍스트 크기 클래스 (Tailwind 등에서 사용, 기본값: "text-lg") */
   textSize?: string;
@@ -36,7 +36,7 @@ interface CountdownTimerProps {
 
 const CountdownTimer = ({
   initialSeconds,
-  iconSize = 28,
+  iconSize = 'h-7 w-7',
   textSize = 'text-lg',
   boxSize = 'w-fit',
   onTimeUp,
@@ -85,10 +85,10 @@ const CountdownTimer = ({
   }, [isTimeUp]);
 
   // 남은 시간에 따라 타이머 색상 및 아이콘 선택
-  const getTimerStyle = (time: number, size: number) => {
-    if (time === 0) return { variant: 'gray' as const, icon: <GrayTimer size={size} /> };
-    if (time < 600) return { variant: 'orange' as const, icon: <OrangeTimer size={size} /> };
-    return { variant: 'blue' as const, icon: <BlueTimer size={size} /> };
+  const getTimerStyle = (time: number, size: string) => {
+    if (time === 0) return { variant: 'gray' as const, icon: <GrayTimer className={size} /> };
+    if (time < 600) return { variant: 'orange' as const, icon: <OrangeTimer className={size} /> };
+    return { variant: 'blue' as const, icon: <BlueTimer className={size} /> };
   };
   const { variant, icon } = getTimerStyle(timeLeft, iconSize);
 

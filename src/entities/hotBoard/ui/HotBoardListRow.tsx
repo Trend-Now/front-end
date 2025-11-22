@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { CountdownTimer } from '@/shared/ui';
+import { CountdownTimer, View16, Write16 } from '@/shared/ui';
 
 interface HotBoardListRowProps {
   /**@param {number} boardId 게시판 ID */
@@ -30,20 +30,36 @@ export default function HotBoardListRow({
 }: HotBoardListRowProps) {
   return (
     <Link href={`/hotboard/${boardId}`}>
-      <div className="flex cursor-pointer items-center justify-between rounded-xl py-4 pl-2 pr-4 hover:bg-gray-100">
-        <span className="flex items-center gap-x-3">
-          <span className="h-7 w-7 text-center text-lg font-bold text-gray-800">{rank}</span>
-          <span className="text-lg font-semiBold text-gray-800">{keyword}</span>
+      <div className="flex cursor-pointer items-center justify-between rounded-2xl border border-gray-200 p-3 hover:bg-gray-100 md:rounded-[20px] md:p-4">
+        <span className="flex min-w-0 items-center gap-x-3">
+          <span className="flex h-7 w-7 items-center justify-center text-base font-semiBold text-gray-800 md:text-xl">
+            {rank}
+          </span>
+          <span className="truncate text-md font-semiBold text-gray-800 md:text-lg">{keyword}</span>
         </span>
-        <span className="flex items-center gap-x-2">
-          <span className="w-16 text-center text-sm font-regular text-gray-500">{count}</span>
-          <span className="w-16 text-center text-sm font-regular text-gray-500">{views}</span>
+        <span className="flex flex-col items-end gap-x-2 md:flex-row md:items-center">
+          <span className="hidden w-16 text-center text-md font-regular text-gray-500 md:block">
+            {count}
+          </span>
+          <span className="hidden w-16 text-center text-md font-regular text-gray-500 md:block">
+            {views}
+          </span>
           <CountdownTimer
-            textSize="text-xl"
-            iconSize={24}
             initialSeconds={timer}
+            iconSize="w-[22px] h-[22px] md:w-7 md:h-7"
+            textSize="text-base md:text-2xl"
             boxSize="w-[120px]"
           />
+          <span className="flex gap-x-2 md:hidden">
+            <span className='flex items-center gap-x-1 after:ml-1 after:h-1.5 after:w-px after:bg-gray-300 after:content-[""]'>
+              <Write16 />
+              <span className="text-2xs font-regular text-gray-500">{count}</span>
+            </span>
+            <span className="flex items-center gap-x-1">
+              <View16 />
+              <span className="text-2xs font-regular text-gray-500">{views}</span>
+            </span>
+          </span>
         </span>
       </div>
     </Link>

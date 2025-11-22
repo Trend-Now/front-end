@@ -15,7 +15,11 @@ const HotBoardSearchListRow = ({ board }: { board: RealtimeBoard }) => {
         <div className="w-16">{board.postCount.toLocaleString()}</div>
         {/* 총 조회수 -> 추후 추가 */}
         <div className="w-16">0</div>
-        <CountdownTimer initialSeconds={board.boardLiveTime} iconSize={24} boxSize="w-[88px]" />
+        <CountdownTimer
+          initialSeconds={board.boardLiveTime}
+          iconSize="w-6 h-6"
+          boxSize="w-[88px]"
+        />
       </div>
     </div>
   );
