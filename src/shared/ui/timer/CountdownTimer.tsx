@@ -93,10 +93,15 @@ const CountdownTimer = ({
   const { variant, icon } = getTimerStyle(timeLeft, iconSize);
 
   return (
-    <div className={cn('flex items-center justify-end gap-1', boxSize)}>
-      {icon}
-      <div className={cn(timerVariants({ variant }), textSize)}>{formatTime(timeLeft)}</div>
-    </div>
+    <span className="relative flex justify-center">
+      <div className={cn('peer flex items-center justify-end gap-1', boxSize)}>
+        {icon}
+        <div className={cn(timerVariants({ variant }), textSize)}>{formatTime(timeLeft)}</div>
+      </div>
+      <span className='absolute -top-12 z-50 hidden text-nowrap rounded-lg bg-gray-900 px-3 py-2 text-xs text-white after:absolute after:bottom-0 after:left-1/2 after:mb-[-8px] after:ml-[-8px] after:h-0 after:w-0 after:border-8 after:border-b-0 after:border-transparent after:border-t-gray-900 after:content-[""] peer-hover:block'>
+        타이머가 종료되면 게시판이 사라져요!
+      </span>
+    </span>
   );
 };
 
