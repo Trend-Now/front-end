@@ -13,27 +13,27 @@ export default function TrendBarRowType({ rankChangeType, diffRank }: TrendBarRo
     case RankChangeType.UP:
       return (
         <>
-          <Up />
+          <Up className="h-5 w-5 md:h-6 md:w-6" />
           <span className="text-base font-medium text-white">{diffRank}</span>
         </>
       );
     case RankChangeType.DOWN:
       return (
         <>
-          <Down />
+          <Down className="h-5 w-5 md:h-6 md:w-6" />
           <span className="text-base font-medium text-[#1056AC]">{diffRank}</span>
         </>
       );
     case RankChangeType.SAME:
       return (
         <>
-          <Bar />
+          <Bar className="h-5 w-5 md:h-6 md:w-6" />
         </>
       );
     case RankChangeType.NEW:
       return (
         <>
-          <span className="flex h-6 items-center rounded-lg bg-white/[16%] px-2 text-2xs font-semiBold text-white">
+          <span className="flex h-5 items-center rounded-[4px] bg-white/[16%] px-1.5 text-3xs font-semiBold text-white md:h-6 md:rounded-lg md:px-2 md:text-2xs">
             NEW
           </span>
         </>

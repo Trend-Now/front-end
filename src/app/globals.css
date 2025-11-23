@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .scrollbar-hidden {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+  }
+}
+
 .ql-toolbar.ql-snow {
   border-top-left-radius: 12px !important;
   border-top-right-radius: 12px !important;
