@@ -44,13 +44,13 @@ const MyPostRow = ({ boardId, postId, title, views, likes, created, comments }: 
         </div>
       </div>
       <div className="flex items-center gap-2 text-2xs text-gray-500 md:text-sm">
-        <div className="flex items-center gap-x-1 after:ml-2 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
+        <div className="flex items-center gap-x-1 after:ml-1 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
           <span className="md:hidden">
             <View16 />
           </span>
           {views.toLocaleString()}
         </div>
-        <div className="flex items-center gap-x-1 after:ml-2 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
+        <div className="flex items-center gap-x-1 after:ml-1 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
           <span className="md:hidden">
             <View16 />
           </span>
