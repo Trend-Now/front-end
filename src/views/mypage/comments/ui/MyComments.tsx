@@ -28,7 +28,7 @@ const MyComments = () => {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-y-4 md:gap-6">
       {/* 게시물 */}
       <div className="flex flex-col gap-y-2">
         <div className="hidden justify-between gap-2 border-b border-gray-200 px-2 pb-3 text-sm font-regular text-gray-500 md:flex">
