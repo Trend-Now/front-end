@@ -1,6 +1,6 @@
 import ScrapCancelButton from '@/features/mypage/ui/ScrapCancelButton';
 import { BOARD_MAP } from '@/shared/constants';
-import { UserProfile20, View16 } from '@/shared/ui';
+import { Heart16, UserProfile20, View16 } from '@/shared/ui';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import React from 'react';
@@ -71,7 +71,7 @@ const MyScrapRow = ({
           </div>
           <div className="flex items-center gap-x-1 after:ml-1 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
             <span className="md:hidden">
-              <View16 />
+              <Heart16 />
             </span>
             {likes.toLocaleString()}
           </div>
