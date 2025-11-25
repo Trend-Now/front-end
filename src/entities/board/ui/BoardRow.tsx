@@ -2,7 +2,7 @@ import { PostInfo } from '@/shared/types';
 import Image from 'next/image';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/shared/lib';
-import { BadgeButton, View16 } from '@/shared/ui';
+import { BadgeButton, Heart16, View16 } from '@/shared/ui';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 
@@ -11,8 +11,8 @@ const rowVariants = cva(
   {
     variants: {
       type: {
-        noti: 'bg-brand-100 rounded-2xl h-[4.25rem]',
-        normal: 'border-b border-gray-200 h-[3.75rem]',
+        noti: 'bg-brand-100 rounded-2xl py-3 md:py-5',
+        normal: 'border-b border-gray-200 py-4 md:py-[18px]',
       },
     },
   }
@@ -67,7 +67,7 @@ export default function BoardRow({
           {post.viewCount.toLocaleString()}
         </div>
         <div className="flex shrink-0 items-center gap-x-1 text-center text-2xs font-regular text-gray-500 after:ml-1.5 after:h-1.5 after:border-l after:border-gray-200 after:content-[''] md:w-12 md:justify-center md:text-sm md:after:hidden">
-          <View16 />
+          <Heart16 />
           {post.likeCount.toLocaleString()}
         </div>
         <div className="shrink-0 text-center text-2xs font-regular text-gray-500 md:w-12 md:text-sm">
