@@ -38,7 +38,7 @@ export default function Title({ value, onChange }: TitleProps) {
 
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor="title" className="text-xs text-gray-800">
+      <label htmlFor="title" className="text-2xs text-gray-800 md:text-xs">
         제목
       </label>
       <Textarea
@@ -48,7 +48,7 @@ export default function Title({ value, onChange }: TitleProps) {
         rows={1}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        className="scrollbar-none min-h-12 overflow-hidden px-4 py-[12.5px]"
+        className="scrollbar-none min-h-12 overflow-hidden px-4 py-[12.5px] text-xs md:text-md"
         maxLength={MAX_LENGTH}
         value={value}
       />

@@ -41,23 +41,30 @@ export default function Write({
   onSubmit,
 }: WriteProps) {
   const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmit();
+  };
+
   return (
-    <div className="flex flex-col gap-5">
+    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-y-4">
         {/* 제목 / 내용 */}
         <div className="flex flex-col gap-y-6 rounded-3xl bg-gray-100 p-6">
           <div className="flex flex-col gap-y-4">
             <div className="flex flex-col gap-y-3">
               <Title value={title} onChange={onTitleChange} />
-              <div className="flex flex-col gap-y-0.5 rounded-xl bg-[#EFF2F6] px-4 py-2.5">
-                <span className="text-xs font-regular text-gray-500">
+              <div className="flex flex-col gap-y-0.5 rounded-xl bg-[#EFF2F6] px-4 py-2.5 text-2xs font-regular text-gray-500 md:text-xs">
+                <div>※ 쉬운 비밀번호를 입력하면 타인이 수정, 삭제할 가능성이 높아집니다.</div>
+                <div>
                   ※ 음란물, 차별, 비하, 혐오 및 초상권, 저작권 침해 게시물은 민, 형사상의 책임을 질
                   수 있습니다.
-                </span>
+                </div>
               </div>
             </div>
             <div className="flex flex-col gap-y-1">
-              <span className="text-xs font-regular text-gray-800">내용</span>
+              <div className="text-2xs text-gray-800 md:text-xs">내용</div>
               <div>
                 <RichTextEditor ref={editorRef} value={content} onChange={onContentChange} />
               </div>
@@ -67,13 +74,24 @@ export default function Write({
       </div>
       {/* 버튼 */}
       <div className="flex justify-end gap-2">
-        <PrimaryButton variant="gray" size="l" onClick={() => router.back()}>
+        <PrimaryButton
+          variant="gray"
+          size="l"
+          type="button"
+          onClick={() => router.back()}
+          className="h-9 w-[60px] p-0 text-xs md:h-10 md:w-20 md:text-md"
+        >
           취소
         </PrimaryButton>
-        <PrimaryButton variant="black" size="l" onClick={onSubmit}>
+        <PrimaryButton
+          variant="black"
+          size="l"
+          type="submit"
+          className="h-9 w-[60px] p-0 text-xs md:h-10 md:w-20 md:text-md"
+        >
           등록
         </PrimaryButton>
       </div>
-    </div>
+    </form>
   );
 }
