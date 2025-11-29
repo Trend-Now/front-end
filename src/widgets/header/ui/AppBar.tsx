@@ -1,8 +1,8 @@
 import { Trendnow } from '@/shared/ui/';
 import Link from 'next/link';
-import { SearchBar } from '@/features/search';
 import { Suspense } from 'react';
 import { UserServerComponent } from '@/features/header';
+import { SearchBarPC } from '@/features/search';
 
 const Appbar = () => {
   return (
@@ -12,10 +12,9 @@ const Appbar = () => {
           <Trendnow className="h-5 md:h-7" />
         </Link>
         <Suspense>
-          <SearchBar />
+          <SearchBarPC />
         </Suspense>
         <UserServerComponent />
-        {/* 검색 자동완성 상자가 올 부분 */}
       </div>
     </header>
   );

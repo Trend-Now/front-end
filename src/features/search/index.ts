@@ -1,1 +1,1 @@
-export * from './ui';
+export { SearchBarPC } from './ui/SearchBarPC';

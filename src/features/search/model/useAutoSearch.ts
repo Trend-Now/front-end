@@ -7,11 +7,10 @@ import { AutoComplete } from '@/shared/types';
 
 export const useAutoSearch = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const initialKeyword = searchParams.get('keyword') || '';
-  const [keyword, setKeyword] = useState(initialKeyword);
-  const [debouncedKeyword, setDebouncedKeyword] = useState(initialKeyword);
+  const queryKeyword = useSearchParams().get('keyword');
+  const [keyword, setKeyword] = useState('');
+  const [debouncedKeyword, setDebouncedKeyword] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
   // Debounce 설정
@@ -41,6 +40,10 @@ export const useAutoSearch = () => {
       alert('검색어를 입력해주세요.');
       return;
     }
+
+    // 현재 value와 쿼리스트링이 같으면 실행 X
+    if (!keyword || keyword === queryKeyword) return;
+
     setIsOpen(false);
     router.push(`/search?keyword=${encodeURIComponent(keyword)}`);
   };
@@ -51,8 +54,9 @@ export const useAutoSearch = () => {
 
   // URL 변경 시 키워드 동기화
   useEffect(() => {
-    setKeyword(searchParams.get('keyword') || '');
-  }, [searchParams]);
+    setKeyword(queryKeyword || '');
+    setDebouncedKeyword(queryKeyword || '');
+  }, [queryKeyword]);
 
   return {
     keyword,
