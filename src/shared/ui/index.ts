@@ -20,7 +20,7 @@ import Heart18 from './icons/18/Heart18';
 import ChevronVertical20 from './icons/20/ChevronVertical20';
 import Hamburger24 from './icons/24/Hamburger24';
 import House24 from './icons/24/House24';
-import Search24 from './icons/24/Search24';
+import Search from './icons/Search';
 import UserProfile24 from './icons/24/UserProfile24';
 import ChevronVertical28 from './icons/28/ChevronVertical28';
 import UserProfile28 from './icons/28/UserProfile28';
@@ -77,7 +77,7 @@ export {
   ChevronVertical20,
   Hamburger24,
   House24,
-  Search24,
+  Search,
   ChevronVertical28,
   UserProfile24,
   UserProfile28,

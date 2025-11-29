@@ -1,7 +1,7 @@
 'use client';
 import { axiosGetAutocomplete } from '@/shared/api';
 import { AutoComplete } from '@/shared/types';
-import { Search24 } from '@/shared/ui';
+import { Search } from '@/shared/ui';
 import { useQuery } from '@tanstack/react-query';
 import { debounce } from 'lodash';
 import Link from 'next/link';
@@ -82,7 +82,10 @@ const SearchBar = () => {
   };
 
   return (
-    <div ref={wrapperRef} className="relative hidden w-full max-w-[28.75rem] md:block">
+    <div
+      ref={wrapperRef}
+      className="relative hidden w-full max-w-[28.75rem] border border-red-500 md:block"
+    >
       <div className="flex items-center justify-between gap-2 rounded-full border border-gray-200 bg-gray-100 px-5 py-3 has-[:focus]:border-gray-400">
         <input
           type="search"
@@ -95,7 +98,7 @@ const SearchBar = () => {
           size={5}
         />
         <button onClick={onSubmit}>
-          <Search24 className={keyword.length > 0 ? 'fill-gray-900' : 'fill-gray-400'} />
+          <Search className={keyword.length > 0 ? 'fill-gray-900' : 'fill-gray-400'} />
         </button>
       </div>
       {isOpen && suggestions && suggestions.length > 0 && (

@@ -2,7 +2,7 @@
 
 // import { axiosUserProfile } from '@/shared/api';
 // import { UserProfile } from '@/shared/types';
-import { Search24, Hamburger24, PrimaryButton } from '@/shared/ui';
+import { Search, Hamburger24, PrimaryButton } from '@/shared/ui';
 // import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import Close from './icon/Close';
@@ -29,7 +29,7 @@ export default function MobileUser() {
   return (
     <span className="flex items-center gap-2 md:hidden">
       <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
-        <Search24 className="fill-gray-900" />
+        <Search className="text-gray-900" />
       </button>
       <button
         onClick={handleSideBarOpen}
