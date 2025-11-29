@@ -30,8 +30,8 @@ const MyPosts = () => {
   return (
     <div className="flex flex-col gap-6">
       {/* 목차 / 게시물 */}
-      <div className="flex flex-col gap-y-2">
-        <div className="flex justify-between gap-2 border-b border-gray-200 px-2 pb-3 text-center text-sm font-regular text-gray-500">
+      <div className="flex flex-col gap-y-1.5 md:gap-y-2">
+        <div className="hidden justify-between gap-2 border-b border-gray-200 px-2 pb-3 text-center text-sm font-regular text-gray-500 md:flex">
           <div className="flex gap-2">
             <div className="w-12">번호</div>
             <div>게시물 제목</div>

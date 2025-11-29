@@ -64,7 +64,7 @@ const DropdownMenu = ({ trigger, className, children }: DropdownMenuProps) => {
           <ul
             ref={menuRef}
             className={cn(
-              'absolute right-0 z-10 mt-2 flex w-[10rem] flex-col gap-y-1 rounded-xl bg-white p-3 shadow-[0px_2px_10px_0px_rgba(0,_0,_0,_0.08)]',
+              'absolute right-0 z-10 mt-2 flex min-w-[10rem] flex-col gap-y-1 rounded-xl bg-white p-3 shadow-[0px_2px_10px_0px_rgba(0,_0,_0,_0.08)]',
               className
             )}
           >

@@ -10,10 +10,10 @@ interface DeleteAccountButtonProps {
 const DeleteAccountButton = ({ onClick }: DeleteAccountButtonProps) => {
   return (
     <div
-      className="flex h-[2.8125rem] w-[6.375rem] cursor-pointer items-center justify-center gap-1 rounded-xl border border-gray-200 bg-gray-100"
+      className="flex w-full cursor-pointer items-center justify-center gap-1 rounded-xl border border-gray-200 bg-gray-100 py-3 pl-3 pr-4 md:w-fit"
       onClick={onClick}
     >
-      <DeleteAccountIcon />
+      <DeleteAccountIcon className="h-[18px] w-[18px] md:h-5 md:w-5" />
       <div className="text-sm font-semibold text-gray-500">회원탈퇴</div>
     </div>
   );
