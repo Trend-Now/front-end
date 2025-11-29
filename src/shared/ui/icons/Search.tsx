@@ -1,13 +1,16 @@
 import { cn } from '@/shared/lib';
 
-const Search = ({ className, ...props }: React.SVGAttributes<SVGSVGElement>) => {
+interface SearchProps {
+  className?: string;
+}
+
+const Search = ({ className }: SearchProps) => {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={cn('h-6 w-6 text-gray-400', className)}
-      {...props}
     >
       <path
         fillRule="evenodd"
