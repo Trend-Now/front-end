@@ -1,14 +1,16 @@
 'use client';
 
+import { cn } from '@/shared/lib';
 import { ReactNode, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 interface ModalProps {
   children: ReactNode;
   onClose?: () => void;
+  className?: string;
 }
 
-export default function Modal({ children, onClose }: ModalProps) {
+export default function Modal({ children, onClose, className }: ModalProps) {
   const [modalRoot, setModalRoot] = useState<HTMLElement | null>(null);
 
   // 모달 루트 노드(#modal-root) 참조 설정
@@ -42,7 +44,10 @@ export default function Modal({ children, onClose }: ModalProps) {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-20 flex items-center justify-center bg-black/[28%]"
+      className={cn(
+        'fixed inset-0 z-50 flex items-center justify-center bg-black/[28%]',
+        className
+      )}
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose?.();
