@@ -1,7 +1,6 @@
 import { highlightMatch } from '@/shared/lib';
 import { AutoComplete } from '@/shared/types';
 import Link from 'next/link';
-import React from 'react';
 
 interface SuggestionListMobileProps {
   suggestions: AutoComplete[];
@@ -9,12 +8,7 @@ interface SuggestionListMobileProps {
   onClose: () => void;
 }
 
-const SuggestionListMobile = ({
-  suggestions,
-  keyword,
-
-  onClose,
-}: SuggestionListMobileProps) => {
+const SuggestionListMobile = ({ suggestions, keyword, onClose }: SuggestionListMobileProps) => {
   if (!suggestions || suggestions.length === 0) return null;
   return (
     <ul className="flex w-full flex-col gap-3 px-3 py-4 text-xs">

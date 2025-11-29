@@ -1,7 +1,6 @@
 import { highlightMatch } from '@/shared/lib';
 import { AutoComplete } from '@/shared/types';
 import Link from 'next/link';
-import React from 'react';
 
 interface SuggestionListPCProps {
   suggestions: AutoComplete[];
@@ -10,12 +9,7 @@ interface SuggestionListPCProps {
   onClose: () => void;
 }
 
-export const SuggestionListPC = ({
-  suggestions,
-  keyword,
-  isVisible,
-  onClose,
-}: SuggestionListPCProps) => {
+const SuggestionListPC = ({ suggestions, keyword, isVisible, onClose }: SuggestionListPCProps) => {
   if (!isVisible || !suggestions || suggestions.length === 0) return null;
 
   return (
@@ -34,3 +28,5 @@ export const SuggestionListPC = ({
     </ul>
   );
 };
+
+export default SuggestionListPC;

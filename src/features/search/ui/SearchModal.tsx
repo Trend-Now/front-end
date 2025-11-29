@@ -1,6 +1,6 @@
 import { useAutoSearch } from '@/features/search/model/useAutoSearch';
-import { SearchInput } from '@/features/search/ui/SearchInput';
-import SuggestionListMobile from '@/features/search/ui/SuggestionListMobile';
+import SearchInput from './SearchInput';
+import SuggestionListMobile from './SuggestionListMobile';
 import { Close, Modal, PrimaryButton } from '@/shared/ui';
 import React from 'react';
 

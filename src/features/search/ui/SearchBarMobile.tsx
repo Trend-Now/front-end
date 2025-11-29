@@ -1,5 +1,5 @@
 'use client';
-import SearchModal from '@/features/search/ui/SearchModal';
+import SearchModal from './SearchModal';
 import { Search } from '@/shared/ui';
 import { useState } from 'react';
 

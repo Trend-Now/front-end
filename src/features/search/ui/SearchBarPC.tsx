@@ -1,7 +1,7 @@
 'use client';
 
-import { SearchInput } from './SearchInput';
-import { SuggestionListPC } from './SuggestionListPC';
+import SearchInput from './SearchInput';
+import SuggestionListPC from './SuggestionListPC';
 import { useAutoSearch } from '../model/useAutoSearch';
 import { useEffect, useRef, useState } from 'react';
 
