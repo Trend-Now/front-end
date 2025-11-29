@@ -12,9 +12,8 @@ interface SearchModalProps {
 }
 
 export const SearchModal = ({ open, onClose }: SearchModalProps) => {
-  if (!open) return null;
-
   const { keyword, suggestions, handlers } = useAutoSearch();
+  if (!open) return null;
 
   return (
     <Modal className="flex flex-col justify-start bg-white">

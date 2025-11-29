@@ -1,4 +1,4 @@
-import { Search, Trendnow } from '@/shared/ui/';
+import { Trendnow } from '@/shared/ui/';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { UserServerComponent } from '@/features/header';

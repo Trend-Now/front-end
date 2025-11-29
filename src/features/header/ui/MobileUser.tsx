@@ -2,7 +2,7 @@
 
 // import { axiosUserProfile } from '@/shared/api';
 // import { UserProfile } from '@/shared/types';
-import { Search, Hamburger24, PrimaryButton } from '@/shared/ui';
+import { Hamburger24, PrimaryButton } from '@/shared/ui';
 // import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import Close from './icon/Close';
