@@ -1,6 +1,6 @@
 import { Trendnow } from '@/shared/ui/';
 import Link from 'next/link';
-import { SearchBar } from '@/features/searchBar';
+import { SearchBar } from '@/features/search';
 import { Suspense } from 'react';
 import { UserServerComponent } from '@/features/header';
 
