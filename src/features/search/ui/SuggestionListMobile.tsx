@@ -3,23 +3,21 @@ import { AutoComplete } from '@/shared/types';
 import Link from 'next/link';
 import React from 'react';
 
-interface SuggestionListPCProps {
+interface SuggestionListMobileProps {
   suggestions: AutoComplete[];
   keyword: string;
-  isVisible: boolean;
   onClose: () => void;
 }
 
-export const SuggestionListPC = ({
+const SuggestionListMobile = ({
   suggestions,
   keyword,
-  isVisible,
-  onClose,
-}: SuggestionListPCProps) => {
-  if (!isVisible || !suggestions || suggestions.length === 0) return null;
 
+  onClose,
+}: SuggestionListMobileProps) => {
+  if (!suggestions || suggestions.length === 0) return null;
   return (
-    <ul className="absolute left-0 top-full z-20 mt-2 flex w-full flex-col rounded-2xl bg-white px-2 py-3.5 shadow-[0_2px_24px_rgba(0,0,0,0.08)]">
+    <ul className="flex w-full flex-col gap-3 px-3 py-4 text-xs">
       {suggestions.map((s) => (
         <li key={s.boardId} className="w-full">
           <Link
@@ -34,3 +32,5 @@ export const SuggestionListPC = ({
     </ul>
   );
 };
+
+export default SuggestionListMobile;

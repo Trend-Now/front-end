@@ -28,9 +28,6 @@ export default function MobileUser() {
 
   return (
     <span className="flex items-center gap-2 md:hidden">
-      <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
-        <Search className="text-gray-900" />
-      </button>
       <button
         onClick={handleSideBarOpen}
         className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100"

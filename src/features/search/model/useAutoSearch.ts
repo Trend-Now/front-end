@@ -11,7 +11,6 @@ export const useAutoSearch = () => {
   const queryKeyword = useSearchParams().get('keyword');
   const [keyword, setKeyword] = useState('');
   const [debouncedKeyword, setDebouncedKeyword] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
 
   // Debounce 설정
   const debouncedSearch = useCallback(
@@ -24,7 +23,6 @@ export const useAutoSearch = () => {
     const value = e.target.value;
     setKeyword(value);
     debouncedSearch(value);
-    setIsOpen(true);
   };
 
   // API 호출
@@ -44,7 +42,6 @@ export const useAutoSearch = () => {
     // 현재 value와 쿼리스트링이 같으면 실행 X
     if (!keyword || keyword === queryKeyword) return;
 
-    setIsOpen(false);
     router.push(`/search?keyword=${encodeURIComponent(keyword)}`);
   };
 
@@ -61,7 +58,6 @@ export const useAutoSearch = () => {
   return {
     keyword,
     suggestions,
-    isOpen,
-    handlers: { onChange, onKeyDown, onSubmit, setIsOpen },
+    handlers: { onChange, onKeyDown, onSubmit },
   };
 };

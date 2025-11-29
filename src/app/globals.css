@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* 모바일 기본 높이 */
+  --header-height: 60px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    /* PC(md) 이상일 때 높이 */
+    --header-height: 80px;
+  }
+}
+
 @layer utilities {
   .scrollbar-hidden {
     &::-webkit-scrollbar {
