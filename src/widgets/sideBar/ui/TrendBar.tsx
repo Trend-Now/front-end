@@ -36,7 +36,9 @@ export default function TrendBar() {
           <span className="relative aspect-square h-10 w-10 object-cover md:h-[58px] md:w-[58px]">
             <Image src="/images/crown.gif" alt="trend" fill unoptimized />
           </span>
-          <span className="font-himpun text-[32px]/[120%] font-regular text-white">TOP 10</span>
+          <span className="font-himpun text-[32px]/[120%] font-regular text-white md:text-[44px]/[120%]">
+            TOP 10
+          </span>
         </span>
       </div>
       <div className="flex flex-col gap-y-2 md:gap-y-3">

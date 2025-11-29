@@ -32,11 +32,29 @@ export default function BoardWriteButton({ href, boardId }: BoardWriteButtonProp
   };
 
   return (
-    <PrimaryButton variant="primary" size="m" className="pl-4" onClick={handleWriteButton}>
-      <span className="flex items-center gap-x-1.5">
-        <Pencil className="h-6 w-6 text-white" />
-        글쓰기
-      </span>
-    </PrimaryButton>
+    <>
+      <PrimaryButton
+        variant="primary"
+        size="m"
+        className="hidden pl-4 md:flex"
+        onClick={handleWriteButton}
+      >
+        <span className="flex items-center gap-x-1.5">
+          <Pencil className="h-6 w-6 text-white" />
+          글쓰기
+        </span>
+      </PrimaryButton>
+      <PrimaryButton
+        variant="primary"
+        size="s"
+        className="flex pl-3 md:hidden"
+        onClick={handleWriteButton}
+      >
+        <span className="flex items-center gap-x-1">
+          <Pencil className="h-5 w-5 text-white" />
+          글쓰기
+        </span>
+      </PrimaryButton>
+    </>
   );
 }
