@@ -36,6 +36,7 @@ import UserProfile64 from './icons/64/UserProfile64';
 import ChevronRight24 from './icons/24/ChevronRight24';
 import Trendnow from './icons/Trendnow';
 import Pencil from './icons/Pencil';
+import Close from './icons/Close';
 
 /** Text Fields */
 import { Dropdown, DropdownItem } from './text-field/Dropdown';
@@ -105,4 +106,5 @@ export {
   Modal,
   PostDeleteModal,
   Pencil,
+  Close,
 };
