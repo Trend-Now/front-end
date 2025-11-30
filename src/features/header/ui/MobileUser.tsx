@@ -8,9 +8,8 @@ import React, { useState } from 'react';
 import { logoutAction } from '@/features/logout';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import UserIcon from './icon/UserIcon';
 import { LoginModal } from '@/features/login';
-import Link from 'next/link';
+import UserProfileButton from './UserProfileButton';
 
 export default function MobileUser() {
   const queryClient = useQueryClient();
@@ -60,13 +59,7 @@ export default function MobileUser() {
           }
           className="w-fit gap-y-2 p-4"
         >
-          <Link
-            href={'/mypage'}
-            className="flex h-10 w-fit items-center gap-x-2 rounded-full bg-gray-100 pl-2.5 pr-3.5"
-          >
-            <UserIcon />
-            <span className="text-nowrap text-md font-medium text-gray-800">{data.nickname}</span>
-          </Link>
+          <UserProfileButton name={data.nickname} maskId="user_button_24" iconClassName="w-6 h-6" />
           <hr className="h-px border-0 bg-gray-200" />
           <div className="flex flex-col gap-y-1">
             {menus.map((menu) => (

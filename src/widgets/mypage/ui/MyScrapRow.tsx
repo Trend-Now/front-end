@@ -1,6 +1,6 @@
 import ScrapCancelButton from '@/features/mypage/ui/ScrapCancelButton';
 import { BOARD_MAP } from '@/shared/constants';
-import { Heart16, UserProfile20, View16 } from '@/shared/ui';
+import { Heart16, UserIcon, View16 } from '@/shared/ui';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import React from 'react';
@@ -60,7 +60,7 @@ const MyScrapRow = ({
         </div>
         <div className="flex items-center gap-2 text-center text-2xs font-regular text-gray-500 md:text-sm">
           <div className="hidden w-[6.25rem] items-center justify-center gap-x-1.5 md:flex">
-            <UserProfile20 />
+            <UserIcon className="h-5 w-5" maskId="myscrap-icon" />
             <div>{nickname}</div>
           </div>
           <div className="flex items-center gap-x-1 after:ml-1 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
