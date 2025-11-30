@@ -16,7 +16,7 @@ interface BoardListProps {
 export default function BoardList({ posts, basePath, showNumber }: BoardListProps) {
   if (posts.length === 0)
     return (
-      <EmptyState className="h-[27.5rem]">
+      <EmptyState className="h-[320px] md:h-[27.5rem]">
         <div className="w-32">
           <Lottie animationData={searchAnimation} />
         </div>
@@ -27,7 +27,7 @@ export default function BoardList({ posts, basePath, showNumber }: BoardListProp
     );
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-y-1.5 md:gap-y-0">
       {posts.map((post) => (
         <BoardRow key={post.postId} post={post} basePath={basePath} showNumber={showNumber} />
       ))}

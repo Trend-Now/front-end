@@ -3,7 +3,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
 
 const dividerVariants = cva(
-  'flex w-fit rounded-lg py-1 px-2.5 md:px-3 md:py-1.5 text-sm md:text-base font-medium text-white text-nowrap',
+  'flex w-fit rounded-lg py-1 px-2.5 md:px-3 md:py-1.5 text-xs md:text-base font-medium text-white text-nowrap',
   {
     variants: {
       background: {
