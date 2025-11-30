@@ -1,5 +1,4 @@
 import { PostInfo } from '@/shared/types';
-import Image from 'next/image';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/shared/lib';
 import { BadgeButton, Heart16, UserIcon, View16 } from '@/shared/ui';
