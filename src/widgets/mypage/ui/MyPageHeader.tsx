@@ -2,7 +2,7 @@
 
 import { UserProfile } from '@/shared/types';
 import { axiosUserProfile } from '@/shared/api';
-import { SecondaryButton, Settings20, UserProfile64 } from '@/shared/ui';
+import { SecondaryButton, Settings20, UserIcon } from '@/shared/ui';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
@@ -14,11 +14,11 @@ const MyPageHeader = () => {
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex gap-x-5">
-        <UserProfile64 />
+      <div className="flex gap-x-4 md:gap-x-5">
+        <UserIcon className="h-12 w-12 md:h-16 md:w-16" maskId="mypage_icon" />
         <div className="flex flex-col justify-between">
-          <div className="text-2xl font-semibold">{data?.nickname}</div>
-          <div className="text-base text-gray-500">{data?.email}</div>
+          <div className="text-xl font-bold md:text-2xl md:font-semibold">{data?.nickname}</div>
+          <div className="text-xs text-gray-500 md:text-base">{data?.email}</div>
         </div>
       </div>
       <SecondaryButton variant="gray" size="s">

@@ -5,7 +5,7 @@ interface BoardListHeaderProps {
 
 const BoardListHeader = ({ showNumber = true }: BoardListHeaderProps) => {
   return (
-    <div className="flex justify-between gap-2 border-b border-gray-200 px-2 pb-3 text-center text-sm text-gray-500">
+    <div className="hidden justify-between gap-2 border-b border-gray-200 px-2 pb-3 text-center text-sm text-gray-500 md:flex">
       <div className="flex gap-2">
         {showNumber && <div className="w-12">번호</div>}
         <div className="text-left">게시글 제목</div>

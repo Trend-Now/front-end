@@ -37,7 +37,7 @@ const MyPageTabs = () => {
   };
 
   return (
-    <ul className="flex gap-5 px-4">
+    <ul className="scrollbar-hidden flex gap-x-2 overflow-x-auto border-b border-gray-200 md:gap-x-5 md:px-4">
       {Object.entries(mypageTabs).map(([key, tab]) => {
         const count = counts[key as keyof typeof counts];
 
@@ -46,7 +46,7 @@ const MyPageTabs = () => {
             <Link
               href={`/mypage/${key}`}
               className={cn(
-                'flex items-center gap-2 px-3 pb-2 text-base font-bold transition-colors duration-200',
+                'flex items-center gap-2 text-nowrap px-3 pb-1.5 text-sm font-semiBold transition-colors duration-200 md:pb-2 md:text-base md:font-bold',
                 currentTab === key ? 'border-b-2 border-gray-800 text-gray-800' : 'text-gray-400'
               )}
             >

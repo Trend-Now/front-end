@@ -14,6 +14,7 @@ import DateDivider from './divider/DateDivider';
 /** Icons */
 import InformationOutlined16 from './icons/16/InformationOutlined16';
 import View16 from './icons/16/View16';
+import Heart16 from './icons/16/Heart16';
 import Write16 from './icons/16/Write16';
 import Comment18 from './icons/18/Comment18';
 import Heart18 from './icons/18/Heart18';
@@ -23,7 +24,6 @@ import House24 from './icons/24/House24';
 import Search from './icons/Search';
 import UserProfile24 from './icons/24/UserProfile24';
 import ChevronVertical28 from './icons/28/ChevronVertical28';
-import UserProfile28 from './icons/28/UserProfile28';
 import Kebab32 from './icons/32/Kebab32';
 import UserProfile32 from './icons/32/UserProfile32';
 import PageLeftChevron from './icons/pagination/PageLeftChevron';
@@ -31,12 +31,12 @@ import PageLeftDoubleChevron from './icons/pagination/PageLeftDoubleChevron';
 import PageRightChevron from './icons/pagination/PageRightChevron';
 import PageRightDoubleChevron from './icons/pagination/PageRightDoubleChevron';
 import Settings20 from './icons/20/Settings20';
-import UserProfile20 from './icons/20/UserProfile20';
 import UserProfile64 from './icons/64/UserProfile64';
 import ChevronRight24 from './icons/24/ChevronRight24';
 import Trendnow from './icons/Trendnow';
 import Pencil from './icons/Pencil';
 import Close from './icons/Close';
+import UserIcon from './icons/UserIcon';
 
 /** Text Fields */
 import { Dropdown, DropdownItem } from './text-field/Dropdown';
@@ -72,6 +72,7 @@ export {
   DateDivider,
   InformationOutlined16,
   View16,
+  Heart16,
   Write16,
   Comment18,
   Heart18,
@@ -81,7 +82,6 @@ export {
   Search,
   ChevronVertical28,
   UserProfile24,
-  UserProfile28,
   Kebab32,
   UserProfile32,
   PageLeftChevron,
@@ -92,7 +92,6 @@ export {
   UserProfile64,
   Settings20,
   ChevronRight24,
-  UserProfile20,
   Dropdown,
   DropdownItem,
   InputField,
@@ -107,4 +106,5 @@ export {
   PostDeleteModal,
   Pencil,
   Close,
+  UserIcon,
 };

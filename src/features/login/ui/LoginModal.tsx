@@ -29,7 +29,7 @@ export default function LoginModal({ open, onClose }: LoginModalProps) {
 
   return (
     <Modal onClose={onClose}>
-      <span className="relative flex h-fit w-[540px] flex-col gap-y-8 rounded-[2rem] bg-white px-8 py-10">
+      <span className="relative mx-4 flex h-fit w-[540px] flex-col gap-y-8 rounded-[2rem] bg-white px-8 py-10 md:mx-0">
         <span onClick={onClose} className="absolute right-6 top-6 cursor-pointer">
           <Close />
         </span>
