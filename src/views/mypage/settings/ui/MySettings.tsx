@@ -31,7 +31,7 @@ const MySettings = () => {
   return (
     <div className="flex flex-col gap-4">
       {/* <ReferralCodeSection /> */}
-      <div className="flex justify-end">
+      <div className="flex md:justify-end">
         <DeleteAccountButton onClick={handleDeleteAccount} />
       </div>
     </div>
