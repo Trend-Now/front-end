@@ -9,7 +9,12 @@ interface SuggestionListPCProps {
   onClose: () => void;
 }
 
-const SuggestionListPC = ({ suggestions, keyword, isVisible, onClose }: SuggestionListPCProps) => {
+export default function SuggestionListPC({
+  suggestions,
+  keyword,
+  isVisible,
+  onClose,
+}: SuggestionListPCProps) {
   if (!isVisible || !suggestions || suggestions.length === 0) return null;
 
   return (
@@ -27,6 +32,4 @@ const SuggestionListPC = ({ suggestions, keyword, isVisible, onClose }: Suggesti
       ))}
     </ul>
   );
-};
-
-export default SuggestionListPC;
+}

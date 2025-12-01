@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { debounce } from 'lodash';
 import { axiosGetAutocomplete } from '@/shared/api';
 import { AutoComplete } from '@/shared/types';
 
-export const useAutoSearch = () => {
+export function useAutoSearch() {
   const router = useRouter();
 
   const queryKeyword = useSearchParams().get('keyword');
@@ -13,8 +13,8 @@ export const useAutoSearch = () => {
   const [debouncedKeyword, setDebouncedKeyword] = useState('');
 
   // Debounce 설정
-  const debouncedSearch = useCallback(
-    debounce((value: string) => setDebouncedKeyword(value), 300),
+  const debouncedSearch = useMemo(
+    () => debounce((value: string) => setDebouncedKeyword(value), 300),
     []
   );
 
@@ -60,4 +60,4 @@ export const useAutoSearch = () => {
     suggestions,
     handlers: { onChange, onKeyDown, onSubmit },
   };
-};
+}

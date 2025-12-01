@@ -2,8 +2,7 @@ import { Trendnow } from '@/shared/ui/';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { UserServerComponent } from '@/features/header';
-import { SearchBarPC } from '@/features/search';
-import SearchBarMobile from '@/features/search/ui/SearchBarMobile';
+import { SearchBarMobile, SearchBarPC } from '@/features/search';
 
 const Appbar = () => {
   return (
@@ -23,7 +22,9 @@ const Appbar = () => {
         <div className="flex gap-2">
           {/* 모바일용 검색바 */}
           <div className="md:hidden">
-            <SearchBarMobile />
+            <Suspense>
+              <SearchBarMobile />
+            </Suspense>
           </div>
           <UserServerComponent />
         </div>

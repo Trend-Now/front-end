@@ -11,7 +11,7 @@ interface SearchModalProps {
   onClose: () => void;
 }
 
-export const SearchModal = ({ open, onClose }: SearchModalProps) => {
+export default function SearchModal({ open, onClose }: SearchModalProps) {
   const { keyword, suggestions, handlers } = useAutoSearch();
   if (!open) return null;
 
@@ -49,6 +49,4 @@ export const SearchModal = ({ open, onClose }: SearchModalProps) => {
       <SuggestionListMobile suggestions={suggestions} keyword={keyword} onClose={onClose} />
     </Modal>
   );
-};
-
-export default SearchModal;
+}

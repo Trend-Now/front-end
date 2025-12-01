@@ -1,1 +1,2 @@
-export { SearchBarPC } from './ui/SearchBarPC';
+export { default as SearchBarMobile } from './ui/SearchBarMobile';
+export { default as SearchBarPC } from './ui/SearchBarPC';

@@ -3,7 +3,7 @@ import SearchModal from './SearchModal';
 import { Search } from '@/shared/ui';
 import { useState } from 'react';
 
-const SearchBarMobile = () => {
+export default function SearchBarMobile() {
   // 모바일 검색 모달 열림 상태 관리
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -18,6 +18,4 @@ const SearchBarMobile = () => {
       {isModalOpen && <SearchModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />}
     </>
   );
-};
-
-export default SearchBarMobile;
+}

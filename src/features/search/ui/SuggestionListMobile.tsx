@@ -8,7 +8,11 @@ interface SuggestionListMobileProps {
   onClose: () => void;
 }
 
-const SuggestionListMobile = ({ suggestions, keyword, onClose }: SuggestionListMobileProps) => {
+export default function SuggestionListMobile({
+  suggestions,
+  keyword,
+  onClose,
+}: SuggestionListMobileProps) {
   if (!suggestions || suggestions.length === 0) return null;
   return (
     <ul className="flex w-full flex-col gap-3 px-3 py-4 text-xs">
@@ -25,6 +29,4 @@ const SuggestionListMobile = ({ suggestions, keyword, onClose }: SuggestionListM
       ))}
     </ul>
   );
-};
-
-export default SuggestionListMobile;
+}

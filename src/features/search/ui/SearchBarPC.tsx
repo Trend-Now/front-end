@@ -5,7 +5,7 @@ import SuggestionListPC from './SuggestionListPC';
 import { useAutoSearch } from '../model/useAutoSearch';
 import { useEffect, useRef, useState } from 'react';
 
-export const SearchBarPC = () => {
+export default function SearchBarPC() {
   const { keyword, suggestions, handlers } = useAutoSearch();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -56,6 +56,4 @@ export const SearchBarPC = () => {
       />
     </div>
   );
-};
-
-export default SearchBarPC;
+}

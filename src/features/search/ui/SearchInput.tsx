@@ -12,13 +12,13 @@ interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   iconClassName?: string;
 }
 
-const SearchInput = ({
+export default function SearchInput({
   onSearchClick,
   hasKeyword,
   className,
   iconClassName,
   ...props
-}: SearchInputProps) => {
+}: SearchInputProps) {
   return (
     <div
       className={cn('flex items-center gap-2 rounded-full border bg-gray-100 px-5 py-3', className)}
@@ -29,6 +29,4 @@ const SearchInput = ({
       </button>
     </div>
   );
-};
-
-export default SearchInput;
+}
