@@ -10,7 +10,7 @@ interface AISummaryProps {
 
 export default function AISummary({ summaryText }: AISummaryProps) {
   return (
-    <div className="relative flex flex-col overflow-hidden rounded-[20px] bg-gray-900">
+    <div className="relative flex flex-col overflow-hidden rounded-xl bg-gray-900 md:rounded-[20px]">
       <Image
         src="/images/aisummarybg.gif"
         alt="AI 요약"
