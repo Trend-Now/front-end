@@ -24,7 +24,7 @@ export default function HotBoard({ boardId }: HotBoardProps) {
     staleTime: 0, // 타이머를 위해 항상 새로운 데이터를 받아와야 하므로 0으로 설정
   });
 
-  const { data: hotBoardList } = useQuery({
+  const { data: hotBoardRank } = useQuery({
     queryKey: ['hotBoardList'],
     queryFn: () => axiosHotBoardList<HotBoardResponse>(),
     select: (data) => data.boardInfoDtos.findIndex((item) => item.boardId === boardId),
@@ -44,37 +44,36 @@ export default function HotBoard({ boardId }: HotBoardProps) {
   if (!boardInfo) return null;
 
   return (
-    <div className="flex border-r border-gray-200 bg-white pr-8">
-      <div className="flex w-full flex-col gap-y-8">
-        <div className="flex flex-col gap-y-6">
+    <div className="flex border-gray-200 bg-white md:border-r md:pr-8">
+      <div className="flex w-full flex-col gap-y-4 md:gap-y-8">
+        <div className="flex flex-col gap-y-4 md:gap-y-6">
           <DateDivider date={new Date()} background="black" />
-          <div className="flex items-end justify-between">
-            <span className="flex flex-col gap-y-3">
-              {hotBoardList !== undefined && hotBoardList > -1 && (
-                <span className="text-base font-semiBold text-brand-500">
-                  현재 실시간 검색어 {hotBoardList + 1}위
+          <div className="flex flex-col justify-between gap-y-4 md:mb-2 md:flex-row md:items-end">
+            <span className="flex flex-col gap-y-1 md:gap-y-3">
+              {hotBoardRank !== undefined && hotBoardRank > -1 && (
+                <span className="text-sm font-semiBold text-brand-500 md:text-base">
+                  현재 실시간 검색어 {hotBoardRank + 1}위
                 </span>
               )}
-              <span className="text-3xl font-bold text-gray-800">{boardInfo.boardName}</span>
+              <span className="text-2xl font-bold text-gray-800 md:text-3xl">
+                {boardInfo.boardName}
+              </span>
             </span>
-            <span className="flex flex-col items-end gap-y-2">
-              <span className="text-sm font-regular text-gray-500">
+            <span className="flex flex-col items-start gap-y-1 md:items-end md:gap-y-2">
+              <span className="text-2xs font-regular text-gray-500 md:text-sm">
                 이 시간이 지나면 게시판이 사라져요!
               </span>
-              <span className="flex items-center gap-x-1">
-                <span className="h-10 w-10" />
-                <CountdownTimer
-                  textSize="text-3xl"
-                  iconSize={40}
-                  initialSeconds={boardInfo.boardLiveTime}
-                  onTimeUp={() => setOpenTimeUpModal(true)}
-                />
-              </span>
+              <CountdownTimer
+                textSize="text-2xl md:text-3xl"
+                iconSize="h-8 w-8 md:h-10 md:w-10"
+                initialSeconds={boardInfo.boardLiveTime}
+                onTimeUp={() => setOpenTimeUpModal(true)}
+              />
             </span>
           </div>
+          <AISummary summaryText={boardInfo.summary} />
         </div>
-        <AISummary summaryText={boardInfo.summary} />
-        <div className="flex items-center justify-end">
+        <div className="mt-2 flex items-center justify-end">
           <BoardWriteButton href={`/hotboard/${boardId}/write`} boardId={boardId} />
         </div>
         <BoardSection boardId={boardId} basePath={`/hotboard`} />

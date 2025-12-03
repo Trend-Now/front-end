@@ -1,5 +1,5 @@
 import { MenuBar } from '@/widgets/header';
-import { TrendBar } from '@/widgets/sideBar';
+import { TrendBar, TrendBarMobile } from '@/widgets/sideBar';
 
 export default function Layout({
   children,
@@ -9,10 +9,13 @@ export default function Layout({
   return (
     <div>
       <MenuBar />
-      <div className="flex w-full justify-center gap-x-12 px-8">
-        <div className="max-w-[52.5rem] flex-1">{children}</div>
-        <div className="flex max-w-[22.5rem] flex-1">
+      <div className="flex w-full justify-center gap-x-12 px-4">
+        <div className="w-full md:max-w-[52.5rem]">{children}</div>
+        <div className="hidden max-w-[22.5rem] md:flex">
           <TrendBar />
+        </div>
+        <div className="fixed z-10 md:hidden">
+          <TrendBarMobile />
         </div>
       </div>
     </div>

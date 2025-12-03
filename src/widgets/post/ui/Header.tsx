@@ -2,7 +2,7 @@ import { ScrapToggleButton, PostKebabButton } from '@/features/post';
 import LikeToggleButton from '@/features/post/ui/LikeToggleButton';
 import { cn } from '@/shared/lib';
 import { PostDetail } from '@/shared/types';
-import { UserProfile28 } from '@/shared/ui';
+import { UserIcon } from '@/shared/ui';
 import dayjs from 'dayjs';
 
 interface HeaderProps {
@@ -42,7 +42,7 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
 
       <div className="flex justify-between">
         <span className="flex items-center gap-x-2">
-          <UserProfile28 />
+          <UserIcon className="h-7 w-7" maskId="post_icon" />
           <span className="text-base font-medium text-gray-500">{post.writer}</span>
         </span>
         <span className="flex items-center text-sm font-regular text-gray-500">

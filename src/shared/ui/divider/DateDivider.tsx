@@ -3,7 +3,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
 
 const dividerVariants = cva(
-  'flex w-fit rounded-lg px-3 py-1.5 text-base font-medium text-white text-nowrap',
+  'flex w-fit rounded-lg py-1 px-2.5 md:px-3 md:py-1.5 text-xs md:text-base font-medium text-white text-nowrap',
   {
     variants: {
       background: {
@@ -30,8 +30,8 @@ export default function DateDivider({ date, background }: DateDividerProps) {
       <span className={cn(dividerVariants({ background }))}>
         {`${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`}
       </span>
-      <hr className="w-full rounded-full border-[1.5px] border-gray-300" />
-      <span className="aspect-square h-4 w-4 rounded-[0.25rem] bg-gray-300" />
+      <hr className="h-[1px] w-full rounded-full border-0 bg-gray-300 md:h-0.5" />
+      <span className="aspect-square h-3 w-3 rounded-[0.25rem] bg-gray-300 md:h-4 md:w-4" />
     </div>
   );
 }

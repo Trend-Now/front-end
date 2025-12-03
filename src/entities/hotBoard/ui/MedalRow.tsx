@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CountdownTimer } from '@/shared/ui';
+import { CountdownTimer, View16, Write16 } from '@/shared/ui';
 
 interface MedalRowProps {
   /**@param {number} boardId 게시판 ID */
@@ -21,51 +21,45 @@ interface MedalRowProps {
 export default function MedalRow({ boardId, rank, keyword, count, views, timer }: MedalRowProps) {
   return (
     <Link href={`/hotboard/${boardId}`}>
-      <div className="flex cursor-pointer flex-col gap-y-4 rounded-[1.25rem] bg-brand-100 p-4 hover:bg-[#EDF5FF]">
+      <div className="flex cursor-pointer flex-col gap-y-4 rounded-xl bg-brand-100 p-3 hover:bg-[#EDF5FF] md:rounded-[20px] md:p-4">
         <div className="flex items-center justify-between">
-          <span className="flex items-center gap-x-4">
-            {rank === 1 ? (
-              <Image
-                src="/images/gold.gif"
-                alt="gold"
-                width={40}
-                height={40}
-                priority
-                unoptimized
-                className="aspect-square object-cover"
-              />
-            ) : rank === 2 ? (
-              <Image
-                src="/images/silver.gif"
-                alt="gold"
-                width={40}
-                height={40}
-                priority
-                unoptimized
-                className="aspect-square object-cover"
-              />
-            ) : (
-              <Image
-                src="/images/bronze.gif"
-                alt="gold"
-                width={40}
-                height={40}
-                priority
-                unoptimized
-                className="aspect-square object-cover"
-              />
-            )}
-            <span className="text-xl font-bold text-brand-500">{keyword}</span>
+          <span className="flex min-w-0 items-center gap-x-4">
+            <span className="relative aspect-square h-8 w-8 md:h-10 md:w-10">
+              {rank === 1 ? (
+                <Image src="/images/gold.gif" alt="gold" priority unoptimized fill />
+              ) : rank === 2 ? (
+                <Image src="/images/silver.gif" alt="silver" priority unoptimized fill />
+              ) : (
+                <Image src="/images/bronze.gif" alt="bronze" priority unoptimized fill />
+              )}
+            </span>
+            <span className="truncate text-base font-bold text-brand-500 md:text-xl">
+              {keyword}
+            </span>
           </span>
-          <span className="flex items-center gap-x-2">
-            <span className="w-16 text-center text-md font-regular text-gray-500">{count}</span>
-            <span className="w-16 text-center text-md font-regular text-gray-500">{views}</span>
+          <span className="flex flex-col items-end gap-x-2 md:flex-row md:items-center">
+            <span className="hidden w-16 text-center text-md font-regular text-gray-500 md:block">
+              {count}
+            </span>
+            <span className="hidden w-16 text-center text-md font-regular text-gray-500 md:block">
+              {views}
+            </span>
             <CountdownTimer
               initialSeconds={timer}
-              iconSize={28}
-              textSize="text-2xl"
+              iconSize="w-[22px] h-[22px] md:w-7 md:h-7"
+              textSize="text-base md:text-2xl"
               boxSize="w-[120px]"
             />
+            <span className="flex gap-x-2 md:hidden">
+              <span className='flex items-center gap-x-1 after:ml-1 after:h-1.5 after:w-px after:bg-gray-300 after:content-[""]'>
+                <Write16 />
+                <span className="text-2xs font-regular text-gray-500">{count}</span>
+              </span>
+              <span className="flex items-center gap-x-1">
+                <View16 />
+                <span className="text-2xs font-regular text-gray-500">{views}</span>
+              </span>
+            </span>
           </span>
         </div>
         {/* {currentExpand === rank && (

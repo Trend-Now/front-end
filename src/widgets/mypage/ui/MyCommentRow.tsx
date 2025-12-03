@@ -24,14 +24,14 @@ const MyCommentRow = ({ boardId, postId, title, created, comment }: MyCommentRow
     : `/hotboard/${boardId}/post/${postId}`;
 
   return (
-    <div className="flex w-full items-center justify-between border-b border-gray-200 px-2 py-4">
+    <div className="flex w-full items-center justify-between border-b border-gray-200 px-3 py-4 md:px-2">
       <div className="flex flex-col gap-1">
-        <div className="text-xs font-medium text-brand-500">{title}</div>
-        <div className="cursor-pointer text-md font-semibold text-gray-800 hover:underline">
+        <div className="text-2xs font-medium text-brand-500 md:text-xs">{title}</div>
+        <div className="cursor-pointer text-sm font-semibold text-gray-800 hover:underline md:text-md">
           <Link href={boardPath}>{comment}</Link>
         </div>
       </div>
-      <div className="w-12 text-center text-sm font-regular text-gray-500">
+      <div className="w-12 text-center text-2xs text-gray-500 md:text-sm">
         {dayjs(created).format('MM.DD')}
       </div>
     </div>

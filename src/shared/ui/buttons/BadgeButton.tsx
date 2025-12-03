@@ -23,13 +23,16 @@ interface BadgeButtonProps
   children: React.ReactNode;
   /**@param {String} variant 버튼의 스타일을 고를 수 있습니다. */
   variant: 'white' | 'blue' | 'green' | 'yellow';
+  /**@param {boolean} show 버튼 표시 여부 */
+  show?: boolean;
 }
 
 /**
  * @see https://www.figma.com/design/2ks26SvLcpmEHmzSETR8ky/Trend-Now_Design-File?node-id=6-2275&t=cbvmKV4XEswTU85f-4
  */
 const BadgeButton = React.forwardRef<HTMLButtonElement, BadgeButtonProps>(
-  ({ children, variant, className, ...props }, ref) => {
+  ({ children, variant, className, show = false, ...props }, ref) => {
+    if (!show) return;
     return (
       <button ref={ref} className={cn(buttonVariants({ variant }), className)} {...props}>
         {children}

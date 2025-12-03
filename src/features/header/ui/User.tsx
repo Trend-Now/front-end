@@ -1,20 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  DropdownMenu,
-  DropdownMenuItem,
-  Hamburger24,
-  PrimaryButton,
-  UserProfile28,
-} from '@/shared/ui/';
+import { DropdownMenu, DropdownMenuItem, Hamburger24, PrimaryButton } from '@/shared/ui/';
 import { LoginModal } from '@/features/login';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { axiosUserProfile } from '@/shared/api';
 import { UserProfile } from '@/shared/types';
-import Link from 'next/link';
 import { logoutAction } from '@/features/logout';
+import UserProfileButton from './UserProfileButton';
 
 export default function User() {
   const queryClient = useQueryClient();
@@ -38,7 +32,7 @@ export default function User() {
   // 로그인 안되어있을때
   if (!user || isError) {
     return (
-      <>
+      <span className="hidden md:block">
         <PrimaryButton
           variant="gray"
           size="l"
@@ -48,18 +42,18 @@ export default function User() {
           로그인
         </PrimaryButton>
         <LoginModal onClose={handleModalClose} open={isModalOpen} />
-      </>
+      </span>
     );
   }
   return (
-    <div className="flex gap-2">
-      <Link
-        href={'/mypage'}
-        className="flex h-10 select-none items-center gap-x-2.5 text-nowrap rounded-full bg-gray-100 py-2.5 pl-2.5 pr-3.5 text-base font-medium"
-      >
-        <UserProfile28 />
-        {user?.nickname}
-      </Link>
+    <div className="hidden gap-2 md:flex">
+      <UserProfileButton
+        name={user?.nickname}
+        maskId="user_button_28"
+        containerClassName="gap-x-2.5"
+        iconClassName="h-7 w-7"
+        textClassName="text-base"
+      />
 
       <DropdownMenu
         trigger={

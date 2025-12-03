@@ -1,6 +1,6 @@
 import ScrapCancelButton from '@/features/mypage/ui/ScrapCancelButton';
 import { BOARD_MAP } from '@/shared/constants';
-import { UserProfile20 } from '@/shared/ui';
+import { Heart16, UserIcon, View16 } from '@/shared/ui';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import React from 'react';
@@ -44,27 +44,39 @@ const MyScrapRow = ({
     : `/hotboard/${boardId}/post/${postId}`;
 
   return (
-    <div className="flex w-full justify-between border-b border-gray-200 px-2 py-4">
-      <div className="flex items-center gap-4">
-        <ScrapCancelButton size="s" boardId={boardId} postId={postId} />
-        <div className="flex flex-col gap-1">
-          <div className="text-xs font-medium text-brand-500">{boardName}</div>
+    <div className="flex w-full items-center gap-x-3 border-b border-gray-200 px-3 py-4 md:gap-x-4 md:px-2">
+      <ScrapCancelButton size="s" boardId={boardId} postId={postId} />
+      <div className="flex flex-1 flex-col gap-y-1.5 md:flex-row md:gap-x-2">
+        <div className="flex flex-1 flex-col gap-1">
+          <div className="text-2xs font-medium text-brand-500 md:text-xs">{boardName}</div>
           <div className="flex items-center gap-1.5">
             <Link href={boardPath}>
-              <div className="text-md font-semibold text-gray-800 hover:underline">{title}</div>
+              <div className="text-sm font-semibold text-gray-800 hover:underline md:text-md">
+                {title}
+              </div>
             </Link>
             <div className="text-xs text-gray-500">[{comments}]</div>
           </div>
         </div>
-      </div>
-      <div className="flex items-center gap-2 text-center text-sm font-regular text-gray-500">
-        <div className="flex w-[6.25rem] items-center justify-center gap-x-1.5">
-          <UserProfile20 />
-          <div>{nickname}</div>
+        <div className="flex items-center gap-2 text-center text-2xs font-regular text-gray-500 md:text-sm">
+          <div className="hidden w-[6.25rem] items-center justify-center gap-x-1.5 md:flex">
+            <UserIcon className="h-5 w-5" maskId="myscrap-icon" />
+            <div>{nickname}</div>
+          </div>
+          <div className="flex items-center gap-x-1 after:ml-1 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
+            <span className="md:hidden">
+              <View16 />
+            </span>
+            {views.toLocaleString()}
+          </div>
+          <div className="flex items-center gap-x-1 after:ml-1 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
+            <span className="md:hidden">
+              <Heart16 />
+            </span>
+            {likes.toLocaleString()}
+          </div>
+          <div className="md:w-12">{dayjs(created).format('MM.DD')}</div>
         </div>
-        <div className="w-12">{views.toLocaleString()}</div>
-        <div className="w-12">{likes.toLocaleString()}</div>
-        <div className="w-12">{dayjs(created).format('MM.DD')}</div>
       </div>
     </div>
   );

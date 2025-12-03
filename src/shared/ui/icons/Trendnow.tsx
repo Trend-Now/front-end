@@ -5,11 +5,19 @@ interface TrendnowProps {
   color?: string;
   /**@param {number} size 높이. 폭은 자동 */
   size?: number;
+  /**@param {React.SVGAttributes<SVGSVGElement>} className className */
+  className?: React.SVGAttributes<SVGSVGElement>['className'];
 }
 
-const Trendnow = ({ color = '#222323', size = 28 }: TrendnowProps) => {
+const Trendnow = ({ color = '#222323', size = 28, className }: TrendnowProps) => {
   return (
-    <svg height={size} viewBox="0 0 156 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      height={size}
+      viewBox="0 0 156 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
       <path
         d="M149.885 19.8175V6.73242H156V19.8175C156 22.3494 155.285 24.3518 153.856 25.8249C152.451 27.275 150.553 28 148.163 28C146.031 28 144.297 27.3785 142.962 26.1356C141.65 27.3785 139.904 28 137.726 28C135.336 28 133.426 27.275 131.997 25.8249C130.592 24.3518 129.889 22.3494 129.889 19.8175V6.73242H135.968V19.8175C135.968 20.531 136.144 21.1064 136.496 21.5438C136.847 21.9811 137.327 22.1997 137.936 22.1997C138.546 22.1997 139.026 21.9811 139.377 21.5438C139.729 21.1064 139.904 20.531 139.904 19.8175V6.73242H145.984V19.8175C145.984 20.531 146.16 21.1064 146.511 21.5438C146.863 21.9811 147.343 22.1997 147.952 22.1997C148.538 22.1997 149.006 21.9926 149.358 21.5783C149.709 21.141 149.885 20.554 149.885 19.8175Z"
         fill={color}
