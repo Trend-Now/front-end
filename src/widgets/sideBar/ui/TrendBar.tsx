@@ -27,7 +27,7 @@ export default function TrendBar() {
   }, []);
 
   return (
-    <div className="flex h-fit w-full flex-col rounded-3xl bg-brand-500 md:sticky md:top-[104px]">
+    <div className="flex h-fit w-full flex-col rounded-3xl bg-brand-500">
       <div className="flex flex-col gap-y-1.5 p-4 md:gap-y-2 md:p-5">
         <span className="text-sm font-medium text-brand-100 md:text-base md:font-semiBold">
           가장 뜨거운 실시간 인기 검색어

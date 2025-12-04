@@ -10,12 +10,13 @@ import Link from 'next/link';
 
 interface AdvCarouselProps {
   ads: { img: string; link: string }[];
+  className?: string;
 }
 
-export default function AdvCarousel({ ads: images }: AdvCarouselProps) {
+export default function AdvCarousel({ ads, className }: AdvCarouselProps) {
   return (
     <Swiper
-      className="h-[120px] w-full rounded-2xl md:h-40 md:rounded-[1.25rem]"
+      className={className}
       autoplay={{ delay: 4000 }}
       loop
       pagination={{
@@ -24,7 +25,7 @@ export default function AdvCarousel({ ads: images }: AdvCarouselProps) {
       navigation={true}
       modules={[Pagination, Autoplay]}
     >
-      {images.map((item, idx) => (
+      {ads.map((item, idx) => (
         <SwiperSlide key={idx}>
           <Link href={item.link} target="_blank">
             <Image

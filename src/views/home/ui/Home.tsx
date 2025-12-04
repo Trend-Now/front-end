@@ -4,17 +4,14 @@ import { AdvCarousel } from '@/widgets/hotBoards';
 // import Image from 'next/image';
 
 export default function Home() {
-  const ads = [
-    { img: '/images/ads/ad1.png', link: 'https://www.introduction.trendnow.me/' },
-    {
-      img: '/images/ads/ad2.png',
-      link: 'https://chromewebstore.google.com/detail/jldghaigppememfjflbfibnmlpbdplch?utm_source=item-share-cb',
-    },
-  ];
+  const ads = [{ img: '/images/ads/ad1.png', link: 'https://www.introduction.trendnow.me/' }];
 
   return (
     <div className="flex flex-col gap-y-12 border-gray-200 bg-white md:border-r md:pr-8">
-      <AdvCarousel ads={ads} />
+      <AdvCarousel
+        ads={ads}
+        className="h-[120px] w-full rounded-2xl md:h-40 md:rounded-[1.25rem]"
+      />
       <div className="flex flex-col gap-y-6">
         <div className="flex flex-col gap-y-6">
           <DateDivider date={new Date()} background="black" />
