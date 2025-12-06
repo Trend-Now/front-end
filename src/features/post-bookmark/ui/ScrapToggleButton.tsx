@@ -83,12 +83,3 @@ export default function ScrapToggleButton({
     </button>
   );
 }
-
-//  <input
-//    type="checkbox"
-//    checked={isScraped}
-//    onChange={() => {
-//      mutate();
-//    }}
-//    className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-lg border border-gray-200 before:h-6 before:w-6 before:content-[url('/images/icons/icon_bookmark_24x24.svg')] checked:border-brand-500 checked:before:content-[url('/images/icons/icon_bookmark_active_24x24.svg')]"
-//  />;
