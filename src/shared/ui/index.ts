@@ -37,6 +37,8 @@ import Trendnow from './icons/Trendnow';
 import Pencil from './icons/Pencil';
 import Close from './icons/Close';
 import UserIcon from './icons/UserIcon';
+import HeartIcon from './icons/HeartIcon';
+import HeartFilledIcon from './icons/HeartFilledIcon';
 
 /** Text Fields */
 import { Dropdown, DropdownItem } from './text-field/Dropdown';
@@ -107,4 +109,6 @@ export {
   Pencil,
   Close,
   UserIcon,
+  HeartIcon,
+  HeartFilledIcon,
 };
