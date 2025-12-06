@@ -4,6 +4,7 @@ import type { PostDetailResponse } from '@/shared/types';
 import { Comments } from '@/entities/comments';
 import { Content, Header } from '@/widgets/post';
 import { useQuery } from '@tanstack/react-query';
+import { cn } from '@/shared/lib';
 
 interface PostProps {
   /** 게시글 ID */
@@ -26,7 +27,12 @@ export default function Post({ postId, boardId, isHotBoard = false }: PostProps)
   if (!post) return null;
 
   return (
-    <div className="flex border-r border-gray-200 bg-white pr-8">
+    <div
+      className={cn(
+        'flex bg-white py-3', // 기본 스타일 (모바일)
+        'md:border-r md:border-gray-200 md:py-0 md:pr-8' // 태블릿 이상 스타일
+      )}
+    >
       <div className="flex w-full flex-col gap-y-8">
         <Header post={post!} isHotBoard={isHotBoard} boardId={boardId} postId={postId} />
         <Content post={post!} />

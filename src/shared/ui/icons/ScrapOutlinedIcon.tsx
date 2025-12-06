@@ -1,17 +1,17 @@
-import React from 'react';
+import { cn } from '@/shared/lib';
 
 interface ScrapOutlinedIconProps {
-  size: number;
+  className?: string;
 }
 
-const ScrapOutlinedIcon = ({ size }: ScrapOutlinedIconProps) => {
+export default function ScrapOutlinedIcon({ className, ...props }: ScrapOutlinedIconProps) {
   return (
     <svg
-      width={size}
-      height={size}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={cn('h-6 w-6 text-brand-500', className)}
+      {...props}
     >
       <path
         fillRule="evenodd"
@@ -25,6 +25,4 @@ const ScrapOutlinedIcon = ({ size }: ScrapOutlinedIconProps) => {
       />
     </svg>
   );
-};
-
-export default ScrapOutlinedIcon;
+}

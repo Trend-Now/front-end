@@ -2,12 +2,18 @@
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { Delete, Write } from './icons';
-import { DropdownMenu, DropdownMenuItem, Kebab32, PostDeleteModal } from '@/shared/ui';
+import { DropdownMenu, DropdownMenuItem, KebabIcon, PostDeleteModal } from '@/shared/ui';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axiosDeletePost } from '@/shared/api';
+import { cn } from '@/shared/lib';
 
-export default function PostKebabButton() {
+interface PostKebabButtonProps {
+  className?: string;
+  iconClassName?: string;
+}
+
+export default function PostKebabButton({ className, iconClassName }: PostKebabButtonProps) {
   const router = useRouter();
   const pathname = usePathname();
   const boardId = useParams().boardId!;
@@ -46,9 +52,15 @@ export default function PostKebabButton() {
   return (
     <>
       <DropdownMenu
+        className="left-0 md:left-auto md:right-0"
         trigger={
-          <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200">
-            <Kebab32 className="text-gray-500" />
+          <span
+            className={cn(
+              'flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200',
+              className
+            )}
+          >
+            <KebabIcon className={iconClassName} />
           </span>
         }
       >

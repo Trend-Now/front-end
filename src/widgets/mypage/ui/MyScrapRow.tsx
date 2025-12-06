@@ -45,7 +45,7 @@ const MyScrapRow = ({
 
   return (
     <div className="flex w-full items-center gap-x-3 border-b border-gray-200 px-3 py-4 md:gap-x-4 md:px-2">
-      <ScrapCancelButton size="s" boardId={boardId} postId={postId} />
+      <ScrapCancelButton className="h-6 w-6" boardId={boardId} postId={postId} />
       <div className="flex flex-1 flex-col gap-y-1.5 md:flex-row md:gap-x-2">
         <div className="flex flex-1 flex-col gap-1">
           <div className="text-2xs font-medium text-brand-500 md:text-xs">{boardName}</div>

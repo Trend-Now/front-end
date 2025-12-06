@@ -1,7 +1,7 @@
 import { Delete, Write } from '@/features/post/ui/icons';
 import { axiosDeleteComment } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
-import { DropdownMenu, DropdownMenuItem, Kebab32 } from '@/shared/ui';
+import { DropdownMenu, DropdownMenuItem, KebabIcon } from '@/shared/ui';
 import { useQueryClient } from '@tanstack/react-query';
 
 interface CommentKebabButtonProps {
@@ -43,7 +43,7 @@ export default function CommentKebabButton({
     <DropdownMenu
       trigger={
         <span className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-200">
-          <Kebab32 />
+          <KebabIcon className="h-8 w-8 text-gray-800" />
         </span>
       }
     >
