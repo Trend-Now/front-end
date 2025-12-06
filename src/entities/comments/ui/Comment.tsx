@@ -70,7 +70,7 @@ export default function Comment({
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center justify-between">
+      <div className="flex justify-between">
         <span className="flex flex-1 flex-col gap-y-0.5">
           <span className="flex items-center gap-x-4">
             <span className="flex items-center gap-x-2">
@@ -101,7 +101,7 @@ export default function Comment({
               </div>
             </div>
           ) : (
-            <span className="pl-8 text-md font-medium text-gray-800">{content}</span>
+            <p className="whitespace-pre-wrap pl-8 text-md font-medium text-gray-800">{content}</p>
           )}
         </span>
         <span>
