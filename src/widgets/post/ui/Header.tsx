@@ -1,5 +1,6 @@
 import { ScrapToggleButton, PostKebabButton } from '@/features/post';
-import LikeToggleButton from '@/features/post/ui/LikeToggleButton';
+import { LikeToggleButton } from '@/features/post-like';
+
 import { cn } from '@/shared/lib';
 import { PostDetail } from '@/shared/types';
 import { UserIcon } from '@/shared/ui';
@@ -57,7 +58,19 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
         </div>
 
         <div className="flex gap-x-2">
-          <LikeToggleButton postId={postId} boardId={boardId} liked={post.liked} />
+          <LikeToggleButton
+            postId={postId}
+            boardId={boardId}
+            liked={post.liked}
+            className={cn(
+              'h-8 w-8', // 기본 스타일 (모바일)
+              'md:h-10 md:w-10' // 태블릿 이상 스타일
+            )}
+            iconClassName={cn(
+              'h-5 w-5', // 기본 스타일 (모바일)
+              'md:h-6 md:w-6' // 태블릿 이상 스타일
+            )}
+          />
           <ScrapToggleButton postId={postId} boardId={boardId} scraped={post.scraped} />
           {post.myPost && <PostKebabButton />}
         </div>
