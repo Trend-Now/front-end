@@ -17,15 +17,15 @@ export default async function Layout({ children }: { children: ReactNode }) {
     }),
     queryClient.prefetchQuery({
       queryKey: ['mycommentsCount'],
-      queryFn: () => axiosMyComments(),
+      queryFn: () => axiosMyComments(undefined, undefined, cks.toString()),
     }),
     queryClient.prefetchQuery({
       queryKey: ['mypostsCount'],
-      queryFn: () => axiosMyPosts(),
+      queryFn: () => axiosMyPosts(undefined, undefined, cks.toString()),
     }),
     queryClient.prefetchQuery({
       queryKey: ['myscrapsCount'],
-      queryFn: () => axiosMyScraps(),
+      queryFn: () => axiosMyScraps(undefined, undefined, cks.toString()),
     }),
   ]);
 
