@@ -4,15 +4,20 @@ import { axiosMyScraps } from '@/shared/api';
 import { MyPostsResponse } from '@/shared/types';
 import { Pagination } from '@/shared/ui';
 import { MyScrapRow } from '@/widgets/mypage';
-import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { usePathname, useSearchParams } from 'next/navigation';
+import React from 'react';
 
 const MyScraps = () => {
-  const [page, setPage] = useState<number>(1);
+  const pathname = usePathname();
+  const params = useSearchParams();
+
+  const page = Math.max(1, Number(params.get('page') ?? '1') || 1);
 
   const { data, isLoading } = useQuery({
     queryKey: ['myscraps', page],
     queryFn: () => axiosMyScraps<MyPostsResponse>(page, 20),
+    placeholderData: keepPreviousData,
   });
 
   if (isLoading) {
@@ -50,7 +55,7 @@ const MyScraps = () => {
             nickname={item.writer}
             views={item.viewCount}
             likes={item.likeCount}
-            created={item.createdAt}
+            created={item.createAt}
             comments={item.commentCount}
           />
         ))}
@@ -60,7 +65,7 @@ const MyScraps = () => {
         currentPage={page}
         maxPage={data.totalPageCount || 1}
         count={5}
-        setPage={setPage}
+        getHref={(p) => `${pathname}?page=${p}`}
       />
     </div>
   );

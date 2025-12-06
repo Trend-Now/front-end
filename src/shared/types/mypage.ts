@@ -13,8 +13,8 @@ export interface MyPosts {
   commentCount: number;
   likeCount: number;
   modifiable: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createAt: string;
+  updateAt: string;
   boardId: number;
   boardName: string;
 }

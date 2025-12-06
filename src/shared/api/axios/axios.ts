@@ -52,30 +52,14 @@ export const axiosHotBoardInfo = async <T>(boardId: number): Promise<T> =>
 
 //#region 회원 정보
 export const axiosUserProfile = async <T>(cookie?: string): Promise<T | null> => {
-  // 요청에 사용할 설정 객체
-  const config: AxiosRequestConfig = {};
-
-  // cookie 인자가 전달된 경우 (서버 환경)에만 헤더를 추가
-  if (cookie) {
-    config.headers = {
-      Cookie: cookie,
-    };
-  }
-
   try {
-    const response = await privateInstance.get('/api/v1/member/me', config);
+    const response = await privateInstance.get('/api/v1/member/me', {
+      headers: cookie ? { Cookie: cookie } : undefined,
+    });
+
     return response.data; // 로그인 성공 시: 유저 데이터
   } catch (error) {
-    // 401 (비로그인) 또는 404 (유저 없음)인지 확인
-    if (
-      axios.isAxiosError(error) &&
-      (error.response?.status === 401 || error.response?.status === 404)
-    ) {
-      return null; // 비로그인 시: null
-    }
-
-    // 그 외 500 등 '진짜 서버 에러'는 그대로 던져서 ErrorBoundary 등으로 처리
-    throw error;
+    return handleAxiosLoginError(error); // 비로그인 시 null, 기타 에러는 throw
   }
 };
 
@@ -85,14 +69,56 @@ export const axiosEditUsername = async <T>(nickname: string): Promise<T> =>
 export const axiosDeleteUser = async <T>(): Promise<T> =>
   (await privateInstance.delete('/api/v1/member/me')).data;
 
-export const axiosMyScraps = async <T>(page?: number, size?: number): Promise<T> =>
-  (await privateInstance.get('/api/v1/member/scrap', { params: { page, size } })).data;
+export const axiosMyScraps = async <T>(
+  page?: number,
+  size?: number,
+  cookie?: string
+): Promise<T | null> => {
+  try {
+    const response = await privateInstance.get('/api/v1/member/scrap', {
+      params: { page, size },
+      headers: cookie ? { Cookie: cookie } : undefined,
+    });
 
-export const axiosMyPosts = async <T>(page?: number, size?: number): Promise<T> =>
-  (await privateInstance.get('/api/v1/member/posts', { params: { page, size } })).data;
+    return response.data;
+  } catch (error) {
+    return handleAxiosLoginError(error);
+  }
+};
 
-export const axiosMyComments = async <T>(page?: number, size?: number): Promise<T> =>
-  (await privateInstance.get('/api/v1/member/comments', { params: { page, size } })).data;
+export const axiosMyPosts = async <T>(
+  page?: number,
+  size?: number,
+  cookie?: string
+): Promise<T | null> => {
+  try {
+    const response = await privateInstance.get('/api/v1/member/posts', {
+      params: { page, size },
+      headers: cookie ? { Cookie: cookie } : undefined,
+    });
+
+    return response.data;
+  } catch (error) {
+    return handleAxiosLoginError(error);
+  }
+};
+
+export const axiosMyComments = async <T>(
+  page?: number,
+  size?: number,
+  cookie?: string
+): Promise<T | null> => {
+  try {
+    const response = await privateInstance.get('/api/v1/member/comments', {
+      params: { page, size },
+      headers: cookie ? { Cookie: cookie } : undefined,
+    });
+
+    return response.data;
+  } catch (error) {
+    return handleAxiosLoginError(error);
+  }
+};
 
 export const axiosLogout = async () => await privateInstance.post('/api/v1/member/logout');
 
@@ -258,4 +284,15 @@ export const axiosGetAutocomplete = async <T>(keyword: string): Promise<T> => {
   return data;
 };
 
+//#endregion
+
+//#region 기타
+const handleAxiosLoginError = (error: unknown) => {
+  console.error('Axios error in handleAxiosLoginError:', error);
+  if (axios.isAxiosError(error) && [401, 404].includes(error.response?.status ?? -1)) {
+    return null;
+  }
+
+  throw error;
+};
 //#endregion

@@ -13,21 +13,21 @@ const MyPageTabs = () => {
   const currentTab = pathname[pathname.length - 1];
 
   const { data: postsLength } = useQuery({
-    queryKey: ['myposts', 1],
-    queryFn: () => axiosMyPosts<MyPostsResponse>(1, 20),
-    select: (data) => data.totalCount,
+    queryKey: ['mypostsCount'],
+    queryFn: () => axiosMyPosts<MyPostsResponse>(),
+    select: (data) => data?.totalCount,
   });
 
   const { data: commentsData } = useQuery({
-    queryKey: ['mycomments', 1],
-    queryFn: () => axiosMyComments<MyCommentsResponse>(1, 20),
-    select: (data) => data.totalCount,
+    queryKey: ['mycommentsCount'],
+    queryFn: () => axiosMyComments<MyCommentsResponse>(),
+    select: (data) => data?.totalCount,
   });
 
   const { data: scrapsData } = useQuery({
-    queryKey: ['myscraps', 1],
-    queryFn: () => axiosMyScraps<MyPostsResponse>(1, 20),
-    select: (data) => data.totalCount,
+    queryKey: ['myscrapsCount'],
+    queryFn: () => axiosMyScraps<MyPostsResponse>(),
+    select: (data) => data?.totalCount,
   });
 
   const counts = {
