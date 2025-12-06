@@ -2,11 +2,13 @@
 
 import { axiosScrapPost } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
+import { cn } from '@/shared/lib';
 import { useLoginModalStore } from '@/shared/store';
 import { PostScrapResponse } from '@/shared/types';
+import { ScrapFilledIcon, ScrapOutlinedIcon } from '@/shared/ui';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface BookmarkButtonProps {
   /**@param {number} postId 게시글 아이디 */
@@ -15,9 +17,17 @@ interface BookmarkButtonProps {
   boardId: number;
   /**@param {boolean} scraped 북마크 여부 */
   scraped: boolean;
+  className?: string;
+  iconClassName?: string;
 }
 
-export default function ScrapToggleButton({ postId, boardId, scraped }: BookmarkButtonProps) {
+export default function ScrapToggleButton({
+  postId,
+  boardId,
+  scraped,
+  className,
+  iconClassName,
+}: BookmarkButtonProps) {
   const queryClient = useQueryClient();
   const { setLoginModalOpen } = useLoginModalStore();
 
@@ -52,13 +62,33 @@ export default function ScrapToggleButton({ postId, boardId, scraped }: Bookmark
   });
 
   return (
-    <input
-      type="checkbox"
-      checked={isScraped}
-      onChange={() => {
+    <button
+      type="button"
+      onClick={() => {
         mutate();
       }}
-      className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-lg border border-gray-200 before:h-6 before:w-6 before:content-[url('/images/icons/icon_bookmark_24x24.svg')] checked:border-brand-500 checked:before:content-[url('/images/icons/icon_bookmark_active_24x24.svg')]"
-    />
+      aria-pressed={isScraped}
+      aria-label={isScraped ? '스크랩 취소' : '스크랩'}
+      className={cn(
+        'flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border',
+        isScraped ? 'border-brand-500' : 'border-gray-200',
+        className
+      )}
+    >
+      {isScraped ? (
+        <ScrapFilledIcon className={iconClassName} />
+      ) : (
+        <ScrapOutlinedIcon className={iconClassName} />
+      )}
+    </button>
   );
 }
+
+//  <input
+//    type="checkbox"
+//    checked={isScraped}
+//    onChange={() => {
+//      mutate();
+//    }}
+//    className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-lg border border-gray-200 before:h-6 before:w-6 before:content-[url('/images/icons/icon_bookmark_24x24.svg')] checked:border-brand-500 checked:before:content-[url('/images/icons/icon_bookmark_active_24x24.svg')]"
+//  />;

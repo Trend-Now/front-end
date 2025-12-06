@@ -1,4 +1,5 @@
-import { ScrapToggleButton, PostKebabButton } from '@/features/post';
+import { PostKebabButton } from '@/features/post';
+import { ScrapToggleButton } from '@/features/post-bookmark';
 import { LikeToggleButton } from '@/features/post-like';
 
 import { cn } from '@/shared/lib';
@@ -71,7 +72,19 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
               'md:h-6 md:w-6' // 태블릿 이상 스타일
             )}
           />
-          <ScrapToggleButton postId={postId} boardId={boardId} scraped={post.scraped} />
+          <ScrapToggleButton
+            postId={postId}
+            boardId={boardId}
+            scraped={post.scraped}
+            className={cn(
+              'h-8 w-8', // 기본 스타일 (모바일)
+              'md:h-10 md:w-10' // 태블릿 이상 스타일
+            )}
+            iconClassName={cn(
+              'h-5 w-5', // 기본 스타일 (모바일)
+              'md:h-6 md:w-6' // 태블릿 이상 스타일
+            )}
+          />
           {post.myPost && <PostKebabButton />}
         </div>
       </div>

@@ -17,11 +17,6 @@ interface ScrapToggleButtonProps {
   boardId: number;
 }
 
-const sizeMap = {
-  s: { button: 'w-6 h-6 rounded-md', icon: 24 },
-  m: { button: 'w-10 h-10 rounded-lg', icon: 28 },
-};
-
 const ScrapCancelButton = ({ className, boardId, postId }: ScrapToggleButtonProps) => {
   const queryClient = useQueryClient();
   const { setLoginModalOpen } = useLoginModalStore();
