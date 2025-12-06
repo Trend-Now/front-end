@@ -85,7 +85,18 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
               'md:h-6 md:w-6' // 태블릿 이상 스타일
             )}
           />
-          {post.myPost && <PostKebabButton />}
+          {post.myPost && (
+            <PostKebabButton
+              className={cn(
+                'h-8 w-8', // 기본 스타일 (모바일)
+                'md:h-10 md:w-10' // 태블릿 이상 스타일
+              )}
+              iconClassName={cn(
+                'h-5 w-5', // 기본 스타일 (모바일)
+                'md:h-6 md:w-6' // 태블릿 이상 스타일
+              )}
+            />
+          )}
         </div>
       </div>
 
