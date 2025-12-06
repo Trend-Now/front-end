@@ -39,6 +39,8 @@ import Close from './icons/Close';
 import UserIcon from './icons/UserIcon';
 import HeartIcon from './icons/HeartIcon';
 import HeartFilledIcon from './icons/HeartFilledIcon';
+import ScrapFilledIcon from './icons/ScrapFilledIcon';
+import ScrapOutlinedIcon from './icons/ScrapOutlinedIcon';
 
 /** Text Fields */
 import { Dropdown, DropdownItem } from './text-field/Dropdown';
@@ -111,4 +113,6 @@ export {
   UserIcon,
   HeartIcon,
   HeartFilledIcon,
+  ScrapFilledIcon,
+  ScrapOutlinedIcon,
 };
