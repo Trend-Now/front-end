@@ -24,7 +24,6 @@ import House24 from './icons/24/House24';
 import Search from './icons/Search';
 import UserProfile24 from './icons/24/UserProfile24';
 import ChevronVertical28 from './icons/28/ChevronVertical28';
-import Kebab32 from './icons/32/Kebab32';
 import UserProfile32 from './icons/32/UserProfile32';
 import PageLeftChevron from './icons/pagination/PageLeftChevron';
 import PageLeftDoubleChevron from './icons/pagination/PageLeftDoubleChevron';
@@ -41,6 +40,7 @@ import HeartIcon from './icons/HeartIcon';
 import HeartFilledIcon from './icons/HeartFilledIcon';
 import ScrapFilledIcon from './icons/ScrapFilledIcon';
 import ScrapOutlinedIcon from './icons/ScrapOutlinedIcon';
+import KebabIcon from './icons/KebabIcon';
 
 /** Text Fields */
 import { Dropdown, DropdownItem } from './text-field/Dropdown';
@@ -86,7 +86,6 @@ export {
   Search,
   ChevronVertical28,
   UserProfile24,
-  Kebab32,
   UserProfile32,
   PageLeftChevron,
   PageLeftDoubleChevron,
@@ -115,4 +114,5 @@ export {
   HeartFilledIcon,
   ScrapFilledIcon,
   ScrapOutlinedIcon,
+  KebabIcon,
 };
