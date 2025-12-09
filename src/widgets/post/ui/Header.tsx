@@ -6,6 +6,7 @@ import { cn } from '@/shared/lib';
 import { PostDetail } from '@/shared/types';
 import { UserIcon } from '@/shared/ui';
 import dayjs from 'dayjs';
+import Link from 'next/link';
 
 interface HeaderProps {
   /** 게시글 상세 정보 */
@@ -23,7 +24,7 @@ interface HeaderProps {
 
 export default function Header({ post, isHotBoard, boardId, postId }: HeaderProps) {
   return (
-    <div
+    <header
       className={cn(
         'flex flex-col border-b border-gray-200',
         'gap-y-4 pb-4', // 기본 스타일 (모바일)
@@ -45,7 +46,8 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
             'md:gap-y-3' // 태블릿 이상 스타일
           )}
         >
-          <div
+          <Link
+            href={`/${isHotBoard ? 'hotboard' : 'board'}/${boardId}`}
             className={cn(
               'font-semiBold',
               'text-sm', // 기본 스타일 (모바일)
@@ -54,8 +56,8 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
             )}
           >
             {post.boardName}
-          </div>
-          <div className="text-2xl font-bold text-gray-800">{post.title}</div>
+          </Link>
+          <h1 className="text-2xl font-bold text-gray-800">{post.title}</h1>
         </div>
 
         <div className="flex gap-x-2">
@@ -133,11 +135,7 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
             'md:text-sm' // 태블릿 이상 스타일
           )}
         >
-          <li className="flex items-center gap-x-1.5 rounded-md bg-gray-100 px-2.5 py-1">
-            <span>댓글</span>
-            <span>{post.commentCount.toLocaleString()}</span>
-          </li>
-          <li className="flex items-center gap-x-1.5 before:ml-2 before:inline-block before:h-3 before:w-[1px] before:bg-gray-200">
+          <li className="gap-x-1.5ㄴ flex items-center">
             <span>조회수</span>
             <span>{post.viewCount.toLocaleString()}</span>
           </li>
@@ -151,6 +149,6 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
           </li>
         </ul>
       </div>
-    </div>
+    </header>
   );
 }

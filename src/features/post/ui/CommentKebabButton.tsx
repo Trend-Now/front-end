@@ -1,7 +1,6 @@
-import { Delete, Write } from '@/features/post/ui/icons';
 import { axiosDeleteComment } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
-import { DropdownMenu, DropdownMenuItem, KebabIcon } from '@/shared/ui';
+import { DeleteIcon, DropdownMenu, DropdownMenuItem, EditIcon, KebabIcon } from '@/shared/ui';
 import { useQueryClient } from '@tanstack/react-query';
 
 interface CommentKebabButtonProps {
@@ -48,11 +47,11 @@ export default function CommentKebabButton({
       }
     >
       <DropdownMenuItem onClick={onEditClick}>
-        <Write />
+        <EditIcon className="h-5 w-5" />
         댓글 수정
       </DropdownMenuItem>
       <DropdownMenuItem onClick={handleDeleteComment} className="text-negative">
-        <Delete />
+        <DeleteIcon className="h-5 w-5" />
         댓글 삭제
       </DropdownMenuItem>
     </DropdownMenu>
