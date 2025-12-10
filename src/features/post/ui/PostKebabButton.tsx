@@ -1,13 +1,25 @@
 'use client';
 
 import { useParams, usePathname, useRouter } from 'next/navigation';
-import { Delete, Write } from './icons';
-import { DropdownMenu, DropdownMenuItem, Kebab32, PostDeleteModal } from '@/shared/ui';
+import {
+  DeleteIcon,
+  DropdownMenu,
+  DropdownMenuItem,
+  EditIcon,
+  KebabIcon,
+  PostDeleteModal,
+} from '@/shared/ui';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axiosDeletePost } from '@/shared/api';
+import { cn } from '@/shared/lib';
 
-export default function PostKebabButton() {
+interface PostKebabButtonProps {
+  className?: string;
+  iconClassName?: string;
+}
+
+export default function PostKebabButton({ className, iconClassName }: PostKebabButtonProps) {
   const router = useRouter();
   const pathname = usePathname();
   const boardId = useParams().boardId!;
@@ -46,18 +58,47 @@ export default function PostKebabButton() {
   return (
     <>
       <DropdownMenu
+        className="left-0 md:left-auto md:right-0"
         trigger={
-          <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200">
-            <Kebab32 className="text-gray-500" />
+          <span
+            className={cn(
+              'flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200',
+              className
+            )}
+          >
+            <KebabIcon className={iconClassName} />
           </span>
         }
       >
-        <DropdownMenuItem onClick={handleEdit}>
-          <Write />
+        <DropdownMenuItem
+          onClick={handleEdit}
+          className={cn(
+            'h-8', // 기본 스타일 (모바일)
+            'md:h-10' // 태블릿 이상 스타일
+          )}
+        >
+          <EditIcon
+            className={cn(
+              'h-4 w-4', // 기본 스타일 (모바일)
+              'md:h-5 md:w-5' // 태블릿 이상 스타일
+            )}
+          />
           게시물 수정
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setOpenDeleteModal(true)} className="text-negative">
-          <Delete />
+        <DropdownMenuItem
+          onClick={() => setOpenDeleteModal(true)}
+          className={cn(
+            'text-negative',
+            'h-8', // 기본 스타일 (모바일)
+            'md:h-10' // 태블릿 이상 스타일
+          )}
+        >
+          <DeleteIcon
+            className={cn(
+              'h-4 w-4', // 기본 스타일 (모바일)
+              'md:h-5 md:w-5' // 태블릿 이상 스타일
+            )}
+          />
           게시물 삭제
         </DropdownMenuItem>
       </DropdownMenu>
