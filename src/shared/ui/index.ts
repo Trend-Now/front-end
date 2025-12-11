@@ -1,3 +1,6 @@
+/** boundary */
+import SSRBoundary from './boundary/SSRBoundary';
+
 /** Buttons */
 import BackButton from './buttons/BackButton';
 import BadgeButton from './buttons/BadgeButton';
@@ -60,6 +63,7 @@ import Modal from './modal/Modal';
 import PostDeleteModal from './modal/PostDeleteModal';
 
 export {
+  SSRBoundary,
   BackButton,
   BadgeButton,
   DropdownChip,

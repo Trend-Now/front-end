@@ -1,46 +1,48 @@
-import { getQueryClient } from '@/providers/queryClient';
 import { axiosMyComments, axiosMyPosts, axiosMyScraps, axiosUserProfile } from '@/shared/api';
+import { SSRBoundary } from '@/shared/ui';
 import { MyPageHeader, MyPageNoticeBanner, MyPageTabs } from '@/widgets/mypage';
-import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
 import { ReactNode } from 'react';
 
 export default async function Layout({ children }: { children: ReactNode }) {
-  const queryClient = getQueryClient();
-
   const cks = await cookies();
 
-  await Promise.all([
-    queryClient.prefetchQuery({
+  const headerFns = [
+    {
       queryKey: ['mypage'],
       queryFn: () => axiosUserProfile(cks.toString()),
-    }),
-    queryClient.prefetchQuery({
+    },
+  ];
+
+  const tabFns = [
+    {
       queryKey: ['mycommentsCount'],
       queryFn: () => axiosMyComments(undefined, undefined, cks.toString()),
-    }),
-    queryClient.prefetchQuery({
+    },
+    {
       queryKey: ['mypostsCount'],
       queryFn: () => axiosMyPosts(undefined, undefined, cks.toString()),
-    }),
-    queryClient.prefetchQuery({
+    },
+    {
       queryKey: ['myscrapsCount'],
       queryFn: () => axiosMyScraps(undefined, undefined, cks.toString()),
-    }),
-  ]);
+    },
+  ];
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="mx-auto flex w-full max-w-[51.5rem] flex-col gap-y-2 px-4 py-3 md:gap-y-8 md:px-0 md:py-16">
-        <div className="flex flex-col gap-y-6 md:gap-y-8">
-          <div className="flex flex-col gap-y-4 md:gap-y-8">
+    <div className="mx-auto flex w-full max-w-[51.5rem] flex-col gap-y-2 px-4 py-3 md:gap-y-8 md:px-0 md:py-16">
+      <div className="flex flex-col gap-y-6 md:gap-y-8">
+        <div className="flex flex-col gap-y-4 md:gap-y-8">
+          <SSRBoundary queryFns={headerFns}>
             <MyPageHeader />
-            <MyPageNoticeBanner />
-          </div>
-          <MyPageTabs />
+          </SSRBoundary>
+          <MyPageNoticeBanner />
         </div>
-        {children}
+        <SSRBoundary queryFns={tabFns}>
+          <MyPageTabs />
+        </SSRBoundary>
       </div>
-    </HydrationBoundary>
+      {children}
+    </div>
   );
 }
