@@ -46,6 +46,8 @@ import ScrapOutlinedIcon from './icons/ScrapOutlinedIcon';
 import KebabIcon from './icons/KebabIcon';
 import EditIcon from './icons/EditIcon';
 import DeleteIcon from './icons/DeleteIcon';
+import WriteIcon from './icons/WriteIcon';
+import EyeOpenIcon from './icons/EyeOpenIcon';
 
 /** Text Fields */
 import { Dropdown, DropdownItem } from './text-field/Dropdown';
@@ -123,4 +125,6 @@ export {
   KebabIcon,
   EditIcon,
   DeleteIcon,
+  WriteIcon,
+  EyeOpenIcon,
 };

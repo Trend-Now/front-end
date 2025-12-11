@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CountdownTimer, View16, Write16 } from '@/shared/ui';
+import { CountdownTimer, EyeOpenIcon, WriteIcon } from '@/shared/ui';
 
 interface MedalRowProps {
   /**@param {number} boardId 게시판 ID */
@@ -52,11 +52,11 @@ export default function MedalRow({ boardId, rank, keyword, count, views, timer }
             />
             <span className="flex gap-x-2 md:hidden">
               <span className='flex items-center gap-x-1 after:ml-1 after:h-1.5 after:w-px after:bg-gray-300 after:content-[""]'>
-                <Write16 />
+                <WriteIcon />
                 <span className="text-2xs font-regular text-gray-500">{count}</span>
               </span>
               <span className="flex items-center gap-x-1">
-                <View16 />
+                <EyeOpenIcon />
                 <span className="text-2xs font-regular text-gray-500">{views}</span>
               </span>
             </span>
