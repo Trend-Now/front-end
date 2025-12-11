@@ -1,10 +1,12 @@
 import { axiosLike } from '@/shared/api';
 import { InternalServerError } from '@/shared/error/error';
+import { cn } from '@/shared/lib';
 import { useLoginModalStore } from '@/shared/store';
 import { PostLikeResponse } from '@/shared/types';
+import { HeartFilledIcon, HeartIcon } from '@/shared/ui';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface LikeToggleButtonProps {
   /**@param {number} boardId 게시판 아이디 */
@@ -13,9 +15,17 @@ interface LikeToggleButtonProps {
   postId: number;
   /**@param {boolean} liked 좋아요 여부 */
   liked: boolean;
+  className?: string;
+  iconClassName?: string;
 }
 
-export default function LikeToggleButton({ postId, boardId, liked }: LikeToggleButtonProps) {
+export default function LikeToggleButton({
+  postId,
+  boardId,
+  liked,
+  className,
+  iconClassName,
+}: LikeToggleButtonProps) {
   const { setLoginModalOpen } = useLoginModalStore();
 
   const [isLiked, setIsLiked] = useState<boolean>(liked);
@@ -48,13 +58,24 @@ export default function LikeToggleButton({ postId, boardId, liked }: LikeToggleB
   });
 
   return (
-    <input
-      type="checkbox"
-      checked={isLiked}
-      onChange={() => {
+    <button
+      type="button"
+      onClick={() => {
         mutate();
       }}
-      className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-lg border border-gray-200 before:h-6 before:w-6 before:content-[url('/images/icons/icon_heart_24x24.svg')] checked:border-brand-500 checked:before:h-7 checked:before:w-7 checked:before:content-[url('/images/icons/icon_heart_active_28x28.svg')]"
-    />
+      aria-pressed={isLiked}
+      aria-label={isLiked ? '좋아요 취소' : '좋아요'}
+      className={cn(
+        'flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border',
+        isLiked ? 'border-brand-500' : 'border-gray-200',
+        className
+      )}
+    >
+      {isLiked ? (
+        <HeartFilledIcon className={iconClassName} />
+      ) : (
+        <HeartIcon className={iconClassName} />
+      )}
+    </button>
   );
 }

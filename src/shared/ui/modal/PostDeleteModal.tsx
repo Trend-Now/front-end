@@ -26,7 +26,7 @@ export default function PostDeleteModal({
   if (!open) return null;
 
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} className="px-[45px]">
       <span className="flex h-fit w-[420px] flex-col gap-y-6 rounded-3xl bg-white p-6">
         <span className="flex w-full flex-col gap-y-3 py-4">
           <span className="text-center text-xl font-bold text-gray-900">{title}</span>

@@ -1,17 +1,18 @@
+import { cn } from '@/shared/lib';
 import React from 'react';
 
 interface ScrapFilledIconProps {
-  size: number;
+  className?: string;
 }
 
-const ScrapFilledIcon = ({ size }: ScrapFilledIconProps) => {
+export default function ScrapFilledIcon({ className, ...props }: ScrapFilledIconProps) {
   return (
     <svg
-      width={size}
-      height={size}
       viewBox="0 0 28 28"
       fill="none"
+      className={cn('h-6 w-6 text-brand-500', className)}
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         d="M19.8333 6.41602L18.0833 4.66602H9.33333L7.58333 5.24935L7 7.58268V21.5827L7.58333 22.166L13.4167 17.4993L19.25 22.166L19.8333 20.416V6.41602Z"
@@ -29,6 +30,4 @@ const ScrapFilledIcon = ({ size }: ScrapFilledIconProps) => {
       />
     </svg>
   );
-};
-
-export default ScrapFilledIcon;
+}
