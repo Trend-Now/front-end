@@ -18,7 +18,7 @@ export default function HotPostsSearchListRow({ post }: HotPostsSearchListRowPro
         {/* 게시물 이름 */}
         <div className="flex items-center gap-x-1.5">
           <Link
-            href={`/hotboard/${post.boardId}/post/${post.postId}`}
+            href={`/hotboard/${post.boardId}/community/post/${post.postId}`}
             className="text-md font-semiBold text-gray-800 hover:underline"
           >
             {post.title}

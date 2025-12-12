@@ -21,7 +21,7 @@ const MyCommentRow = ({ boardId, postId, title, created, comment }: MyCommentRow
     (board) => board.id === boardId
   )
     ? `/board/${boardId}/post/${postId}`
-    : `/hotboard/${boardId}/post/${postId}`;
+    : `/hotboard/${boardId}/community/post/${postId}`;
 
   return (
     <div className="flex w-full items-center justify-between border-b border-gray-200 px-3 py-4 md:px-2">

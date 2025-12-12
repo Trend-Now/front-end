@@ -1,18 +1,20 @@
 'use client';
 import { BoardList, BoardTable } from '@/entities/board';
 import { axiosPosts } from '@/shared/api';
-import { BOARD_PAGE_SIZE } from '@/shared/constants';
+import { BOARD_MAP, BOARD_PAGE_SIZE } from '@/shared/constants';
 import { PostListResponse } from '@/shared/types';
 import { Pagination } from '@/shared/ui';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
+import BoardWriteButton from './BoardWriteButton';
 
 interface BoardSectionProps {
   boardId: number;
   basePath: string;
+  isHotBoard?: boolean;
 }
 
-const BoardSection = ({ boardId, basePath }: BoardSectionProps) => {
+const BoardSection = ({ boardId, basePath, isHotBoard = false }: BoardSectionProps) => {
   const searchParams = useSearchParams();
   const page = Math.max(1, Number(searchParams.get('page') ?? '1') || 1);
   const { data } = useQuery({
@@ -28,8 +30,21 @@ const BoardSection = ({ boardId, basePath }: BoardSectionProps) => {
 
   return (
     <div className="flex flex-col gap-8">
+      {!Object.entries(BOARD_MAP).find((item) => item[1].id === boardId) && (
+        <div className="mt-2 flex items-center justify-end">
+          <BoardWriteButton
+            href={isHotBoard ? `/hotboard/${boardId}/community/write` : `/board/${boardId}/write`}
+            boardId={boardId}
+          />
+        </div>
+      )}
       <BoardTable>
-        <BoardList posts={posts} basePath={`${basePath}/${boardId}`} showNumber />
+        <BoardList
+          posts={posts}
+          basePath={`${basePath}/${boardId}`}
+          showNumber
+          isHotBoard={isHotBoard}
+        />
       </BoardTable>
       {posts.length > 0 && (
         <Pagination

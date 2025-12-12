@@ -1,6 +1,6 @@
 import { HotBoardList } from '@/entities/hotBoard';
 import { DateDivider } from '@/shared/ui';
-import { AdvCarousel } from '@/widgets/hotBoards';
+import { AdvCarousel } from '@/widgets/home';
 // import Image from 'next/image';
 
 export default function Home() {

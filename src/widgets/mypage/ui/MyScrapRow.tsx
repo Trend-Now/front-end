@@ -41,7 +41,7 @@ const MyScrapRow = ({
     (board) => board.id === boardId
   )
     ? `/board/${boardId}/post/${postId}`
-    : `/hotboard/${boardId}/post/${postId}`;
+    : `/hotboard/${boardId}/community/post/${postId}`;
 
   return (
     <div className="flex w-full items-center gap-x-3 border-b border-gray-200 px-3 py-4 md:gap-x-4 md:px-2">

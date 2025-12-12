@@ -37,6 +37,7 @@ import UserProfile64 from './icons/64/UserProfile64';
 import ChevronRight24 from './icons/24/ChevronRight24';
 import Trendnow from './icons/Trendnow';
 import Pencil from './icons/Pencil';
+import Chat from './icons/Chat';
 import Close from './icons/Close';
 import UserIcon from './icons/UserIcon';
 import HeartIcon from './icons/HeartIcon';
@@ -114,6 +115,7 @@ export {
   Modal,
   PostDeleteModal,
   Pencil,
+  Chat,
   Close,
   UserIcon,
   HeartIcon,

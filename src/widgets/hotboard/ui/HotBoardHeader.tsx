@@ -1,6 +1,5 @@
 'use client';
 
-import { BoardWriteButton } from '@/features/board';
 import { AISummary, TimeUpModal } from '@/features/hotboard';
 import { axiosHotBoardInfo, axiosHotBoardList } from '@/shared/api';
 import { HotBoardInfoResponse, HotBoardResponse } from '@/shared/types';
@@ -57,9 +56,6 @@ export default function HotBoardHeader({ boardId }: HotBoardHeaderProps) {
           </span>
         </div>
         <AISummary summaryText={boardInfo.summary} />
-      </div>
-      <div className="mt-2 flex items-center justify-end">
-        <BoardWriteButton href={`/hotboard/${boardId}/write`} boardId={boardId} />
       </div>
       <TimeUpModal open={openTimeUpModal} />
     </div>

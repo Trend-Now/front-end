@@ -26,7 +26,7 @@ const MyPostRow = ({ boardId, postId, title, views, likes, created, comments }: 
     (board) => board.id === boardId
   )
     ? `/board/${boardId}/post/${postId}`
-    : `/hotboard/${boardId}/post/${postId}`;
+    : `/hotboard/${boardId}/community/post/${postId}`;
 
   return (
     <div className="flex w-full flex-col gap-y-1.5 border-b border-gray-200 p-3 text-center md:flex-row md:justify-between md:px-2 md:py-[1.125rem]">
