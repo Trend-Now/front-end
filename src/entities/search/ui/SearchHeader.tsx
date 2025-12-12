@@ -55,11 +55,11 @@ const SearchHeader = ({ keyword }: SearchHeaderProps) => {
     politicsPosts.totalCount;
 
   return (
-    <section aria-label="검색 키워드 및 결과 요약" className="flex flex-col gap-y-3">
-      <div className="text-lg font-semiBold text-gray-500">
+    <section aria-label="검색 키워드 및 결과 요약" className="flex flex-col gap-y-1 md:gap-y-3">
+      <div className="text-md font-semiBold text-gray-500 md:text-lg">
         총 {totalCount.toLocaleString()}개의 검색결과
       </div>
-      <div className="text-4xl font-bold text-gray-800">{keyword}</div>
+      <div className="text-3xl font-bold text-gray-800 md:text-4xl">{keyword}</div>
     </section>
   );
 };

@@ -22,6 +22,9 @@ export interface RealtimeBoard {
 
   /** 수정일 */
   updatedAt: string;
+
+  /** 현재 조회수 수 */
+  viewCount: number;
 }
 
 // 실시간 게시판의 게시글 검색
