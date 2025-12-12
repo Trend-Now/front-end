@@ -1,5 +1,4 @@
 import { EmptyState } from '@/shared/ui';
-import HotBoardSearchListRow from './HotBoardSearchListRow';
 import type { RealtimeBoard } from '@/shared/types';
 import HotBoardListRow from '@/entities/hotBoard/ui/HotBoardListRow';
 
