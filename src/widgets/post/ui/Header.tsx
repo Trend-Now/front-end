@@ -135,7 +135,7 @@ export default function Header({ post, isHotBoard, boardId, postId }: HeaderProp
             'md:text-sm' // 태블릿 이상 스타일
           )}
         >
-          <li className="gap-x-1.5ㄴ flex items-center">
+          <li className="flex items-center gap-x-1.5">
             <span>조회수</span>
             <span>{post.viewCount.toLocaleString()}</span>
           </li>

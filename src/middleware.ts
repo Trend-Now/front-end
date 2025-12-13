@@ -22,7 +22,7 @@ export const config = {
     // 로그인이 반드시 필요한 페이지들
     '/board/:boardId/write',
     '/board/:boardId/post/:postId/edit',
-    '/hotboard/:boardId/community/write',
+    '/hotboard/:boardId/write',
     '/hotboard/:boardId/post/:postId/edit',
     '/mypage/:path*',
     // 로그인이 선택적인 페이지 (로그인했다면 토큰 갱신을 위함)

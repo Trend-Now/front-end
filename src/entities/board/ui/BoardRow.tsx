@@ -26,8 +26,6 @@ interface BoardRowProps {
   basePath: string;
   /** 번호 표시 여부 (기본값 true) */
   showNumber?: boolean;
-  /** 실시간 인기 게시판 여부 (기본값 false) */
-  isHotBoard?: boolean;
 }
 
 export default function BoardRow({
@@ -35,7 +33,6 @@ export default function BoardRow({
   type = 'normal',
   basePath,
   showNumber = true,
-  isHotBoard = false,
 }: BoardRowProps) {
   return (
     <div className={cn(rowVariants({ type }))}>
@@ -50,11 +47,7 @@ export default function BoardRow({
       </BadgeButton>
       <div className="flex min-w-0 items-center gap-x-1.5 md:flex-1">
         <Link
-          href={
-            isHotBoard
-              ? `${basePath}/community/post/${post.postId}`
-              : `${basePath}/post/${post.postId}`
-          }
+          href={`${basePath}/post/${post.postId}`}
           className="truncate text-sm font-semibold text-gray-800 hover:underline md:text-md"
         >
           {post.title}

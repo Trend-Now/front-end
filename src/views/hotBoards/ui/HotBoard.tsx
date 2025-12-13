@@ -24,5 +24,5 @@ export default function HotBoard({ boardId }: HotBoardProps) {
     });
   }, []);
 
-  return <BoardSection boardId={boardId} basePath={`/hotboard`} isHotBoard />;
+  return <BoardSection boardId={boardId} basePath={`/hotboard`} />;
 }

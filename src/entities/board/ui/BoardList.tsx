@@ -11,11 +11,9 @@ interface BoardListProps {
   basePath: string;
   /** 번호 표시 여부 (기본값 true) */
   showNumber?: boolean;
-  /** 실시간 인기 게시판 여부 (기본값 false) */
-  isHotBoard?: boolean;
 }
 
-export default function BoardList({ posts, basePath, showNumber, isHotBoard }: BoardListProps) {
+export default function BoardList({ posts, basePath, showNumber }: BoardListProps) {
   if (posts.length === 0)
     return (
       <EmptyState className="h-[320px] md:h-[27.5rem]">
@@ -31,13 +29,7 @@ export default function BoardList({ posts, basePath, showNumber, isHotBoard }: B
   return (
     <div className="flex flex-col gap-y-1.5 md:gap-y-0">
       {posts.map((post) => (
-        <BoardRow
-          key={post.postId}
-          post={post}
-          basePath={basePath}
-          showNumber={showNumber}
-          isHotBoard={isHotBoard}
-        />
+        <BoardRow key={post.postId} post={post} basePath={basePath} showNumber={showNumber} />
       ))}
     </div>
   );

@@ -11,10 +11,9 @@ import BoardWriteButton from './BoardWriteButton';
 interface BoardSectionProps {
   boardId: number;
   basePath: string;
-  isHotBoard?: boolean;
 }
 
-const BoardSection = ({ boardId, basePath, isHotBoard = false }: BoardSectionProps) => {
+const BoardSection = ({ boardId, basePath }: BoardSectionProps) => {
   const searchParams = useSearchParams();
   const page = Math.max(1, Number(searchParams.get('page') ?? '1') || 1);
   const { data } = useQuery({
@@ -32,19 +31,11 @@ const BoardSection = ({ boardId, basePath, isHotBoard = false }: BoardSectionPro
     <div className="flex flex-col gap-8">
       {!Object.entries(BOARD_MAP).find((item) => item[1].id === boardId) && (
         <div className="mt-2 flex items-center justify-end">
-          <BoardWriteButton
-            href={isHotBoard ? `/hotboard/${boardId}/community/write` : `/board/${boardId}/write`}
-            boardId={boardId}
-          />
+          <BoardWriteButton href={`${basePath}/${boardId}/write`} boardId={boardId} />
         </div>
       )}
       <BoardTable>
-        <BoardList
-          posts={posts}
-          basePath={`${basePath}/${boardId}`}
-          showNumber
-          isHotBoard={isHotBoard}
-        />
+        <BoardList posts={posts} basePath={`${basePath}/${boardId}`} showNumber />
       </BoardTable>
       {posts.length > 0 && (
         <Pagination
