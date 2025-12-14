@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react';
 import HotBoardListRow from './HotBoardListRow';
-import MedalRow from './MedalRow';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { axiosHotBoardList, SSE } from '@/shared/api';
 import { HotBoardResponse } from '@/shared/types';
@@ -46,29 +45,17 @@ export default function HotBoardList() {
           <span className="w-32 text-center">타이머</span>
         </div>
         {data &&
-          data.boardInfoDtos.map((item, idx) =>
-            page === 1 && idx < 3 ? (
-              <MedalRow
-                key={item.boardId}
-                boardId={item.boardId}
-                rank={idx + 1 + (page - 1) * 10}
-                keyword={item.boardName}
-                count={item.postCount}
-                views={item.viewCount}
-                timer={item.boardLiveTime}
-              />
-            ) : (
-              <HotBoardListRow
-                key={item.boardId}
-                boardId={item.boardId}
-                rank={idx + 1 + (page - 1) * 10}
-                keyword={item.boardName}
-                count={item.postCount}
-                views={item.viewCount}
-                timer={item.boardLiveTime}
-              />
-            )
-          )}
+          data.boardInfoDtos.map((item, idx) => (
+            <HotBoardListRow
+              key={item.boardId}
+              boardId={item.boardId}
+              rank={idx + 1 + (page - 1) * 10}
+              keyword={item.boardName}
+              count={item.postCount}
+              views={item.viewCount}
+              timer={item.boardLiveTime}
+            />
+          ))}
       </div>
       {data.boardInfoDtos.length > 0 && (
         <Pagination

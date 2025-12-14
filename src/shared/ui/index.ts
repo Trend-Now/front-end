@@ -16,9 +16,7 @@ import DateDivider from './divider/DateDivider';
 
 /** Icons */
 import InformationOutlined16 from './icons/16/InformationOutlined16';
-import View16 from './icons/16/View16';
 import Heart16 from './icons/16/Heart16';
-import Write16 from './icons/16/Write16';
 import Comment18 from './icons/18/Comment18';
 import Heart18 from './icons/18/Heart18';
 import ChevronVertical20 from './icons/20/ChevronVertical20';
@@ -36,7 +34,7 @@ import Settings20 from './icons/20/Settings20';
 import UserProfile64 from './icons/64/UserProfile64';
 import ChevronRight24 from './icons/24/ChevronRight24';
 import Trendnow from './icons/Trendnow';
-import Pencil from './icons/Pencil';
+import PencilIcon from './icons/Pencil';
 import Close from './icons/Close';
 import UserIcon from './icons/UserIcon';
 import HeartIcon from './icons/HeartIcon';
@@ -46,6 +44,7 @@ import ScrapOutlinedIcon from './icons/ScrapOutlinedIcon';
 import KebabIcon from './icons/KebabIcon';
 import EditIcon from './icons/EditIcon';
 import DeleteIcon from './icons/DeleteIcon';
+import EyeOpenIcon from './icons/EyeOpenIcon';
 
 /** Text Fields */
 import { Dropdown, DropdownItem } from './text-field/Dropdown';
@@ -81,9 +80,7 @@ export {
   DropdownMenuItem,
   DateDivider,
   InformationOutlined16,
-  View16,
   Heart16,
-  Write16,
   Comment18,
   Heart18,
   ChevronVertical20,
@@ -113,7 +110,7 @@ export {
   Skeleton,
   Modal,
   PostDeleteModal,
-  Pencil,
+  PencilIcon,
   Close,
   UserIcon,
   HeartIcon,
@@ -123,4 +120,5 @@ export {
   KebabIcon,
   EditIcon,
   DeleteIcon,
+  EyeOpenIcon,
 };

@@ -1,5 +1,5 @@
 import { BOARD_MAP } from '@/shared/constants';
-import { Heart16, View16 } from '@/shared/ui';
+import { EyeOpenIcon, Heart16 } from '@/shared/ui';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import React from 'react';
@@ -46,7 +46,7 @@ const MyPostRow = ({ boardId, postId, title, views, likes, created, comments }: 
       <div className="flex items-center gap-2 text-2xs text-gray-500 md:text-sm">
         <div className="flex items-center gap-x-1 after:ml-1 after:h-3 after:border-l after:border-gray-200 after:content-[''] md:block md:w-12 md:after:hidden">
           <span className="md:hidden">
-            <View16 />
+            <EyeOpenIcon className="h-4 w-4 text-gray-500" />
           </span>
           {views.toLocaleString()}
         </div>

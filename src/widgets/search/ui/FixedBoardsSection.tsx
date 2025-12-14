@@ -4,7 +4,7 @@ import { SearchSectionTitle, SearchTypeTabs } from '@/entities/search';
 import { axiosSearchFixedBoardPosts } from '@/shared/api/axios/axios';
 import { BOARD_MAP } from '@/shared/constants';
 import type { BoardType, SearchFixedBoardsResponse } from '@/shared/types';
-import { EmptyState, Pagination, Pencil, SecondaryButton } from '@/shared/ui';
+import { EmptyState, Pagination, PencilIcon, SecondaryButton } from '@/shared/ui';
 
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -87,7 +87,7 @@ const FixedBoardsSection = ({ keyword }: FixedBoardsSectionProps) => {
               router.push(`/board/${BOARD_MAP[currentTab].id}`);
             }}
           >
-            <Pencil className="h-5 w-5 text-gray-700" />첫 번째 글 작성하기
+            <PencilIcon className="h-5 w-5 text-gray-700" />첫 번째 글 작성하기
           </SecondaryButton>
         </EmptyState>
       ) : (

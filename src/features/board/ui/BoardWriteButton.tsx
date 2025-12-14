@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Pencil, PrimaryButton } from '@/shared/ui';
+import { PencilIcon, PrimaryButton } from '@/shared/ui';
 import { axiosCheckWriteCooldown } from '@/shared/api';
 import { WriteCooldownResponse } from '@/shared/types';
 import { useRouter } from 'next/navigation';
@@ -39,7 +39,7 @@ export default function BoardWriteButton({ href, boardId }: BoardWriteButtonProp
       onClick={handleWriteButton}
     >
       <span className="flex items-center gap-x-1 md:gap-x-1.5">
-        <Pencil className="h-5 w-5 text-white md:h-6 md:w-6" />
+        <PencilIcon className="h-5 w-5 text-white md:h-6 md:w-6" />
         글쓰기
       </span>
     </PrimaryButton>
