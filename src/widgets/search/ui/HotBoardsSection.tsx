@@ -15,7 +15,7 @@ const HotBoardsSection = ({ keyword }: HotBoardsSectionProps) => {
     queryFn: () => axiosSearchRealtimeBoards<SearchRealtimeBoardsResponse>(keyword),
     select: (data) => data.searchResult,
   });
-  console.log('boards', boards);
+
   if (!boards) return;
 
   return (
