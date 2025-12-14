@@ -1,7 +1,7 @@
 import { PostInfo } from '@/shared/types';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/shared/lib';
-import { BadgeButton, Heart16, UserIcon, View16 } from '@/shared/ui';
+import { BadgeButton, EyeOpenIcon, Heart16, UserIcon } from '@/shared/ui';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 
@@ -60,7 +60,7 @@ export default function BoardRow({
           <div className="text-2xs text-gray-500 md:text-xs">{post.writer}</div>
         </div>
         <div className="flex shrink-0 items-center gap-x-1 text-center text-2xs font-regular text-gray-500 after:ml-1.5 after:h-1.5 after:border-l after:border-gray-200 after:content-[''] md:w-12 md:justify-center md:text-sm md:after:hidden">
-          <View16 />
+          <EyeOpenIcon className="h-4 w-4 text-gray-500" />
           {post.viewCount.toLocaleString()}
         </div>
         <div className="flex shrink-0 items-center gap-x-1 text-center text-2xs font-regular text-gray-500 after:ml-1.5 after:h-1.5 after:border-l after:border-gray-200 after:content-[''] md:w-12 md:justify-center md:text-sm md:after:hidden">

@@ -1,12 +1,18 @@
 import React from 'react';
 
-interface PencilProps {
+interface PencilIconProps {
   className?: string;
 }
 
-const Pencil = ({ className }: PencilProps) => {
+export default function PencilIcon({ className, ...props }: PencilIconProps) {
   return (
-    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -27,6 +33,4 @@ const Pencil = ({ className }: PencilProps) => {
       />
     </svg>
   );
-};
-
-export default Pencil;
+}

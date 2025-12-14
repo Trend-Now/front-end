@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CountdownTimer, EyeOpenIcon, WriteIcon } from '@/shared/ui';
+import { CountdownTimer, EyeOpenIcon, PencilIcon } from '@/shared/ui';
 import Image from 'next/image';
 import { BronzeMedalImage, GoldMedalImage, SilverMedalImage } from '@/shared/assets';
 import { cn } from '@/shared/lib';
@@ -92,11 +92,11 @@ export default function HotBoardListRow({
       <div className="flex flex-col-reverse gap-x-2 md:flex-row">
         <div className="flex justify-end gap-x-2 text-2xs font-regular text-gray-500 md:text-md">
           <div className='flex w-auto items-center justify-center gap-1 after:ml-2 after:h-1.5 after:w-px after:bg-gray-300 after:content-[""] md:w-16 md:after:content-none'>
-            <WriteIcon className="block md:hidden" />
+            <PencilIcon className="h-4 w-4 text-gray-500 md:hidden" />
             {count}
           </div>
           <div className="flex w-auto items-center justify-center gap-1 md:w-16">
-            <EyeOpenIcon className="block md:hidden" />
+            <EyeOpenIcon className="h-4 w-4 text-gray-500 md:hidden" />
             {views}
           </div>
         </div>
