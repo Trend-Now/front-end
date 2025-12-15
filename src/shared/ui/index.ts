@@ -25,6 +25,7 @@ import ChevronVertical20 from './icons/20/ChevronVertical20';
 import Hamburger24 from './icons/24/Hamburger24';
 import House24 from './icons/24/House24';
 import Search from './icons/Search';
+import SendArrowIcon from './icons/SendArrowIcon';
 import UserProfile24 from './icons/24/UserProfile24';
 import ChevronVertical28 from './icons/28/ChevronVertical28';
 import UserProfile32 from './icons/32/UserProfile32';
@@ -37,10 +38,13 @@ import UserProfile64 from './icons/64/UserProfile64';
 import ChevronRight24 from './icons/24/ChevronRight24';
 import Trendnow from './icons/Trendnow';
 import Pencil from './icons/Pencil';
+import ReplyArrowIcon from './icons/ReplyArrowIcon';
 import Chat from './icons/Chat';
+import ChevronDown from './icons/ChevronDown';
 import Close from './icons/Close';
 import UserIcon from './icons/UserIcon';
 import HeartIcon from './icons/HeartIcon';
+import InputBoxPlusIcon from './icons/InputBoxPlusIcon';
 import HeartFilledIcon from './icons/HeartFilledIcon';
 import ScrapFilledIcon from './icons/ScrapFilledIcon';
 import ScrapOutlinedIcon from './icons/ScrapOutlinedIcon';
@@ -91,6 +95,7 @@ export {
   Hamburger24,
   House24,
   Search,
+  SendArrowIcon,
   ChevronVertical28,
   UserProfile24,
   UserProfile32,
@@ -115,10 +120,13 @@ export {
   Modal,
   PostDeleteModal,
   Pencil,
+  ReplyArrowIcon,
   Chat,
+  ChevronDown,
   Close,
   UserIcon,
   HeartIcon,
+  InputBoxPlusIcon,
   HeartFilledIcon,
   ScrapFilledIcon,
   ScrapOutlinedIcon,
